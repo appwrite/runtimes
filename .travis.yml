@@ -5,6 +5,9 @@ php:
 - 8.0
 - nightly
 
+services:
+- docker
+
 notifications:
   email:
   - team@appwrite.io
