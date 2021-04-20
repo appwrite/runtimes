@@ -15,7 +15,13 @@ notifications:
   email:
     - team@appwrite.io
 
-before_script: composer install --ignore-platform-reqs
+before_script: 
+  - >
+    if [ ! -z "${DOCKERHUB_PULL_USERNAME:-}" ]; then
+      echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
+    fi
+  - docker --version
+  - composer install --ignore-platform-reqs
 
 script:
   - vendor/bin/phpunit --configuration phpunit.xml
