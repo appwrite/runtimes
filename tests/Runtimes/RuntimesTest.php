@@ -119,16 +119,16 @@ class RuntimesTest extends TestCase
         }
     }
 
-    // public function testPullRuntimes()
-    // {
-    //     $stdout = $stderr = '';
-    //     foreach (Runtimes::get() as $runtime) {
-    //         Console::execute("docker pull {$runtime['image']}", '', $stdout, $stderr);
-
-    //         $this->assertEmpty($stderr);
-    //         $this->assertNotEmpty($stdout);
-    //     }
-    // }
+    public function testPullRuntimes()
+    {
+        $stdout = $stderr = '';
+        foreach (Runtimes::get() as $runtime) {
+            Console::execute("docker pull {$runtime['image']}", '', $stdout, $stderr);
+            Console::log($stderr ? $stderr : $stdout);
+            $this->assertEmpty($stderr);
+            $this->assertNotEmpty($stdout);
+        }
+    }
 
     public function testRunRuntimes()
     {
@@ -149,6 +149,7 @@ class RuntimesTest extends TestCase
                 $stdout,
                 $stderr
             );
+            Console::log($container . ' : ' . ($stderr ? $stderr : $stdout));
             $this->assertEmpty($stderr);
             $this->assertNotEmpty($stdout);
         }
