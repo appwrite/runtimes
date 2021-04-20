@@ -61,9 +61,19 @@ class Runtimes
 
 class Runtime
 {
+    /**
+     * @var string
+     */
     protected $key;
+
+    /**
+     * @var string
+     */
     protected $name;
 
+    /**
+     * @var Version[]
+     */
     protected $versions = [];
 
     public function __construct(string $key, string $name)
@@ -78,6 +88,9 @@ class Runtime
         $this->versions[] = new Version($version, $base, $image, $supports);
     }
 
+    /**
+     * @return array[]
+     */
     public function list(): array
     {
         $list = [];
@@ -100,11 +113,23 @@ class Runtime
 class Version
 {
     /**
-     * @var string $version
+     * @var string
      */
     public $version;
+
+    /**
+     * @var string
+     */
     public $base;
+
+    /**
+     * @var string
+     */
     public $image;
+
+    /**
+     * @var array
+     */
     public $supports;
 
     public function __construct(string $version, string $base, string $image, array $supports)
@@ -115,6 +140,9 @@ class Version
         $this->supports = $supports;
     }
 
+    /**
+     * @return (array|string)[]
+     */
     public function get(): array
     {
         return
