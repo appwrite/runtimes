@@ -187,7 +187,7 @@ class RuntimesTest extends TestCase
 
         foreach ($testRuntimes as $container => $runtime) {
             Console::execute("docker exec " . \implode(" ", $vars) . " {$container} {$runtime['command']}", '', $stdout, $stderr);
-            $stderr ?? Console::log($stderr);
+            $stderr && Console::log($stderr);
             $this->assertEmpty($stderr);
             $this->assertNotEmpty($stdout);
 
