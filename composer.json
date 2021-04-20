@@ -1,0 +1,26 @@
+{
+    "name": "appwrite/php-runtimes",
+    "description": "A simple Storage library to manage application storage",
+    "type": "library",
+    "keywords": ["php","framework","upf","utopia","storage"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eldad Fux",
+            "email": "eldad@appwrite.io"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes"}
+    },
+    "require": {
+        "php": ">=7.4",
+        "utopia-php/system": "0.4.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3",
+        "utopia-php/cli": "0.11.*",
+        "vimeo/psalm": "4.0.1"
+    },
+    "minimum-stability": "dev"
+}

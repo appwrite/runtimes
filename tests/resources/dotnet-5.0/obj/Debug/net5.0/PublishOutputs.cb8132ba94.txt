@@ -1,0 +1,6 @@
+/Users/torstendittmann/Documents/GitHub/appwrite/tests/resources/functions/dotnet-5.0/bin/Debug/net5.0/publish/dotnet.dll
+/Users/torstendittmann/Documents/GitHub/appwrite/tests/resources/functions/dotnet-5.0/bin/Debug/net5.0/publish/dotnet.deps.json
+/Users/torstendittmann/Documents/GitHub/appwrite/tests/resources/functions/dotnet-5.0/bin/Debug/net5.0/publish/dotnet.runtimeconfig.json
+/Users/torstendittmann/Documents/GitHub/appwrite/tests/resources/functions/dotnet-5.0/bin/Debug/net5.0/publish/dotnet.pdb
+/Users/torstendittmann/Documents/GitHub/appwrite/tests/resources/functions/dotnet-5.0/bin/Debug/net5.0/publish/Appwrite.dll
+/Users/torstendittmann/Documents/GitHub/appwrite/tests/resources/functions/dotnet-5.0/bin/Debug/net5.0/publish/Newtonsoft.Json.dll

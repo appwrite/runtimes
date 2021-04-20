@@ -1,0 +1,16 @@
+language: php
+
+php:
+- 7.4
+- 8.0
+- nightly
+
+notifications:
+  email:
+  - team@appwrite.io
+
+before_script: composer install --ignore-platform-reqs
+
+script:
+- vendor/bin/phpunit --configuration phpunit.xml
+- vendor/bin/psalm --show-info=true
