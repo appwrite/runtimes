@@ -201,6 +201,7 @@ class RuntimesTest extends TestCase
             $this->assertEquals($output[6], 'event');
             $this->assertEquals($output[7], 'event_data');
             Console::execute("docker rm -f {$container}", '', $stdout, $stderr, 30);
+            Console::log('✅ ' . $container);
         }
     }
 }
