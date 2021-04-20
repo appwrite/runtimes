@@ -1,17 +1,22 @@
 language: php
 
 php:
-- 8.0
+  - 8.0
+
+arch:
+  - amd64
+  - ppc64le
+  - arm64
 
 services:
-- docker
+  - docker
 
 notifications:
   email:
-  - team@appwrite.io
+    - team@appwrite.io
 
 before_script: composer install --ignore-platform-reqs
 
 script:
-- vendor/bin/phpunit --configuration phpunit.xml
-- vendor/bin/psalm --show-info=true
+  - vendor/bin/phpunit --configuration phpunit.xml
+  - vendor/bin/psalm --show-info=true
