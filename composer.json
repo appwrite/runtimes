@@ -15,7 +15,7 @@
         }
     ],
     "autoload": {
-        "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes/Runtimes.php"}
+        "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes"}
     },
     "require": {
         "php": ">=8.0",
