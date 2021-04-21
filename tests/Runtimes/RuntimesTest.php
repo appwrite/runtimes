@@ -8,14 +8,14 @@ use Utopia\CLI\Console;
 
 class RuntimesTest extends TestCase
 {
-    public $functions;
+    public $runtimes;
     public $functionsDir;
 
     public function setUp(): void
     {
         $functionsDir = realpath(__DIR__ . '/../resources');
         $this->functionsDir = $functionsDir;
-        $this->functions = [
+        $this->runtimes = [
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'command' => 'node index.js',
@@ -97,6 +97,13 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
             ]
         ];
+        foreach ($this->runtimes as $key => $env) {
+            if (array_key_exists($key, Runtimes::get())) {
+                $this->runtimes[$key] = array_merge($env, Runtimes::get()[$key]);
+            } else {
+                unset($this->runtimes[$key]);
+            }
+        }
     }
 
     public function tearDown(): void
@@ -105,7 +112,7 @@ class RuntimesTest extends TestCase
 
     public function testGetRuntimes()
     {
-        foreach (Runtimes::get() as $runtime) {
+        foreach ($this->runtimes as $runtime) {
             $this->assertArrayHasKey('name', $runtime, $runtime['name']);
             $this->assertArrayHasKey('version', $runtime, $runtime['name']);
             $this->assertArrayHasKey('base', $runtime, $runtime['name']);
@@ -122,7 +129,7 @@ class RuntimesTest extends TestCase
     public function testPullRuntimes()
     {
         $stdout = $stderr = '';
-        foreach (Runtimes::get() as $runtime) {
+        foreach ($this->runtimes as $runtime) {
             Console::execute("docker pull {$runtime['image']}", '', $stdout, $stderr);
             Console::log($stderr ? $stderr : $stdout);
             $this->assertEmpty($stderr);
@@ -133,14 +140,8 @@ class RuntimesTest extends TestCase
     public function testRunRuntimes()
     {
         $stdout = $stderr = '';
-        $testRuntimes = [];
 
-        foreach (Runtimes::get() as $key => $env) {
-            if (array_key_exists($key, $this->functions)) {
-                $testRuntimes[$key] = array_merge($env, $this->functions[$key]);
-            }
-        }
-        foreach ($testRuntimes as $container => $runtime) {
+        foreach ($this->runtimes as $container => $runtime) {
             Console::execute(
                 "docker run -d --name={$container} --workdir /usr/local/src --volume {$this->functionsDir}:/{$this->functionsDir}:rw" .
                     " {$runtime['image']}" .
@@ -177,15 +178,7 @@ class RuntimesTest extends TestCase
             $value = "--env {$key}={$value}";
         });
 
-        $testRuntimes = [];
-
-        foreach (Runtimes::get() as $key => $env) {
-            if (array_key_exists($key, $this->functions)) {
-                $testRuntimes[$key] = array_merge($env, $this->functions[$key]);
-            }
-        }
-
-        foreach ($testRuntimes as $container => $runtime) {
+        foreach ($this->runtimes as $container => $runtime) {
             Console::execute("docker exec " . \implode(" ", $vars) . " {$container} {$runtime['command']}", '', $stdout, $stderr);
             $stderr && Console::log($stderr);
             $this->assertEmpty($stderr);
