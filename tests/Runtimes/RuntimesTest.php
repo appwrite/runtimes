@@ -117,7 +117,6 @@ class RuntimesTest extends TestCase
             $this->assertArrayHasKey('version', $runtime, $runtime['name']);
             $this->assertArrayHasKey('base', $runtime, $runtime['name']);
             $this->assertArrayHasKey('image', $runtime, $runtime['name']);
-            $this->assertArrayHasKey('build', $runtime, $runtime['name']);
             $this->assertArrayHasKey('logo', $runtime, $runtime['name']);
             $this->assertArrayHasKey('supports', $runtime, $runtime['name']);
 

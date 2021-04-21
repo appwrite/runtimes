@@ -50,7 +50,7 @@ class Runtimes
         $withVersion = [];
 
         foreach ($runtimes as $runtime) {
-            $withVersion = array_merge(array_filter($runtime->list(), function($version) {
+            $withVersion = array_merge(array_filter($runtime->list(), function ($version) {
                 return in_array(System::getArchEnum(), $version["supports"]);
             }), $withVersion);
         }
@@ -83,12 +83,21 @@ class Runtime
         $this->versions;
     }
 
+    /**
+     * Adds new version to runtime.
+     * 
+     * @param string $version
+     * @param string $base
+     * @param string $image
+     * @param string[] $version
+     */
     public function addVersion(string $version, string $base, string $image, array $supports): void
     {
         $this->versions[] = new Version($version, $base, $image, $supports);
     }
 
     /**
+     * 
      * @return array[]
      */
     public function list(): array
@@ -100,7 +109,6 @@ class Runtime
                 [
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
-                    'build' => "/usr/src/code/docker/environments/{$key}"
                 ],
                 $version->get()
             );
