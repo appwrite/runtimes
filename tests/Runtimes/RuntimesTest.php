@@ -190,14 +190,14 @@ class RuntimesTest extends TestCase
             $this->assertNotEmpty($stdout);
 
             $output = explode("\n", $stdout);
-            $this->assertEquals($output[0], 'id');
-            $this->assertEquals($output[1], 'name');
-            $this->assertEquals($output[2], 'tag');
-            $this->assertEquals($output[3], 'trigger');
-            $this->assertEquals($output[4], 'env_name');
-            $this->assertEquals($output[5], 'env_version');
-            $this->assertEquals($output[6], 'event');
-            $this->assertEquals($output[7], 'event_data');
+            $this->assertEquals('id', $output[0]);
+            $this->assertEquals('name', $output[1]);
+            $this->assertEquals('tag', $output[2]);
+            $this->assertEquals('trigger', $output[3]);
+            $this->assertEquals('env_name', $output[4]);
+            $this->assertEquals('env_version', $output[5]);
+            $this->assertEquals('event', $output[6]);
+            $this->assertEquals('event_data', $output[7]);
             Console::execute("docker rm -f {$container}", '', $stdout, $stderr, 30);
             Console::log('✅ ' . $container);
         }
