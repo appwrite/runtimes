@@ -13,8 +13,7 @@ class RuntimesTest extends TestCase
 
     public function setUp(): void
     {
-        $functionsDir = realpath(__DIR__ . '/../resources');
-        $this->functionsDir = $functionsDir;
+        $this->functionsDir = $functionsDir = realpath(__DIR__ . '/../resources');
         $this->runtimes = [
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
@@ -125,6 +124,9 @@ class RuntimesTest extends TestCase
         }
     }
 
+    /**
+     * @depends testGetRuntimes
+     */
     public function testPullRuntimes()
     {
         $stdout = $stderr = '';
@@ -136,6 +138,9 @@ class RuntimesTest extends TestCase
         }
     }
 
+    /**
+     * @depends testPullRuntimes
+     */
     public function testRunRuntimes()
     {
         $stdout = $stderr = '';
@@ -155,6 +160,9 @@ class RuntimesTest extends TestCase
         }
     }
 
+    /**
+     * @depends testRunRuntimes
+     */
     public function testExecRuntimes()
     {
         $stdout = $stderr = '';
