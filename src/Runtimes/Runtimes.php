@@ -33,12 +33,12 @@ class Runtimes
         $python->addVersion('3.9', 'python:3.9-alpine', 'appwrite/env-python-3.9:1.0.0', [System::X86, System::PPC, System::ARM]);
         $runtimes[] = $python;
 
-        // $deno = new Runtime('deno', 'Deno');
+        $deno = new Runtime('deno', 'Deno');
         // $deno->addVersion('1.2', 'hayd/deno:alpine-1.2.0', 'appwrite/env-deno-1.2:1.0.0', [System::X86]);
-        // $deno->addVersion('1.5', 'hayd/deno:alpine-1.5.0', 'appwrite/env-deno-1.5:1.0.0', [System::X86]);
-        // $deno->addVersion('1.6', 'hayd/deno:alpine-1.6.0', 'appwrite/env-deno-1.6:1.0.0', [System::X86]);
-        // $deno->addVersion('1.8', 'hayd/deno:alpine-1.8.2', 'appwrite/env-deno-1.8:1.0.0', [System::X86]);
-        // $runtimes[] = $deno;
+        $deno->addVersion('1.5', 'hayd/deno:alpine-1.5.0', 'appwrite/env-deno-1.5:1.0.0', [System::X86, System::ARM]);
+        $deno->addVersion('1.6', 'hayd/deno:alpine-1.6.0', 'appwrite/env-deno-1.6:1.0.0', [System::X86, System::ARM]);
+        $deno->addVersion('1.8', 'hayd/deno:alpine-1.8.2', 'appwrite/env-deno-1.8:1.0.0', [System::X86]);
+        $runtimes[] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
         $dart->addVersion('2.10', 'google/dart:2.10', 'appwrite/env-dart-2.10:1.0.0', [System::X86]);
