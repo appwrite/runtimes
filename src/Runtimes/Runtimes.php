@@ -91,7 +91,7 @@ class Runtime
      * @param string $version
      * @param string $base
      * @param string $image
-     * @param string[] $version
+     * @param string[] $supports
      */
     public function addVersion(string $version, string $base, string $image, array $supports): void
     {
