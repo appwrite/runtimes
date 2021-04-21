@@ -6,6 +6,9 @@ use Utopia\System\System;
 
 class Runtimes
 {
+    /**
+     * Returns all runtimes.
+     */
     public static function get(): array
     {
         $runtimes = [];
@@ -97,6 +100,7 @@ class Runtime
     }
 
     /**
+     * List runtime with all parsed Versions.
      * 
      * @return array[]
      */
@@ -149,6 +153,8 @@ class Version
     }
 
     /**
+     * Get parsed Version.
+     * 
      * @return (array|string)[]
      */
     public function get(): array
