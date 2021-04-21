@@ -1,9 +1,9 @@
 {
     "name": "appwrite/php-runtimes",
-    "description": "A simple Storage library to manage application storage",
+    "description": "Appwrite repository for Cloud Function runtimes that contains the configurations and tests for all of the Appwrite runtime environments.",
     "type": "library",
-    "keywords": ["php","framework","upf","utopia","storage"],
-    "license": "MIT",
+    "keywords": ["php","appwrite","runtimes"],
+    "license": "BSD-3",
     "authors": [
         {
             "name": "Eldad Fux",
@@ -15,7 +15,7 @@
         }
     ],
     "autoload": {
-        "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes"}
+        "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes/Runtimes.php"}
     },
     "require": {
         "php": ">=8.0",
