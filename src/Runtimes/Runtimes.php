@@ -60,6 +60,13 @@ class Runtimes
         $this->runtimes[$runtime->getKey()] = $runtime;
     }
 
+    /**
+     * Get Runtime by key.
+     * 
+     * @param string $key
+     * 
+     * @return Runtime
+     */
     public function get(string $key): Runtime
     {
         if (!array_key_exists($key, $this->runtimes)) {
@@ -72,6 +79,8 @@ class Runtimes
      * Returns all supported runtimes.
      * 
      * @param bool $supported Pass `false` to also return unsupported CPU architecture.
+     * 
+     * @return array
      */
     public function getAll(bool $supported = true): array
     {
