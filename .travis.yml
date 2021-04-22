@@ -1,0 +1,28 @@
+language: php
+
+php:
+  - 8.0
+
+arch:
+  - amd64
+  - ppc64le
+  - arm64
+
+services:
+  - docker
+
+notifications:
+  email:
+    - team@appwrite.io
+
+before_script: 
+  - >
+    if [ ! -z "${DOCKERHUB_PULL_USERNAME:-}" ]; then
+      echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
+    fi
+  - docker --version
+  - composer install --ignore-platform-reqs
+
+script:
+  - vendor/bin/phpunit --configuration phpunit.xml
+  - vendor/bin/psalm --show-info=true
