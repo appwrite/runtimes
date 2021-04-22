@@ -9,6 +9,8 @@ use Utopia\CLI\Console;
 class RuntimesTest extends TestCase
 {
     public $runtimes;
+    /** @var Runtimes $instance */
+    public $instance;
     public $functionsDir;
 
     public function setUp(): void
@@ -96,9 +98,10 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
             ]
         ];
+        $this->instance = new Runtimes();
         foreach ($this->runtimes as $key => $env) {
-            if (array_key_exists($key, Runtimes::get())) {
-                $this->runtimes[$key] = array_merge($env, Runtimes::get()[$key]);
+            if (array_key_exists($key, $this->instance->getAll())) {
+                $this->runtimes[$key] = array_merge($env, $this->instance->getAll()[$key]);
             } else {
                 unset($this->runtimes[$key]);
             }
@@ -107,6 +110,13 @@ class RuntimesTest extends TestCase
 
     public function tearDown(): void
     {
+    }
+
+    public function testSupportedRuntimes()
+    {
+        $this->assertNotEmpty($this->instance->get('node'));
+        $this->assertNotEmpty($this->instance->getAll());
+        $this->assertCount(15, $this->instance->getAll(false));
     }
 
     public function testGetRuntimes()

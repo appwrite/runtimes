@@ -2,61 +2,87 @@
 
 namespace Appwrite\Runtimes;
 
+use Exception;
 use Utopia\System\System;
 
 class Runtimes
 {
-    /**
-     * Returns all runtimes.
-     */
-    public static function get(): array
-    {
-        $runtimes = [];
+    /** @var array<string, Runtime> $runtimes */
+    protected $runtimes = [];
 
+    public function __construct()
+    {
         $node = new Runtime('node', 'Node.js');
         $node->addVersion('14.5', 'node:14.5-alpine', 'appwrite/env-node-14.5:1.0.0', [System::X86, System::PPC, System::ARM]);
         $node->addVersion('15.5', 'node:15.5-alpine', 'appwrite/env-node-15.5:1.0.0', [System::X86, System::PPC, System::ARM]);
-        $runtimes[] = $node;
+        $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP');
         $php->addVersion('7.4', 'php:7.4-cli-alpine', 'appwrite/env-php-7.4:1.0.0', [System::X86, System::PPC, System::ARM]);
         $php->addVersion('8.0', 'php:8.0-cli-alpine', 'appwrite/env-php-8.0:1.0.0', [System::X86, System::PPC, System::ARM]);
-        $runtimes[] = $php;
+        $this->runtimes['php'] = $php;
 
         $ruby = new Runtime('ruby', 'Ruby');
         $ruby->addVersion('2.7', 'ruby:2.7-alpine', 'appwrite/env-ruby-2.7:1.0.2', [System::X86, System::PPC, System::ARM]);
         $ruby->addVersion('3.0', 'ruby:3.0-alpine', 'appwrite/env-ruby-3.0:1.0.0', [System::X86, System::PPC, System::ARM]);
-        $runtimes[] = $ruby;
+        $this->runtimes['ruby'] = $ruby;
 
         $python = new Runtime('python', 'Python');
         $python->addVersion('3.8', 'python:3.8-alpine', 'appwrite/env-python-3.8:1.0.0', [System::X86, System::PPC, System::ARM]);
         $python->addVersion('3.9', 'python:3.9-alpine', 'appwrite/env-python-3.9:1.0.0', [System::X86, System::PPC, System::ARM]);
-        $runtimes[] = $python;
+        $this->runtimes['python'] = $python;
 
         $deno = new Runtime('deno', 'Deno');
         $deno->addVersion('1.5', 'hayd/deno:alpine-1.5.0', 'appwrite/env-deno-1.5:1.0.0', [System::X86]);
         $deno->addVersion('1.6', 'hayd/deno:alpine-1.6.0', 'appwrite/env-deno-1.6:1.0.0', [System::X86]);
         $deno->addVersion('1.8', 'hayd/deno:alpine-1.8.2', 'appwrite/env-deno-1.8:1.0.0', [System::X86]);
-        $runtimes[] = $deno;
+        $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
         $dart->addVersion('2.10', 'google/dart:2.10', 'appwrite/env-dart-2.10:1.0.0', [System::X86]);
         $dart->addVersion('2.12', 'google/dart:2.12', 'appwrite/env-dart-2.12:1.0.0', [System::X86]);
-        $runtimes[] = $dart;
+        $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET');
         $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/runtime:3.1-alpine', 'appwrite/env-dotnet-3.1:1.0.0', [System::X86]);
         $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'appwrite/env-dotnet-5.0:1.0.0', [System::X86, System::ARM]);
-        $runtimes[] = $dotnet;
+        $this->runtimes['dotnet'] = $dotnet;
+    }
 
-        $withVersion = [];
+    /**
+     * Adds runtime.
+     * 
+     * @param Runtime $runtime
+     * @return void
+     */
+    public function add(Runtime $runtime): void
+    {
+        $this->runtimes[$runtime->getKey()] = $runtime;
+    }
 
-        foreach ($runtimes as $runtime) {
-            $withVersion = array_merge(array_filter($runtime->list(), function ($version) {
-                return in_array(System::getArchEnum(), $version["supports"]);
-            }), $withVersion);
+    public function get(string $key): Runtime
+    {
+        if (!array_key_exists($key, $this->runtimes)) {
+            throw new Exception("Runtime not found!");
+        }
+        return $this->runtimes[$key];
+    }
+
+    /**
+     * Returns all supported runtimes.
+     * 
+     * @param bool $supported Pass `false` to also return unsupported CPU architecture.
+     */
+    public function getAll(bool $supported = true): array
+    {
+        $supportedRuntimes = [];
+
+        foreach ($this->runtimes as $runtime) {
+            $supportedRuntimes = array_merge(array_filter($runtime->list(), function ($version) use ($supported) {
+                return $supported ? in_array(System::getArchEnum(), $version["supports"]) : true;
+            }), $supportedRuntimes);
         }
 
-        return $withVersion;
+        return $supportedRuntimes;
     }
 }

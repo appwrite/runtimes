@@ -27,6 +27,16 @@ class Runtime
     }
 
     /**
+     * Get key.
+     * 
+     * @return string
+     */
+    public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    /**
      * Adds new version to runtime.
      * 
      * @param string $version
