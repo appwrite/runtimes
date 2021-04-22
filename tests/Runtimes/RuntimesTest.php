@@ -116,7 +116,10 @@ class RuntimesTest extends TestCase
     {
         $this->assertNotEmpty($this->instance->get('node'));
         $this->assertNotEmpty($this->instance->getAll());
-        $this->assertCount(15, $this->instance->getAll(false));
+        $this->assertCount(15, $this->instance->getAll(supported: false));
+        $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5']));
+        $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5', 'unknown']));
+        $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-15.5']));
     }
 
     public function testGetRuntimes()
@@ -194,7 +197,7 @@ class RuntimesTest extends TestCase
             $value = \escapeshellarg((empty($value)) ? 'null' : $value);
             $value = "--env {$key}={$value}";
         });
-
+        Console::log('');
         foreach ($this->runtimes as $container => $runtime) {
             Console::execute("docker exec " . \implode(" ", $vars) . " {$container} {$runtime['command']}", '', $stdout, $stderr, $runtime['timeout']);
             $this->assertNotEmpty($stdout);
@@ -209,7 +212,7 @@ class RuntimesTest extends TestCase
             $this->assertEquals('event', $output[6]);
             $this->assertEquals('event_data', $output[7]);
             Console::execute("docker rm -f {$container}", '', $stdout, $stderr, 30);
-            Console::log('.✅ ' . $container);
+            Console::log('✅ ' . $container);
         }
     }
 }
