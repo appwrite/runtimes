@@ -90,7 +90,7 @@ class Runtimes
         $supportedRuntimes = [];
 
         foreach ($this->runtimes as $runtime) {
-            $supportedRuntimes = array_merge(array_filter($runtime->list(), function ($version, $key) use ($supported, $filter) {
+            $supportedRuntimes = array_merge(array_filter($runtime->list(), function (array $version, string $key) use ($supported, $filter) {
                 $isSupported = in_array(System::getArchEnum(), $version["supports"]);
                 $isFiltered = in_array($key, $filter);
                 return $supported ? ($isSupported && ($filter ? $isFiltered : true)) : true;
