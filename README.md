@@ -20,9 +20,10 @@ require_once '../vendor/autoload.php';
 
 use Appwrite\Runtimes\Runtimes;
 
-// returns all cloud function runtimes
-Runtimes::get()
+$runtimes = new Runtime();
 
+// returns all supported cloud function runtimes
+Runtimes::getAll();
 ```
 
 ## Adding a new Runtime
@@ -52,7 +53,7 @@ After that the build command must be added to the `build.sh` script.
 
 After the Docker image is created, this must be added to the main class of this library.
 
-References to this must be added to the `get()` method of `src/Runtimes/Runtimes.php`.
+References to this must be added to the constructor of `src/Runtimes/Runtimes.php`.
 
 Example:
 
