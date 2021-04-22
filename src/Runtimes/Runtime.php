@@ -19,6 +19,12 @@ class Runtime
      */
     protected $versions = [];
 
+    /**
+     * Runtime that can contain different Versions.
+     * 
+     * @param string $key
+     * @param string $name
+     */
     public function __construct(string $key, string $name)
     {
         $this->key = $key;

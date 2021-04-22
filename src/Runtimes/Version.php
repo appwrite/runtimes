@@ -24,6 +24,14 @@ class Version
      */
     public $supports;
 
+    /**
+     * Version class that holds metadata about a Runtime Version.
+     * 
+     * @param string $version
+     * @param string $base
+     * @param string $image
+     * @param array $supports
+     */
     public function __construct(string $version, string $base, string $image, array $supports)
     {
         $this->version = $version;

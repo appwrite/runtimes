@@ -10,6 +10,9 @@ class Runtimes
     /** @var array<string, Runtime> $runtimes */
     protected $runtimes = [];
 
+    /**
+     * Runtimes.
+     */
     public function __construct()
     {
         $node = new Runtime('node', 'Node.js');
