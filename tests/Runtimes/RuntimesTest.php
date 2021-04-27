@@ -102,7 +102,7 @@ class RuntimesTest extends TestCase
                 'command' => 'java HelloWorld',
                 'timeout' => 15,
             ],
-            'kotlin' => [
+            'kotlin-jar' => [
                 'code' => $functionsDir . '/kotlin.tar.gz',
                 'command' => 'java -jar HelloWorld.jar',
                 'timeout' => 15,
