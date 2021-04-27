@@ -50,6 +50,10 @@ class Runtimes
         $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/runtime:3.1-alpine', 'appwrite/env-dotnet-3.1:1.0.0', [System::X86]);
         $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'appwrite/env-dotnet-5.0:1.0.0', [System::X86, System::ARM]);
         $this->runtimes['dotnet'] = $dotnet;
+
+        $java = new Runtime('java', 'Java');
+        $java->addVersion('11', 'openjdk/11-jre', 'appwrite/env-java-11:1.0.0', [System::X86]);
+        $this->runtimes['java'] = $java;
     }
 
     /**

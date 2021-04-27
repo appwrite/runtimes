@@ -96,6 +96,16 @@ class RuntimesTest extends TestCase
                 'code' => $functionsDir . '/dotnet-5.0.tar.gz',
                 'command' => 'dotnet dotnet.dll',
                 'timeout' => 15,
+            ],
+            'java-11' => [
+                'code' => $functionsDir . '/java-11.tar.gz',
+                'command' => 'java HelloWorld',
+                'timeout' => 15,
+            ],
+            'kotlin' => [
+                'code' => $functionsDir . '/kotlin.tar.gz',
+                'command' => 'java -jar HelloWorld.jar',
+                'timeout' => 15,
             ]
         ];
         $this->instance = new Runtimes();
