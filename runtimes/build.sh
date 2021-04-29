@@ -44,3 +44,6 @@ docker buildx build --platform linux/amd64 -t appwrite/env-dotnet-3.1:1.0.0 ./do
 
 echo '.NET 5.0...'
 docker buildx build --platform linux/amd64,linux/arm64 -t appwrite/env-dotnet-5.0:1.0.0 ./docker/environments/dotnet-5.0/ --push
+
+echo 'Java 11...'
+docker buildx build --platform linux/amd64 -t appwrite/env-java-11:1.0.0 ./docker/environments/java-11/ --push
