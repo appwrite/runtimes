@@ -126,7 +126,7 @@ class RuntimesTest extends TestCase
     {
         $this->assertNotEmpty($this->instance->get('node'));
         $this->assertNotEmpty($this->instance->getAll());
-        $this->assertCount(16, $this->instance->getAll(supported: false));
+        $this->assertNotEmpty($this->instance->getAll(supported: false));
         $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5']));
         $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5', 'unknown']));
         $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-15.5']));
