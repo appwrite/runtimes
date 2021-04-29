@@ -8,7 +8,7 @@ use Utopia\CLI\Console;
 
 class RuntimesTest extends TestCase
 {
-    public $runtimes;
+    public $tests;
     /** @var Runtimes $instance */
     public $instance;
     public $functionsDir;
@@ -16,96 +16,96 @@ class RuntimesTest extends TestCase
     public function setUp(): void
     {
         $this->functionsDir = $functionsDir = realpath(__DIR__ . '/../resources');
-        $this->runtimes = [
+        $this->tests = [
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'command' => 'node index.js',
                 'timeout' => 15,
+                'runtime' => 'node-14.5'
             ],
             'node-15.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'command' => 'node index.js',
                 'timeout' => 15,
+                'runtime' => 'node-15.5'
             ],
             'php-7.4' => [
                 'code' => $functionsDir . '/php.tar.gz',
                 'command' => 'php index.php',
                 'timeout' => 15,
+                'runtime' => 'php-7.4'
             ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',
                 'command' => 'php index.php',
                 'timeout' => 15,
+                'runtime' => 'php-8.0'
             ],
             'ruby-2.7' => [
                 'code' => $functionsDir . '/ruby.tar.gz',
                 'command' => 'ruby app.rb',
                 'timeout' => 15,
+                'runtime' => 'ruby-2.7'
             ],
             'ruby-3.0' => [
                 'code' => $functionsDir . '/ruby.tar.gz',
                 'command' => 'ruby app.rb',
                 'timeout' => 15,
+                'runtime' => 'ruby-3.0'
             ],
             'python-3.8' => [
                 'code' => $functionsDir . '/python.tar.gz',
                 'command' => 'python main.py',
                 'timeout' => 15,
+                'runtime' => 'python-3.8'
             ],
             'python-3.9' => [
                 'code' => $functionsDir . '/python.tar.gz',
                 'command' => 'python main.py',
                 'timeout' => 15,
-            ],
-            'deno-1.2' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-            ],
-            'deno-1.5' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
+                'runtime' => 'python-3.9'
             ],
             'deno-1.6' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'command' => 'deno run --allow-env index.ts',
                 'timeout' => 15,
+                'runtime' => 'deno-1.6'
             ],
             'deno-1.8' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'command' => 'deno run --allow-env index.ts',
                 'timeout' => 15,
+                'runtime' => 'deno-1.8'
             ],
             'dart-2.10' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
                 'timeout' => 15,
+                'runtime' => 'dart-2.10'
             ],
             'dart-2.12' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
                 'timeout' => 15,
+                'runtime' => 'dart-2.12'
             ],
             'dotnet-3.1' => [
                 'code' => $functionsDir . '/dotnet-3.1.tar.gz',
                 'command' => 'dotnet dotnet.dll',
                 'timeout' => 15,
+                'runtime' => 'dotnet-3.1'
             ],
             'dotnet-5.0' => [
                 'code' => $functionsDir . '/dotnet-5.0.tar.gz',
                 'command' => 'dotnet dotnet.dll',
                 'timeout' => 15,
+                'runtime' => 'dotnet-5.0'
             ]
         ];
         $this->instance = new Runtimes();
-        foreach ($this->runtimes as $key => $env) {
-            if (array_key_exists($key, $this->instance->getAll())) {
-                $this->runtimes[$key] = array_merge($env, $this->instance->getAll()[$key]);
-            } else {
-                unset($this->runtimes[$key]);
-            }
-        }
+        $this->tests = array_filter($this->tests, function($test) {
+            return array_key_exists($test['runtime'], $this->instance->getAll());
+        });
     }
 
     public function tearDown(): void
@@ -124,7 +124,7 @@ class RuntimesTest extends TestCase
 
     public function testGetRuntimes()
     {
-        foreach ($this->runtimes as $runtime) {
+        foreach ($this->instance->getAll() as $runtime) {
             $this->assertArrayHasKey('name', $runtime, $runtime['name']);
             $this->assertArrayHasKey('version', $runtime, $runtime['name']);
             $this->assertArrayHasKey('base', $runtime, $runtime['name']);
@@ -143,7 +143,7 @@ class RuntimesTest extends TestCase
     public function testPullRuntimes()
     {
         $stdout = $stderr = '';
-        foreach ($this->runtimes as $runtime) {
+        foreach ($this->instance->getAll() as $runtime) {
             Console::execute("docker pull {$runtime['image']}", '', $stdout, $stderr);
             Console::log($stderr ? $stderr : $stdout);
             $this->assertEmpty($stderr);
@@ -158,16 +158,16 @@ class RuntimesTest extends TestCase
     {
         $stdout = $stderr = '';
 
-        foreach ($this->runtimes as $container => $runtime) {
+        foreach ($this->tests as $key => $test) {
             Console::execute(
-                "docker run -d --name={$container} --workdir /usr/local/src --volume {$this->functionsDir}:/{$this->functionsDir}:rw" .
-                    " {$runtime['image']}" .
-                    " sh -c 'cp {$runtime['code']} /usr/local/src/code.tar.gz && tar -zxf /usr/local/src/code.tar.gz --strip 1 && rm /usr/local/src/code.tar.gz && tail -f /dev/null'",
+                "docker run -d --name={$key} --workdir /usr/local/src --volume {$this->functionsDir}:/{$this->functionsDir}:rw" .
+                    " {$this->instance->getAll()[$test['runtime']]['image']}" .
+                    " sh -c 'cp {$test['code']} /usr/local/src/code.tar.gz && tar -zxf /usr/local/src/code.tar.gz --strip 1 && rm /usr/local/src/code.tar.gz && tail -f /dev/null'",
                 '',
                 $stdout,
                 $stderr
             );
-            Console::log($container . ' : ' . ($stderr ? $stderr : $stdout));
+            Console::log($key . ' : ' . ($stderr ? $stderr : $stdout));
             $this->assertEmpty($stderr);
             $this->assertNotEmpty($stdout);
         }
@@ -198,8 +198,8 @@ class RuntimesTest extends TestCase
             $value = "--env {$key}={$value}";
         });
         Console::log('');
-        foreach ($this->runtimes as $container => $runtime) {
-            Console::execute("docker exec " . \implode(" ", $vars) . " {$container} {$runtime['command']}", '', $stdout, $stderr, $runtime['timeout']);
+        foreach ($this->tests as $key => $test) {
+            Console::execute("docker exec " . \implode(" ", $vars) . " {$key} {$test['command']}", '', $stdout, $stderr, $test['timeout']);
             $this->assertNotEmpty($stdout);
 
             $output = explode("\n", $stdout);
@@ -211,8 +211,8 @@ class RuntimesTest extends TestCase
             $this->assertEquals('env_version', $output[5]);
             $this->assertEquals('event', $output[6]);
             $this->assertEquals('event_data', $output[7]);
-            Console::execute("docker rm -f {$container}", '', $stdout, $stderr, 30);
-            Console::log('✅ ' . $container);
+            Console::execute("docker rm -f {$key}", '', $stdout, $stderr, 30);
+            Console::log('✅ ' . $key);
         }
     }
 }
