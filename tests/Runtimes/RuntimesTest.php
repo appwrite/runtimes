@@ -65,6 +65,12 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'python-3.9'
             ],
+            'deno-1.5' => [
+                'code' => $functionsDir . '/deno.tar.gz',
+                'command' => 'deno run --allow-env index.ts',
+                'timeout' => 15,
+                'runtime' => 'deno-1.5'
+            ],
             'deno-1.6' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'command' => 'deno run --allow-env index.ts',
