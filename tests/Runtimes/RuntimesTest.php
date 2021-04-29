@@ -106,6 +106,18 @@ class RuntimesTest extends TestCase
                 'command' => 'dotnet dotnet.dll',
                 'timeout' => 15,
                 'runtime' => 'dotnet-5.0'
+            ],
+            'java-11' => [
+                'code' => $functionsDir . '/java-11.tar.gz',
+                'command' => 'java HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'java-11'
+            ],
+            'kotlin-jar' => [
+                'code' => $functionsDir . '/kotlin.tar.gz',
+                'command' => 'java -jar HelloWorld.jar',
+                'timeout' => 15,
+                'runtime' => 'java-11'
             ]
         ];
         $this->instance = new Runtimes();
@@ -122,7 +134,7 @@ class RuntimesTest extends TestCase
     {
         $this->assertNotEmpty($this->instance->get('node'));
         $this->assertNotEmpty($this->instance->getAll());
-        $this->assertCount(15, $this->instance->getAll(supported: false));
+        $this->assertNotEmpty($this->instance->getAll(supported: false));
         $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5']));
         $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5', 'unknown']));
         $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-15.5']));
