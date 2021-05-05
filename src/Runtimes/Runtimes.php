@@ -53,6 +53,7 @@ class Runtimes
 
         $java = new Runtime('java', 'Java');
         $java->addVersion('11', 'openjdk/11-jre', 'appwrite/env-java-11:1.0.0', [System::X86]);
+        $java->addVersion('16', 'openjdk/16-jre', 'appwrite/env-java-16:1.0.0', [System::X86]);
         $this->runtimes['java'] = $java;
     }
 
