@@ -42,8 +42,8 @@ class Runtimes
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
-        $dart->addVersion('2.10', 'google/dart:2.10', 'appwrite/env-dart-2.10:1.0.0', [System::X86]);
-        $dart->addVersion('2.12', 'google/dart:2.12', 'appwrite/env-dart-2.12:1.0.0', [System::X86]);
+        $dart->addVersion('2.10', 'dart:2.10', 'appwrite/env-dart-2.10:1.0.0', [System::X86]);
+        $dart->addVersion('2.12', 'dart:2.12', 'appwrite/env-dart-2.12:1.0.0', [System::X86]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET');
@@ -59,7 +59,7 @@ class Runtimes
 
     /**
      * Adds runtime.
-     * 
+     *
      * @param Runtime $runtime
      * @return void
      */
@@ -70,9 +70,9 @@ class Runtimes
 
     /**
      * Get Runtime by key.
-     * 
+     *
      * @param string $key
-     * 
+     *
      * @return Runtime
      */
     public function get(string $key): Runtime
@@ -85,9 +85,9 @@ class Runtimes
 
     /**
      * Returns all supported runtimes.
-     * 
+     *
      * @param bool $supported Pass `false` to also return unsupported CPU architecture.
-     * 
+     *
      * @return array
      */
     public function getAll(bool $supported = true, array $filter = []): array
