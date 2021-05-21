@@ -95,6 +95,12 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'dart-2.12'
             ],
+            'dart-2.13' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'command' => 'dart main.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.13'
+            ],
             'dotnet-3.1' => [
                 'code' => $functionsDir . '/dotnet-3.1.tar.gz',
                 'command' => 'dotnet dotnet.dll',
