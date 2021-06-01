@@ -1,7 +1,7 @@
-FROM openjdk:16-jre
+FROM openjdk:16-jdk-alpine
 
 LABEL maintainer="team@appwrite.io"
 
-RUN apt-get update -y && apt-get install -y tar
+RUN apk add tar
 
 WORKDIR /usr/local/src/
