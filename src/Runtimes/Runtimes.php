@@ -18,6 +18,7 @@ class Runtimes
         $node = new Runtime('node', 'Node.js');
         $node->addVersion('14.5', 'node:14.5-alpine', 'appwrite/env-node-14.5:1.0.0', [System::X86, System::PPC, System::ARM]);
         $node->addVersion('15.5', 'node:15.5-alpine', 'appwrite/env-node-15.5:1.0.0', [System::X86, System::PPC, System::ARM]);
+        $node->addVersion('16', 'node:16-alpine', 'appwrite/env-node-16:1.0.0', [System::X86, System::PPC, System::ARM]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP');

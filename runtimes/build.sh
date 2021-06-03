@@ -15,6 +15,9 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'Node 15.5...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le -t appwrite/env-node-15.5:1.0.0 ./docker/environments/node-15.5/ --push
 
+echo 'Node 16...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le -t appwrite/env-node-16:1.0.0 ./runtimes/node-16/ --push
+
 echo 'PHP 7.4...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t appwrite/env-php-7.4:1.0.0 ./docker/environments/php-7.4/ --push
 

@@ -29,6 +29,12 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-15.5'
             ],
+            'node-16' => [
+                'code' => $functionsDir . '/node.tar.gz',
+                'command' => 'node index.js',
+                'timeout' => 15,
+                'runtime' => 'node-16'
+            ],
             'php-7.4' => [
                 'code' => $functionsDir . '/php.tar.gz',
                 'command' => 'php index.php',
