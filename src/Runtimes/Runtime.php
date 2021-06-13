@@ -7,7 +7,14 @@ class Runtime
     /**
      * @var string
      */
-    protected $key;
+     protected $key;
+
+    /**
+     * Describes if runtime us custom or provided by Appwrite
+     * 
+     * @var boolean
+     */
+    protected $isCustom = false;
 
     /**
      * @var string
@@ -43,6 +50,16 @@ class Runtime
     }
 
     /**
+     * Mark runtime as custom.
+     * 
+     * @param boolean $isCustom
+     */
+     public function setCustom(boolean $isCustom): void
+     {
+         $this->isCustom = $isCustom;
+     }
+
+    /**
      * Adds new version to runtime.
      * 
      * @param string $version
@@ -68,7 +85,7 @@ class Runtime
             $list[$key] = array_merge(
                 [
                     'name' => $this->name,
-                    'logo' => "{$this->key}.png",
+                    'logo' => $this->isCustom ? "custom.png" : "{$this->key}.png",
                 ],
                 $version->get()
             );
