@@ -52,9 +52,9 @@ class Runtime
     /**
      * Mark runtime as custom.
      * 
-     * @param boolean $isCustom
+     * @param bool $isCustom
      */
-     public function setCustom(boolean $isCustom): void
+     public function setCustom(bool $isCustom): void
      {
          $this->isCustom = $isCustom;
      }
