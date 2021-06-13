@@ -12,7 +12,7 @@ class Runtime
     /**
      * Describes if runtime us custom or provided by Appwrite
      * 
-     * @var boolean
+     * @var bool
      */
     protected $isCustom = false;
 
