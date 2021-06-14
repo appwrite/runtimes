@@ -84,6 +84,7 @@ class Runtime
             $key = "{$this->key}-{$version->version}";
             $list[$key] = array_merge(
                 [
+                    'isCustom' => $this->isCustom,
                     'name' => $this->name,
                     'logo' => $this->isCustom ? "custom.png" : "{$this->key}.png",
                 ],
