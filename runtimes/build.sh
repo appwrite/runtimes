@@ -46,7 +46,7 @@ echo '.NET 5.0...'
 docker buildx build --platform linux/amd64,linux/arm64 -t appwrite/runtime-for-dotnet:5.0 ./runtimes/dotnet-5.0/ --push
 
 echo 'Java 11...'
-docker buildx build --platform linux/amd64 -t appwrite/runtime-for-java:11 ./runtimes/java-11/ --push
+docker buildx build --platform linux/amd64 -t appwrite/runtime-for-kotlin:11 ./runtimes/java-11/ --push
 
 echo 'Java 16...'
-docker buildx build --platform linux/amd64 -t appwrite/runtime-for-java:16 ./runtimes/java-16/ --push
+docker buildx build --platform linux/amd64 -t appwrite/runtime-for-kotlin:16 ./runtimes/java-16/ --push
