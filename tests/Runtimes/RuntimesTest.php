@@ -113,12 +113,24 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'java-11'
             ],
-            'kotlin-jar' => [
+            'kotlin-jar-11' => [
                 'code' => $functionsDir . '/kotlin.tar.gz',
                 'command' => 'java -jar HelloWorld.jar',
                 'timeout' => 15,
                 'runtime' => 'java-11'
-            ]
+            ],
+            'java-16' => [
+                'code' => $functionsDir . '/java-11.tar.gz',
+                'command' => 'java HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'java-16'
+            ],
+            'kotlin-jar-16' => [
+                'code' => $functionsDir . '/kotlin.tar.gz',
+                'command' => 'java -jar HelloWorld.jar',
+                'timeout' => 15,
+                'runtime' => 'java-16'
+            ],
         ];
         $this->instance = new Runtimes();
         $this->tests = array_filter($this->tests, function($test) {
