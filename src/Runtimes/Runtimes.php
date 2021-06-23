@@ -40,8 +40,9 @@ class Runtimes
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
-        $dart->addVersion('2.10', 'google/dart:2.10', 'appwrite/runtime-for-dart:2.10', [System::X86]);
-        $dart->addVersion('2.12', 'google/dart:2.12', 'appwrite/runtime-for-dart:2.12', [System::X86]);
+        $dart->addVersion('2.10', 'google/dart:2.10', 'appwrite/env-dart-2.10:1.0.0', [System::X86]);
+        $dart->addVersion('2.12', 'dart:2.12', 'appwrite/env-dart-2.12:1.0.0', [System::X86]);
+        $dart->addVersion('2.13', 'dart:2.12', 'appwrite/env-dart-2.13:1.0.0', [System::X86]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET');
