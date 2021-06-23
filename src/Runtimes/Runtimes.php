@@ -51,8 +51,8 @@ class Runtimes
         $this->runtimes['dotnet'] = $dotnet;
 
         $java = new Runtime('java', 'Java');
-        $java->addVersion('11', 'openjdk/11-jre', 'appwrite/runtime-for-java:11', [System::X86]);
-        $java->addVersion('16', 'openjdk/16-jdk-alpine', 'appwrite/runtime-for-java:16', [System::X86]);
+        $java->addVersion('11.0', 'openjdk/11-jre', 'appwrite/runtime-for-java:11.0', [System::X86]);
+        $java->addVersion('16.0', 'openjdk/16-jdk-alpine', 'appwrite/runtime-for-java:16.0', [System::X86]);
         $this->runtimes['java'] = $java;
     }
 
