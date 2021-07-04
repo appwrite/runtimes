@@ -9,6 +9,9 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'Deno 1.8...'
 docker buildx build --platform linux/amd64,linux/386 -t appwrite/runtime-for-deno:1.8 ./runtimes/deno-1.8/ --push
 
+echo 'Deno 1.10...'
+docker buildx build --platform linux/amd64,linux/386 -t appwrite/runtime-for-deno:1.10 ./runtimes/deno-1.10/ --push
+
 echo 'Node 14.5...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le -t appwrite/runtime-for-node:14.5 ./runtimes/node-14.5/ --push
 
