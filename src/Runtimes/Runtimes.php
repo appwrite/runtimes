@@ -39,6 +39,7 @@ class Runtimes
         $deno = new Runtime('deno', 'Deno');
         $deno->addVersion('1.8', 'hayd/deno:alpine-1.8.3', 'appwrite/runtime-for-deno:1.8', [System::X86]);
         $deno->addVersion('1.10', 'denoland/deno:alpine-1.10.3', 'appwrite/runtime-for-deno:1.10', [System::X86]);
+        $deno->addVersion('1.11', 'denoland/deno:alpine-1.11.5', 'appwrite/runtime-for-deno:1.11', [System::X86]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');

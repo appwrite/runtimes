@@ -95,6 +95,12 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'deno-1.10'
             ],
+            'deno-1.11' => [
+                'code' => $functionsDir . '/deno.tar.gz',
+                'command' => 'deno run --allow-env index.ts',
+                'timeout' => 15,
+                'runtime' => 'deno-1.11'
+            ],
             'dart-2.10' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
