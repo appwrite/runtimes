@@ -2,8 +2,18 @@ FROM node:16-alpine
 
 LABEL maintainer="team@appwrite.io"
 
-RUN apk add tar
+RUN mkdir -p /usr/src/app
 
-RUN mkdir /usr/local/src
+WORKDIR /usr/src/app
 
-WORKDIR /usr/local/src/
+COPY package* /usr/src/app
+
+RUN npm install pm2 -g
+
+RUN npm ci && npm cache clean --force
+
+COPY . .
+
+CMD ["npm", "start"]
+
+EXPOSE 3000
