@@ -41,7 +41,7 @@ $server->on("Request", function($req, $res) {
     $response = new Response($res);
 
     try {
-        $userFunction = require_once(join_paths($body->path, $body->file));
+        $userFunction = require(join_paths($body->path, $body->file));
 
         if (!is_callable($userFunction)) {
             return throw new Exception('Function not valid');
