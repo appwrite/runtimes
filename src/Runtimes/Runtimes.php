@@ -15,7 +15,7 @@ class Runtimes
      */
     public function __construct()
     {
-        $node = new Runtime('node', 'Node.js', 'npm install');
+        $node = new Runtime('node', 'Node.js', ['npm', 'install']);
         $node->addVersion('14.5', 'node:14.5-alpine', 'node-runtime:14.5', [System::X86, System::ARM]);
         $node->addVersion('15.5', 'node:15.5-alpine', 'node-runtime:15.5', [System::X86, System::ARM]);
         $node->addVersion('16.0', 'node:16-alpine', 'node-runtime:16.0', [System::X86, System::ARM]);
@@ -27,7 +27,7 @@ class Runtimes
         $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'deno-runtime:1.13', [System::X86]);
         $this->runtimes['deno'] = $deno;
 
-        $php = new Runtime('php', 'PHP', 'composer install');
+        $php = new Runtime('php', 'PHP', ['composer', 'install']);
         $php->addVersion('8.0', 'php:8.0-cli-alpine', 'php-runtime:8.0', [System::X86, System::ARM]);
         $this->runtimes['php'] = $php;
     }

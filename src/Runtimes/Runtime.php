@@ -20,18 +20,18 @@ class Runtime
     protected $versions = [];
 
     /**
-     * @var string
+     * @var string[]
      */
-    protected $buildCommand = '';
+    protected $buildCommand = [];
 
     /**
      * Runtime that can contain different Versions.
      * 
      * @param string $key
      * @param string $name
-     * @param string $buildCommand
+     * @param string[] $buildCommand
      */
-    public function __construct(string $key, string $name, string $buildCommand = '')
+    public function __construct(string $key, string $name, array $buildCommand = [])
     {
         $this->key = $key;
         $this->name = $name;
@@ -52,9 +52,9 @@ class Runtime
     /**
      * Get build command
      * 
-     * @return string 
+     * @return string[]
     */
-    public function getBuildCommand(): string
+    public function getBuildCommand(): array
     {
         return $this->buildCommand;
     }
