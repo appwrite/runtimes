@@ -50,6 +50,16 @@ class Runtime
     }
 
     /**
+     * Get build command
+     * 
+     * @return string 
+    */
+    public function getBuildCommand(): string
+    {
+        return $this->buildCommand;
+    }
+
+    /**
      * Adds new version to runtime.
      * 
      * @param string $version
