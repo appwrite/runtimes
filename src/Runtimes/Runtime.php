@@ -20,15 +20,22 @@ class Runtime
     protected $versions = [];
 
     /**
+     * @var string
+     */
+    protected $buildCommand = '';
+
+    /**
      * Runtime that can contain different Versions.
      * 
      * @param string $key
      * @param string $name
+     * @param string $buildCommand
      */
-    public function __construct(string $key, string $name)
+    public function __construct(string $key, string $name, string $buildCommand = '')
     {
         $this->key = $key;
         $this->name = $name;
+        $this->buildCommand = $buildCommand;
         $this->versions;
     }
 
