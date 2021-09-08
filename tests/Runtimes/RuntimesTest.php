@@ -5,6 +5,8 @@ namespace Appwrite\Tests;
 use Appwrite\Runtimes\Runtimes;
 use PHPUnit\Framework\TestCase;
 use Utopia\CLI\Console;
+use Utopia\Orchestration\Orchestration;
+use Utopia\Orchestration\Adapter\DockerAPI;
 
 class RuntimesTest extends TestCase
 {
@@ -12,6 +14,7 @@ class RuntimesTest extends TestCase
     /** @var Runtimes $instance */
     public $instance;
     public $functionsDir;
+    public $orchestration = new Orchestration(new DockerAPI());
 
     public function setUp(): void
     {
@@ -19,142 +22,40 @@ class RuntimesTest extends TestCase
         $this->tests = [
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
-                'command' => 'node index.js',
+                'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-14.5'
             ],
             'node-15.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
-                'command' => 'node index.js',
+                'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-15.5'
             ],
             'node-16' => [
                 'code' => $functionsDir . '/node.tar.gz',
-                'command' => 'node index.js',
+                'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-16'
             ],
-            'php-7.4' => [
-                'code' => $functionsDir . '/php.tar.gz',
-                'command' => 'php index.php',
-                'timeout' => 15,
-                'runtime' => 'php-7.4'
-            ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',
-                'command' => 'php index.php',
+                'entrypoint' => 'index.php',
                 'timeout' => 15,
                 'runtime' => 'php-8.0'
             ],
-            'ruby-2.7' => [
-                'code' => $functionsDir . '/ruby.tar.gz',
-                'command' => 'ruby app.rb',
-                'timeout' => 15,
-                'runtime' => 'ruby-2.7'
-            ],
-            'ruby-3.0' => [
-                'code' => $functionsDir . '/ruby.tar.gz',
-                'command' => 'ruby app.rb',
-                'timeout' => 15,
-                'runtime' => 'ruby-3.0'
-            ],
-            'python-3.8' => [
-                'code' => $functionsDir . '/python.tar.gz',
-                'command' => 'python main.py',
-                'timeout' => 15,
-                'runtime' => 'python-3.8'
-            ],
             'python-3.9' => [
                 'code' => $functionsDir . '/python.tar.gz',
-                'command' => 'python main.py',
+                'entrypoint' => 'main.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.9'
             ],
-            'deno-1.5' => [
+            'deno-1.13' => [
                 'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.5'
-            ],
-            'deno-1.6' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.6'
-            ],
-            'deno-1.8' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.8'
-            ],
-            'deno-1.10' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.10'
-            ],
-            'deno-1.11' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
+                'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.11'
-            ],
-            'dart-2.10' => [
-                'code' => $functionsDir . '/dart.tar.gz',
-                'command' => 'dart main.dart',
-                'timeout' => 15,
-                'runtime' => 'dart-2.10'
-            ],
-            'dart-2.12' => [
-                'code' => $functionsDir . '/dart.tar.gz',
-                'command' => 'dart main.dart',
-                'timeout' => 15,
-                'runtime' => 'dart-2.12'
-            ],
-            'dart-2.13' => [
-                'code' => $functionsDir . '/dart.tar.gz',
-                'command' => 'dart main.dart',
-                'timeout' => 15,
-                'runtime' => 'dart-2.13'
-            ],
-            'dotnet-3.1' => [
-                'code' => $functionsDir . '/dotnet-3.1.tar.gz',
-                'command' => 'dotnet dotnet.dll',
-                'timeout' => 15,
-                'runtime' => 'dotnet-3.1'
-            ],
-            'dotnet-5.0' => [
-                'code' => $functionsDir . '/dotnet-5.0.tar.gz',
-                'command' => 'dotnet dotnet.dll',
-                'timeout' => 15,
-                'runtime' => 'dotnet-5.0'
-            ],
-            'java-11' => [
-                'code' => $functionsDir . '/java-11.tar.gz',
-                'command' => 'java HelloWorld',
-                'timeout' => 15,
-                'runtime' => 'java-11'
-            ],
-            'kotlin-jar-11' => [
-                'code' => $functionsDir . '/kotlin.tar.gz',
-                'command' => 'java -jar HelloWorld.jar',
-                'timeout' => 15,
-                'runtime' => 'java-11'
-            ],
-            'java-16' => [
-                'code' => $functionsDir . '/java-11.tar.gz',
-                'command' => 'java HelloWorld',
-                'timeout' => 15,
-                'runtime' => 'java-16'
-            ],
-            'kotlin-jar-16' => [
-                'code' => $functionsDir . '/kotlin.tar.gz',
-                'command' => 'java -jar HelloWorld.jar',
-                'timeout' => 15,
-                'runtime' => 'java-16'
-            ],
+            ]
         ];
         $this->instance = new Runtimes();
         $this->tests = array_filter($this->tests, function($test) {
@@ -213,17 +114,16 @@ class RuntimesTest extends TestCase
         $stdout = $stderr = '';
 
         foreach ($this->tests as $key => $test) {
-            Console::execute(
-                "docker run -d --name={$key} --workdir /usr/local/src --volume {$this->functionsDir}:/{$this->functionsDir}:rw" .
-                    " {$this->instance->getAll()[$test['runtime']]['image']}" .
-                    " sh -c 'cp {$test['code']} /usr/local/src/code.tar.gz && tar -zxf /usr/local/src/code.tar.gz --strip 1 && rm /usr/local/src/code.tar.gz && tail -f /dev/null'",
-                '',
-                $stdout,
-                $stderr
-            );
-            Console::log($key . ' : ' . ($stderr ? $stderr : $stdout));
-            $this->assertEmpty($stderr);
-            $this->assertNotEmpty($stdout);
+            $containerID = $this->orchestration->run(image: [$test['runtime']]['image'], 
+                name: $key,
+                workdir: '/usr/local/src',
+                volumes: [
+                    $this->functionsDir => "/{$this->functionsDir}:rw"
+                ]);
+
+            $this->orchestration->execute($containerID, 
+                ['sh', '-c', "cp {$test['code']} /usr/local/src/code.tar.gz && tar -zxf /usr/local/src/code.tar.gz --strip 1 && rm /usr/local/src/code.tar.gz"],
+                $stdout, $stderr);
         }
     }
 

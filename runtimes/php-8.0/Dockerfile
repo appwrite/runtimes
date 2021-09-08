@@ -68,11 +68,11 @@ COPY --from=step0 /usr/local/src/vendor /usr/src/code/vendor
 COPY --from=step1 /usr/local/lib/php/extensions/no-debug-non-zts-20200930/swoole.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/yasd.so* /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
 
 # Add Source Code
-COPY ./http.php /usr/src/code/http.php
+COPY ./server.php /usr/src/code/server.php
 
 # Enable Extensions
 RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
 
 EXPOSE 3000
 
-CMD [ "php", "http.php" ]
+CMD [ "php", "server.php" ]

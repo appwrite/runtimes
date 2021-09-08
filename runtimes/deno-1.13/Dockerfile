@@ -10,6 +10,6 @@ RUN deno install -qAf --unstable https://deno.land/x/denon/denon.ts
 
 COPY . .
 
-CMD ["denon", "run", "--allow-net", "--allow-read", "--allow-env", "app.ts"]
+CMD ["denon", "run", "--allow-net", "--allow-read", "--allow-env", "server.ts"]
 
 EXPOSE 3000
