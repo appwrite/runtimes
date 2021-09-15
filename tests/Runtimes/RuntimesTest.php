@@ -25,68 +25,70 @@ class RuntimesTest extends TestCase
         $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 
         $this->tests = [
-            'node-14.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'entrypoint' => 'index.js',
+            'java-16.0' => [
+                'code' => $functionsDir . '/java.tar.gz',
+                'entrypoint' => 'index.jar',
                 'timeout' => 15,
-                'runtime' => 'node-14.5',
-                'buildCommand' => ['npm', 'install'],
-                'tarname' => 'node-14-5.tar.gz',
-                'filename' => 'index.js'
+                'runtime' => 'java-16.0',
+                'tarname' => 'java-16-0.tar.gz',
+                'filename' => 'index.jar'
             ],
-            'node-15.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'entrypoint' => 'index.js',
-                'timeout' => 15,
-                'runtime' => 'node-15.5',
-                'buildCommand' => ['npm', 'install'],
-                'tarname' => 'node-15-5.tar.gz',
-                'filename' => 'index.js'
-            ],
-            'node-16' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'entrypoint' => 'index.js',
-                'timeout' => 15,
-                'runtime' => 'node-16.0',
-                'buildCommand' => ['npm', 'install'],
-                'tarname' => 'node-16.tar.gz',
-                'filename' => 'index.js'
-            ],
-            'php-8.0' => [
-                'code' => $functionsDir . '/php.tar.gz',
-                'entrypoint' => 'index.php',
-                'timeout' => 15,
-                'runtime' => 'php-8.0',
-                'buildCommand' => ['composer', 'install'],
-                'tarname' => 'php-8-0.tar.gz',
-                'filename' => 'index.php'
-            ],
-            'python-3.8' => [
-                'code' => $functionsDir . '/python.tar.gz',
-                'entrypoint' => 'main.py',
-                'timeout' => 15,
-                'runtime' => 'python-3.8',
-                'buildCommand' => ['pip', 'install'],
-                'tarname' => 'python-3-8.tar.gz',
-                'filename' => 'index.py'
-            ],
-            'python-3.9' => [
-                'code' => $functionsDir . '/python.tar.gz',
-                'entrypoint' => 'main.py',
-                'timeout' => 15,
-                'runtime' => 'python-3.9',
-                'buildCommand' => ['pip', 'install'],
-                'tarname' => 'python-3-9.tar.gz',
-                'filename' => 'index.py'
-            ],
-            'deno-1.13' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'entrypoint' => 'index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.13',
-                'tarname' => 'deno-1-13.tar.gz',
-                'filename' => 'index.ts'
-            ]
+            // 'node-14.5' => [
+            //     'code' => $functionsDir . '/node.tar.gz',
+            //     'entrypoint' => 'index.js',
+            //     'timeout' => 15,
+            //     'runtime' => 'node-14.5',
+            //     'tarname' => 'node-14-5.tar.gz',
+            //     'filename' => 'index.js'
+            // ],
+            // 'node-15.5' => [
+            //     'code' => $functionsDir . '/node.tar.gz',
+            //     'entrypoint' => 'index.js',
+            //     'timeout' => 15,
+            //     'runtime' => 'node-15.5',
+            //     'tarname' => 'node-15-5.tar.gz',
+            //     'filename' => 'index.js'
+            // ],
+            // 'node-16' => [
+            //     'code' => $functionsDir . '/node.tar.gz',
+            //     'entrypoint' => 'index.js',
+            //     'timeout' => 15,
+            //     'runtime' => 'node-16.0',
+            //     'tarname' => 'node-16.tar.gz',
+            //     'filename' => 'index.js'
+            // ],
+            // 'php-8.0' => [
+            //     'code' => $functionsDir . '/php.tar.gz',
+            //     'entrypoint' => 'index.php',
+            //     'timeout' => 15,
+            //     'runtime' => 'php-8.0',
+            //     'tarname' => 'php-8-0.tar.gz',
+            //     'filename' => 'index.php'
+            // ],
+            // 'python-3.8' => [
+            //     'code' => $functionsDir . '/python.tar.gz',
+            //     'entrypoint' => 'main.py',
+            //     'timeout' => 15,
+            //     'runtime' => 'python-3.8',
+            //     'tarname' => 'python-3-8.tar.gz',
+            //     'filename' => 'index.py'
+            // ],
+            // 'python-3.9' => [
+            //     'code' => $functionsDir . '/python.tar.gz',
+            //     'entrypoint' => 'main.py',
+            //     'timeout' => 15,
+            //     'runtime' => 'python-3.9',
+            //     'tarname' => 'python-3-9.tar.gz',
+            //     'filename' => 'index.py'
+            // ],
+            // 'deno-1.13' => [
+            //     'code' => $functionsDir . '/deno.tar.gz',
+            //     'entrypoint' => 'index.ts',
+            //     'timeout' => 15,
+            //     'runtime' => 'deno-1.13',
+            //     'tarname' => 'deno-1-13.tar.gz',
+            //     'filename' => 'index.ts'
+            // ],
         ];
         $this->orchestration = new Orchestration(new DockerAPI());
         $this->instance = new Runtimes();
@@ -222,6 +224,8 @@ class RuntimesTest extends TestCase
             $this->assertEquals(true, $compressSuccess);
             $this->assertEquals(true, file_exists($builtCodePath));
             $this->assertEmpty($compressStderr);
+
+            sleep(99999);
 
             // Remove container
             $this->orchestration->remove($id, true);

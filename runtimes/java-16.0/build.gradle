@@ -6,7 +6,7 @@ plugins {
 
 group = 'com.appwrite'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '16'
+sourceCompatibility = '8'
 
 repositories {
 	mavenCentral()

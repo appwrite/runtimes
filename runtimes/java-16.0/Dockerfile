@@ -1,11 +1,10 @@
+# BUILD IMAGE, NOT A RUNTIME IMAGE!
+
 FROM openjdk:16-jdk-alpine3.13
 
 WORKDIR /usr/local/src
 COPY . /usr/local/src/
 
-RUN ./gradlew build --refresh-dependencies
+#TODO: Copy user code.
 
-WORKDIR /usr/src/code
-COPY . /usr/src/code/
-
-CMD ["tail", "-f", "/dev/null"]
+CMD ["gradlew", "build"]
