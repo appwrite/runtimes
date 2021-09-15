@@ -30,18 +30,18 @@ class Response {
 
 
 $server->on("Request", function($req, $res) {
-    $body =  json_decode($req->getContent());
+    $body =  json_decode($req->getContent(), true);
 
     $request = new stdClass();
 
-    $request->env = $body->env ?? [];
-    $request->headers = $body->headers ?? [];
-    $request->payload = $body->payload ?? [];
+    $request->env = $body['env'] ?? [];
+    $request->headers = $body['headers'] ?? [];
+    $request->payload = $body['payload'] ?? [];
 
     $response = new Response($res);
 
     try {
-        $userFunction = require(join_paths($body->path, $body->file));
+        $userFunction = require(join_paths($body['path'], $body['file']));
 
         if (!is_callable($userFunction)) {
             return throw new Exception('Function not valid');

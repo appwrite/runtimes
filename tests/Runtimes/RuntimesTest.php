@@ -14,51 +14,83 @@ class RuntimesTest extends TestCase
     /** @var Runtimes $instance */
     public $instance;
     public $functionsDir;
-    public $orchestration = new Orchestration(new DockerAPI());
+    public $tempDir;
+    public $orchestration;
+    public $hostDirectory;
 
     public function setUp(): void
     {
-        $this->functionsDir = $functionsDir = realpath(__DIR__ . '/../resources');
+        $this->hostDirectory = '/home/ionic/Documents/Github/PineappleIOnic/php-runtimes';
+        $this->functionsDir = $functionsDir = $this->hostDirectory . '/tests/resources';
+        $this->tempDir = $tempDir = realpath('/tmp/builtCode');
+
         $this->tests = [
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
-                'runtime' => 'node-14.5'
+                'runtime' => 'node-14.5',
+                'buildCommand' => ['npm', 'install'],
+                'tarname' => 'node-14-5.tar.gz',
+                'filename' => 'index.js'
             ],
             'node-15.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
-                'runtime' => 'node-15.5'
+                'runtime' => 'node-15.5',
+                'buildCommand' => ['npm', 'install'],
+                'tarname' => 'node-15-5.tar.gz',
+                'filename' => 'index.js'
             ],
             'node-16' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
-                'runtime' => 'node-16'
+                'runtime' => 'node-16.0',
+                'buildCommand' => ['npm', 'install'],
+                'tarname' => 'node-16.tar.gz',
+                'filename' => 'index.js'
             ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',
                 'entrypoint' => 'index.php',
                 'timeout' => 15,
-                'runtime' => 'php-8.0'
+                'runtime' => 'php-8.0',
+                'buildCommand' => ['composer', 'install'],
+                'tarname' => 'php-8-0.tar.gz',
+                'filename' => 'index.php'
+            ],
+            'python-3.8' => [
+                'code' => $functionsDir . '/python.tar.gz',
+                'entrypoint' => 'main.py',
+                'timeout' => 15,
+                'runtime' => 'python-3.8',
+                'buildCommand' => ['pip', 'install'],
+                'tarname' => 'python-3-8.tar.gz',
+                'filename' => 'index.py'
             ],
             'python-3.9' => [
                 'code' => $functionsDir . '/python.tar.gz',
                 'entrypoint' => 'main.py',
                 'timeout' => 15,
-                'runtime' => 'python-3.9'
+                'runtime' => 'python-3.9',
+                'buildCommand' => ['pip', 'install'],
+                'tarname' => 'python-3-9.tar.gz',
+                'filename' => 'index.py'
             ],
             'deno-1.13' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
-                'runtime' => 'deno-1.11'
+                'runtime' => 'deno-1.13',
+                'tarname' => 'deno-1-13.tar.gz',
+                'filename' => 'index.ts'
             ]
         ];
+        $this->orchestration = new Orchestration(new DockerAPI());
         $this->instance = new Runtimes();
-        $this->tests = array_filter($this->tests, function($test) {
+        $this->tests = array_filter($this->tests, function ($test) {
             return array_key_exists($test['runtime'], $this->instance->getAll());
         });
     }
@@ -95,78 +127,170 @@ class RuntimesTest extends TestCase
     /**
      * @depends testGetRuntimes
      */
-    public function testPullRuntimes()
+    // public function testPullRuntimes()
+    // {
+    //     $stdout = $stderr = '';
+    //     foreach ($this->instance->getAll() as $runtime) {
+    //         Console::execute("docker pull {$runtime['image']}", '', $stdout, $stderr);
+    //         Console::log($stderr ? $stderr : $stdout);
+    //         $this->assertEmpty($stderr);
+    //         $this->assertNotEmpty($stdout);
+    //     }
+    // }
+
+    public function testRunBuildCommand()
     {
-        $stdout = $stderr = '';
-        foreach ($this->instance->getAll() as $runtime) {
-            Console::execute("docker pull {$runtime['image']}", '', $stdout, $stderr);
-            Console::log($stderr ? $stderr : $stdout);
-            $this->assertEmpty($stderr);
-            $this->assertNotEmpty($stdout);
+        foreach ($this->tests as $key => $test) {
+            // Get runtime
+            $runtime = $this->instance->getAll()[$test['runtime']];
+
+            // Check if runtime has a build command
+            if (empty($runtime['buildCommand'])) {
+                // Copy code to temp dir
+                $code = $this->tempDir . '/' . $test['tarname'];
+                copy($test['code'], $code);
+                return;
+            }
+
+            // Create build container
+            $id = $this->orchestration->run(
+                image: $runtime['base'],
+                name: 'build-container',
+                workdir: '/usr/code',
+                command: [
+                    'tail',
+                    '-f',
+                    '/dev/null'
+                ],
+                volumes: [
+                    $test['code'] . ":/tmp/code.tar.gz",
+                    $this->tempDir . ":/tmp/builtCode:rw"
+                ]
+            );
+
+            // Extract Code
+            $untarStdout = '';
+            $untarStderr = '';
+
+            $untarSuccess = $this->orchestration->execute(
+                name: 'build-container',
+                command: [
+                    'sh',
+                    '-c',
+                    'mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/code.tar.gz && cd /usr && tar -zxf /usr/code.tar.gz -C /usr/code && rm /usr/code.tar.gz'
+                ],
+                stdout: $untarStdout,
+                stderr: $untarStderr,
+                timeout: 60
+            );
+
+            $this->assertEquals(true, $untarSuccess);
+            $this->assertEmpty($untarStderr);
+
+            // Build Code / Install Dependencies
+            $buildStdout = '';
+            $buildStderr = '';
+
+            $buildSuccess = $this->orchestration->execute(
+                name: 'build-container',
+                command: $runtime['buildCommand'],
+                stdout: $buildStdout,
+                stderr: $buildStderr,
+                timeout: 60
+            );
+
+            $this->assertEquals(true, $buildSuccess);
+
+            // Repackage Code and Save.
+            $compressStdout = '';
+            $compressStderr = '';
+
+            $builtCodePath = $this->tempDir.'/'.$test['tarname'];
+
+            $compressSuccess = $this->orchestration->execute(
+                name: 'build-container',
+                command: [
+                    'sh',
+                    '-c',
+                    'rm -f /tmp/builtCode/'.$test['tarname'].' && cd /usr/code && tar -czvf /tmp/builtCode/'.$test['tarname'].' .'
+                ],
+                stdout: $compressStdout,
+                stderr: $compressStderr,
+                timeout: 60
+            );
+
+            $this->assertEquals(true, $compressSuccess);
+            $this->assertEquals(true, file_exists($builtCodePath));
+            $this->assertEmpty($compressStderr);
+
+            // Remove container
+            $this->orchestration->remove($id, true);
         }
     }
 
     /**
-     * @depends testPullRuntimes
+     * @depends testRunBuildCommand
      */
     public function testRunRuntimes()
     {
         $stdout = $stderr = '';
-
         foreach ($this->tests as $key => $test) {
-            $containerID = $this->orchestration->run(image: [$test['runtime']]['image'], 
+            $runtime = $this->instance->getAll()[$test['runtime']];
+            $containerID = $this->orchestration->run(
+                image: $runtime['image'],
                 name: $key,
-                workdir: '/usr/local/src',
+                hostname: $key,
                 volumes: [
-                    $this->functionsDir => "/{$this->functionsDir}:rw"
-                ]);
+                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
+                ]
+            );
 
-            $this->orchestration->execute($containerID, 
-                ['sh', '-c', "cp {$test['code']} /usr/local/src/code.tar.gz && tar -zxf /usr/local/src/code.tar.gz --strip 1 && rm /usr/local/src/code.tar.gz"],
-                $stdout, $stderr);
-        }
-    }
+            $this->assertNotFalse($containerID);
 
-    /**
-     * @depends testRunRuntimes
-     */
-    public function testExecRuntimes()
-    {
-        $stdout = $stderr = '';
-        $vars = [
-            'APPWRITE_FUNCTION_ID' => 'id',
-            'APPWRITE_FUNCTION_NAME' => 'name',
-            'APPWRITE_FUNCTION_TAG' => 'tag',
-            'APPWRITE_FUNCTION_TRIGGER' => 'trigger',
-            'APPWRITE_FUNCTION_ENV_NAME' => 'env_name',
-            'APPWRITE_FUNCTION_ENV_VERSION' => 'env_version',
-            'APPWRITE_FUNCTION_EVENT' => 'event',
-            'APPWRITE_FUNCTION_EVENT_DATA' => 'event_data',
-            'APPWRITE_ENDPOINT' => 'endpoint',
-            'APPWRITE_PROJECT' => 'project',
-            'APPWRITE_SECRET' => 'secret',
-        ];
+            $this->assertNotFalse($this->orchestration->networkConnect($containerID, 'php-runtimes_runtime-tests'));
 
-        \array_walk($vars, function (&$value, $key) {
-            $value = \escapeshellarg((empty($value)) ? 'null' : $value);
-            $value = "--env {$key}={$value}";
-        });
-        Console::log('');
-        foreach ($this->tests as $key => $test) {
-            Console::execute("docker exec " . \implode(" ", $vars) . " {$key} {$test['command']}", '', $stdout, $stderr, $test['timeout']);
-            $this->assertNotEmpty($stdout);
+            $this->orchestration->execute(
+                $containerID,
+                ['sh', '-c', "mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/code.tar.gz && cd /usr && tar -zxf /usr/code.tar.gz -C /usr/code && rm /usr/code.tar.gz"],
+                $stdout,
+                $stderr
+            );
 
-            $output = explode("\n", $stdout);
-            $this->assertEquals('id', $output[0]);
-            $this->assertEquals('name', $output[1]);
-            $this->assertEquals('tag', $output[2]);
-            $this->assertEquals('trigger', $output[3]);
-            $this->assertEquals('env_name', $output[4]);
-            $this->assertEquals('env_version', $output[5]);
-            $this->assertEquals('event', $output[6]);
-            $this->assertEquals('event_data', $output[7]);
-            Console::execute("docker rm -f {$key}", '', $stdout, $stderr, 30);
-            Console::log('✅ ' . $key);
+            // Wait for server to launch
+            sleep(5);
+
+            // Make a test execution
+            $ch = \curl_init();
+            \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
+            \curl_setopt($ch, CURLOPT_POST, true);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+                'path' => '/usr/code',
+                'file' => $test['filename'],
+                'env' => [
+                    'ENV1' => 'Hello World!'
+                ],
+                'payload' => 'Hello World! 2',
+                'timeout' => 60
+            ]));
+    
+            \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+            \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+    
+            $executorResponse = \curl_exec($ch);
+    
+            $error = \curl_error($ch);
+    
+            $errNo = \curl_errno($ch);
+
+            // Remove container
+            $this->orchestration->remove($containerID, true);
+
+            $response = json_decode($executorResponse, true);
+
+            $this->assertEquals('Hello World!', $response['normal']);
+            $this->assertEquals('Hello World! 2', $response['payload']);
+            $this->assertEquals('Hello World!', $response['env1']);
         }
     }
 }

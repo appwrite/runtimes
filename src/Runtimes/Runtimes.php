@@ -21,7 +21,7 @@ class Runtimes
         $node->addVersion('16.0', 'node:16-alpine', 'node-runtime:16.0', [System::X86, System::ARM]);
         $this->runtimes['node'] = $node;
 
-        $deno = new Runtime('deno', 'Deno');
+        $deno = new Runtime('deno', 'Deno', ['deno', 'cache']);
         $deno->addVersion('1.10', 'denoland/deno:alpine-1.10.3', 'deno-runtime:1.10', [System::X86]);
         $deno->addVersion('1.11', 'denoland/deno:alpine-1.11.5', 'deno-runtime:1.11', [System::X86]);
         $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'deno-runtime:1.13', [System::X86]);
@@ -30,6 +30,9 @@ class Runtimes
         $php = new Runtime('php', 'PHP', ['composer', 'install']);
         $php->addVersion('8.0', 'php:8.0-cli-alpine', 'php-runtime:8.0', [System::X86, System::ARM]);
         $this->runtimes['php'] = $php;
+
+        $java = new Runtime('java', 'Java', ['sh', '-c', 'install']);
+        $java->addVersion('18.0', '18-jdk-alpine3.13', 'java-runtime:18', [System::X86, System::ARM]);
     }
 
     /**

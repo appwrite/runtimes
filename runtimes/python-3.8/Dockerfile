@@ -1,7 +1,9 @@
 FROM python:3.8.12-alpine3.13
 
-workdir /usr/local/src
+WORKDIR /usr/local/src
 COPY requirements.txt /usr/local/src/
+
+ENV PIP_TARGET="/usr/src/code/.appwrite"
 
 RUN pip install --no-cache-dir -r requirements.txt
 

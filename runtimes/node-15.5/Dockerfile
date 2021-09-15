@@ -6,7 +6,7 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-COPY package* /usr/src/app
+COPY package* /usr/src/app/
 
 RUN npm install pm2 -g
 

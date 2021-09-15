@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+    tests:
+        container_name: runtime-tests
+        build: 
+            context: .
+        environment: 
+            - CURRENT_DIR={$PWD}
+        networks:
+            - runtime-tests
+        volumes: 
+            - ./:/usr/src/code
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /tmp/builtCode:/tmp/builtCode:rw
+
+networks:
+    runtime-tests:
