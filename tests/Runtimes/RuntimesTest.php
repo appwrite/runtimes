@@ -20,7 +20,7 @@ class RuntimesTest extends TestCase
 
     public function setUp(): void
     {
-        $this->hostDirectory = '/home/ionic/Documents/Github/PineappleIOnic/php-runtimes';
+        $this->hostDirectory = getenv('CURRENT_DIR');
         $this->functionsDir = $functionsDir = $this->hostDirectory . '/tests/resources';
         $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 

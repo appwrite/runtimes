@@ -6,7 +6,7 @@ services:
         build: 
             context: .
         environment: 
-            - CURRENT_DIR={$PWD}
+            - CURRENT_DIR=$PWD
         networks:
             - runtime-tests
         volumes: 
