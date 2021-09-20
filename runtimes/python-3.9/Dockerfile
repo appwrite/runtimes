@@ -16,4 +16,6 @@ ENV FLASK_APP="/usr/src/code/server.py"
 
 EXPOSE 3000
 
-CMD [ "flask", "run", "--host=0.0.0.0", "--port=3000"]
+RUN ["chmod", "+x", "./launch.sh"]
+
+CMD [ "/usr/src/code/launch.sh" ]

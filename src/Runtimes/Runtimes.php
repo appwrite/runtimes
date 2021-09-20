@@ -31,9 +31,14 @@ class Runtimes
         $php->addVersion('8.0', 'php:8.0-cli-alpine', 'php-runtime:8.0', [System::X86, System::ARM]);
         $this->runtimes['php'] = $php;
 
-        $java = new Runtime('java', 'Java', ['sh', 'buildServer.sh']);
-        $java->addVersion('16.0', 'java-runtime:16.0', 'openjdk:16-jdk-alpine3.13', [System::X86, System::ARM]);
-        $this->runtimes['java'] = $java;
+        // $java = new Runtime('java', 'Java', ['sh', '-c', 
+        // '']);
+        // $java->addVersion('16.0', 'openjdk:16-jdk-alpine3.13', 'java-runtime:16.0', [System::X86, System::ARM]);
+        // $this->runtimes['java'] = $java;
+
+        $rust = new Runtime('rust', 'Rust', ['sh', '-c', 'cd /usr/local/src && ./build.sh']);
+        $rust->addVersion('1.55', 'rust-runtime:1.55', 'appwrite-alpine:3.13.6', [System::X86, System::ARM]);
+        $this->runtimes['rust'] = $rust;
     }
 
     /**

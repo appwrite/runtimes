@@ -89,6 +89,14 @@ class RuntimesTest extends TestCase
                 'tarname' => 'deno-1-13.tar.gz',
                 'filename' => 'index.ts'
             ],
+            'rust-1.55' => [
+                'code' => $functionsDir . '/rust.tar.gz',
+                'entrypoint' => 'index.rs',
+                'timeout' => 15,
+                'runtime' => 'rust-1.55',
+                'tarname' => 'rust-1-55.tar.gz',
+                'filename' => 'index.rs'
+            ],
         ];
         $this->orchestration = new Orchestration(new DockerAPI());
         $this->instance = new Runtimes();
@@ -164,6 +172,9 @@ class RuntimesTest extends TestCase
                     '-f',
                     '/dev/null'
                 ],
+                vars: [
+                    'ENTRYPOINT_NAME' => $test['entrypoint'],
+                ],
                 volumes: [
                     $test['code'] . ":/tmp/code.tar.gz",
                     $this->tempDir . ":/tmp/builtCode:rw"
@@ -183,7 +194,7 @@ class RuntimesTest extends TestCase
                 ],
                 stdout: $untarStdout,
                 stderr: $untarStderr,
-                timeout: 60
+                timeout: 600
             );
 
             $this->assertEquals(true, $untarSuccess);
@@ -196,9 +207,12 @@ class RuntimesTest extends TestCase
             $buildSuccess = $this->orchestration->execute(
                 name: 'build-container',
                 command: $runtime['buildCommand'],
+                vars: [
+                    'ENTRYPOINT_NAME' => $test['entrypoint'],
+                ],  
                 stdout: $buildStdout,
                 stderr: $buildStderr,
-                timeout: 60
+                timeout: 600
             );
 
             $this->assertEquals(true, $buildSuccess);
@@ -218,7 +232,7 @@ class RuntimesTest extends TestCase
                 ],
                 stdout: $compressStdout,
                 stderr: $compressStderr,
-                timeout: 60
+                timeout: 600
             );
 
             $this->assertEquals(true, $compressSuccess);
@@ -230,9 +244,6 @@ class RuntimesTest extends TestCase
         }
     }
 
-    /**
-     * @depends testRunBuildCommand
-     */
     public function testRunRuntimes()
     {
         $stdout = $stderr = '';
@@ -240,6 +251,7 @@ class RuntimesTest extends TestCase
             $runtime = $this->instance->getAll()[$test['runtime']];
             $containerID = $this->orchestration->run(
                 image: $runtime['image'],
+                command: [],
                 name: $key,
                 hostname: $key,
                 volumes: [
@@ -251,21 +263,17 @@ class RuntimesTest extends TestCase
 
             $this->assertNotFalse($this->orchestration->networkConnect($containerID, 'php-runtimes_runtime-tests'));
 
-            $this->orchestration->execute(
-                $containerID,
-                ['sh', '-c', "mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/code.tar.gz && cd /usr && tar -zxf /usr/code.tar.gz -C /usr/code && rm /usr/code.tar.gz"],
-                $stdout,
-                $stderr
-            );
+            // $this->orchestration->execute(
+            //     $containerID,
+            //     ['sh', '-c', "mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/code.tar.gz && cd /usr && tar -zxf /usr/code.tar.gz -C /usr/code && rm /usr/code.tar.gz"],
+            //     $stdout,
+            //     $stderr
+            // );
 
             // Wait for server to launch
             sleep(5);
 
-            // Make a test execution
-            $ch = \curl_init();
-            \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
-            \curl_setopt($ch, CURLOPT_POST, true);
-            \curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+            $body = json_encode([
                 'path' => '/usr/code',
                 'file' => $test['filename'],
                 'env' => [
@@ -273,11 +281,21 @@ class RuntimesTest extends TestCase
                 ],
                 'payload' => 'Hello World! 2',
                 'timeout' => 60
-            ]));
+            ]);
+
+            // Make a test execution
+            $ch = \curl_init();
+            \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
+            \curl_setopt($ch, CURLOPT_POST, true);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
     
             \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
             \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            \curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . \strlen($body)
+            ]);
     
             $executorResponse = \curl_exec($ch);
     

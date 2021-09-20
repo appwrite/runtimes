@@ -25,17 +25,25 @@ class Runtime
     protected $buildCommand = [];
 
     /**
+     * NOTE: Only used for compiled languages.
+     * @var string[]
+    */
+    protected $runCommand = [];
+
+    /**
      * Runtime that can contain different Versions.
      * 
      * @param string $key
      * @param string $name
      * @param string[] $buildCommand
+     * @param string[] $runCommand // NOTE: Only used for compiled languages.
      */
-    public function __construct(string $key, string $name, array $buildCommand = [])
+    public function __construct(string $key, string $name, array $buildCommand = [], array $runCommand = [])
     {
         $this->key = $key;
         $this->name = $name;
         $this->buildCommand = $buildCommand;
+        $this->runCommand = $runCommand;
         $this->versions;
     }
 
@@ -57,6 +65,16 @@ class Runtime
     public function getBuildCommand(): array
     {
         return $this->buildCommand;
+    }
+
+    /**
+     * Get run command
+     * 
+     * @return string[]
+    */
+    public function getRunCommand(): array
+    {
+        return $this->runCommand;
     }
 
     /**
@@ -87,6 +105,7 @@ class Runtime
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
                     'buildCommand' => $this->buildCommand,
+                    'runCommand' => $this->runCommand,
                 ],
                 $version->get()
             );

@@ -14,6 +14,7 @@ RUN npm ci && npm cache clean --force
 
 COPY . .
 
-CMD ["npm", "start"]
+RUN ["chmod", "+x", "./launch.sh"]
+CMD ["./launch.sh"]
 
 EXPOSE 3000

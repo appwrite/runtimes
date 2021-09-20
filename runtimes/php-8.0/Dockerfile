@@ -69,10 +69,13 @@ COPY --from=step1 /usr/local/lib/php/extensions/no-debug-non-zts-20200930/swoole
 
 # Add Source Code
 COPY ./server.php /usr/src/code/server.php
+COPY ./launch.sh /usr/src/code/
 
 # Enable Extensions
 RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
 
 EXPOSE 3000
 
-CMD [ "php", "server.php" ]
+RUN ["chmod", "+x", "./launch.sh"]
+
+CMD [ "/usr/src/code/launch.sh" ]

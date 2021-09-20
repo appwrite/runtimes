@@ -35,4 +35,4 @@ COPY --from=step0 /usr/local/src/vendor /usr/src/code/vendor
 # Add Source Code
 COPY . /usr/src/code
 
-CMD [ "./vendor/bin/phpunit" ]
+CMD [ "./vendor/bin/phpunit", "--debug" ]

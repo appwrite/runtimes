@@ -21,5 +21,11 @@ docker build -t python-runtime:3.8 ./runtimes/python-3.8
 echo 'Python 3.9...'
 docker build -t python-runtime:3.9 ./runtimes/python-3.9
 
+echo 'Rust 1.55'
+docker build -t rust-runtime:1.55 ./runtimes/rust-1.55
+
+echo 'Alpine 3.13.6...'
+docker build -t appwrite-alpine:3.13.6 ./runtimes/alpine-3.13.6
+
 echo 'Java 16.0...'
 docker build -t java-runtime:16.0 ./runtimes/java-16.0
