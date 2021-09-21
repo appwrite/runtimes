@@ -1,0 +1,1 @@
+composer install --no-interaction --no-dev --prefer-dist --optimize-autoloader

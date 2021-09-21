@@ -20,17 +20,6 @@ class Runtime
     protected $versions = [];
 
     /**
-     * @var string[]
-     */
-    protected $buildCommand = [];
-
-    /**
-     * NOTE: Only used for compiled languages.
-     * @var string[]
-    */
-    protected $runCommand = [];
-
-    /**
      * Runtime that can contain different Versions.
      * 
      * @param string $key
@@ -42,8 +31,6 @@ class Runtime
     {
         $this->key = $key;
         $this->name = $name;
-        $this->buildCommand = $buildCommand;
-        $this->runCommand = $runCommand;
         $this->versions;
     }
 
@@ -55,26 +42,6 @@ class Runtime
     public function getKey(): string
     {
         return $this->key;
-    }
-
-    /**
-     * Get build command
-     * 
-     * @return string[]
-    */
-    public function getBuildCommand(): array
-    {
-        return $this->buildCommand;
-    }
-
-    /**
-     * Get run command
-     * 
-     * @return string[]
-    */
-    public function getRunCommand(): array
-    {
-        return $this->runCommand;
     }
 
     /**
@@ -103,9 +70,7 @@ class Runtime
             $list[$key] = array_merge(
                 [
                     'name' => $this->name,
-                    'logo' => "{$this->key}.png",
-                    'buildCommand' => $this->buildCommand,
-                    'runCommand' => $this->runCommand,
+                    'logo' => "{$this->key}.png"
                 ],
                 $version->get()
             );

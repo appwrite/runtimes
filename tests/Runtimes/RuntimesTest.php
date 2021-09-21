@@ -154,14 +154,6 @@ class RuntimesTest extends TestCase
             // Get runtime
             $runtime = $this->instance->getAll()[$test['runtime']];
 
-            // Check if runtime has a build command
-            if (empty($runtime['buildCommand'])) {
-                // Copy code to temp dir
-                $code = $this->tempDir . '/' . $test['tarname'];
-                copy($test['code'], $code);
-                return;
-            }
-
             // Create build container
             $id = $this->orchestration->run(
                 image: $runtime['base'],
@@ -173,7 +165,7 @@ class RuntimesTest extends TestCase
                     '/dev/null'
                 ],
                 vars: [
-                    'ENTRYPOINT_NAME' => $test['entrypoint'],
+                    'APPWRITE_ENTRYPOINT_NAME' => $test['entrypoint'],
                 ],
                 volumes: [
                     $test['code'] . ":/tmp/code.tar.gz",
@@ -206,9 +198,9 @@ class RuntimesTest extends TestCase
 
             $buildSuccess = $this->orchestration->execute(
                 name: 'build-container',
-                command: $runtime['buildCommand'],
+                command: ['sh', '-c', 'cd /usr/local/src && ./build.sh'],
                 vars: [
-                    'ENTRYPOINT_NAME' => $test['entrypoint'],
+                    'APPWRITE_ENTRYPOINT_NAME' => $test['entrypoint'],
                 ],  
                 stdout: $buildStdout,
                 stderr: $buildStderr,
@@ -262,13 +254,6 @@ class RuntimesTest extends TestCase
             $this->assertNotFalse($containerID);
 
             $this->assertNotFalse($this->orchestration->networkConnect($containerID, 'php-runtimes_runtime-tests'));
-
-            // $this->orchestration->execute(
-            //     $containerID,
-            //     ['sh', '-c', "mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/code.tar.gz && cd /usr && tar -zxf /usr/code.tar.gz -C /usr/code && rm /usr/code.tar.gz"],
-            //     $stdout,
-            //     $stderr
-            // );
 
             // Wait for server to launch
             sleep(5);
