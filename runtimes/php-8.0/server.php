@@ -32,6 +32,29 @@ class Response {
 $server->on("Request", function($req, $res) {
     $body =  json_decode($req->getContent(), true);
 
+    // Get internal_challenge header
+    $internal_challenge = $req->header['x-internal-challenge'];
+
+    if (empty($internal_challenge)) {
+        $res->status(401);
+        $res->end(json_encode([
+            'code' => 401,
+            'message' => 'Unauthorized',
+        ]));
+        return;
+    }
+
+    $key = getenv('APPWRITE_INTERNAL_RUNTIME_KEY');
+
+    if ($key != $internal_challenge) {
+        $res->status(401);
+        $res->end(json_encode([
+            'code' => 401,
+            'message' => 'Unauthorized',
+        ]));
+        return;
+    }
+
     $request = new stdClass();
 
     $request->env = $body['env'] ?? [];
@@ -48,7 +71,7 @@ $server->on("Request", function($req, $res) {
         }
         $userFunction($request, $response);
     } catch (Exception $e) {
-        $res->status($status);
+        $res->status(500);
         $res->end(json_encode([
             'code' => 500,
             'message' => $e->getMessage()
