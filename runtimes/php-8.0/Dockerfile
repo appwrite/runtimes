@@ -1,13 +1,4 @@
-FROM composer:2.0 as step0
-WORKDIR /usr/local/src/
-
-COPY composer* /usr/local/src/
-
-RUN composer update --ignore-platform-reqs --optimize-autoloader \
-    --no-plugins --no-scripts --prefer-dist \
-    `if [ "$TESTING" != "true" ]; then echo "--no-dev"; fi`
-
-FROM php:8.0-cli-alpine as step1
+FROM php:8.0-cli-alpine as step0
 
 ARG DEBUG=false
 ENV DEBUG=$DEBUG
@@ -62,14 +53,18 @@ RUN \
   && apk del .deps \
   && rm -rf /var/cache/apk/*
 
-WORKDIR /usr/src/code
+WORKDIR /usr/local/src/
 
-COPY --from=step0 /usr/local/src/vendor /usr/src/code/vendor
-COPY --from=step1 /usr/local/lib/php/extensions/no-debug-non-zts-20200930/swoole.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/yasd.so* /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
+COPY --from=step0 /usr/local/lib/php/extensions/no-debug-non-zts-20200930/swoole.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/yasd.so* /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+
+COPY composer* /usr/local/src/
 
 # Add Source Code
-COPY ./server.php /usr/src/code/server.php
-COPY ./launch.sh /usr/src/code/
+COPY ./server.php /usr/local/src/
+COPY ./launch.sh /usr/local/src/
+COPY ./build.sh /usr/local/src/
 
 # Enable Extensions
 RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
@@ -77,5 +72,6 @@ RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
 EXPOSE 3000
 
 RUN ["chmod", "+x", "./launch.sh"]
+RUN ["chmod", "+x", "./build.sh"]
 
-CMD [ "/usr/src/code/launch.sh" ]
+CMD [ "/usr/local/src/launch.sh" ]
