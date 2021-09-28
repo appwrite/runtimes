@@ -13,9 +13,15 @@ class Response:
 class Request:
     def __init__(self, request):
         self.parsedRequest = request.get_json();
-        self.env = self.parsedRequest['env'];
-        self.headers = self.parsedRequest['headers'];
-        self.payload = self.parsedRequest['payload'];
+
+        if 'env' in self.parsedRequest:
+            self.env = self.parsedRequest['env'];
+
+        if 'headers' in self.parsedRequest:
+            self.headers = self.parsedRequest['headers'];
+        
+        if 'payload' in self.parsedRequest:
+            self.payload = self.parsedRequest['payload'];
 
 
 @app.route('/', defaults={'u_path': ''}, methods = ['POST'])
