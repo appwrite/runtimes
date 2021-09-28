@@ -6,6 +6,8 @@ RUN mkdir -p /usr/local/src/
 
 WORKDIR /usr/local/src/
 
+ENV DENO_DIR=/usr/code/denoCache
+
 RUN deno install -qAf --unstable https://deno.land/x/denon/denon.ts
 
 COPY . .

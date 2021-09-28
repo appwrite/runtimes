@@ -1,21 +1,36 @@
-# usage
+# Node Runtime 16.0
 
-```bash
-docker build -t node-runtime .
+This is the Runtime that Appwrite uses to both build and run NodeJS code.
+
+The runtime itself uses [Micro](https://github.com/vercel/micro) as the Web Server to communicate between the Executor and the NodeJS code.
+
+# Notes:
+Functions for this runtime must be exported directly through the `module.exports` object.
+
+An example of this is:
+```js
+module.exports = (req, res) => {
+    res.send('Hello World!');
+}
 ```
 
-```bash
-docker run -p 3000:3000 -v /your_code/path:/usr/code node-runtime
+The res object has two methods:
+`send`: Send a string response to the client.
+`json`: Send a JSON response to the client.
+
+An example of the `json` method looks like this:
+
+```js
+module.exports = (req, res) => {
+    res.json({
+        'normal': 'Hello World!',
+        'env1': req.env['ENV1'],
+        'payload': req.payload
+    });
+}
 ```
 
-# request
-
-Requests can be done to any url on the choosen port. 
-
-For an execution we need to perform a POST request with its body containing all necessary informations.
-
-## request body
-
+Internally the request body sent to the runtime and all runtimes looks like so:
 ```json
 {
     "path": "/usr/code",
