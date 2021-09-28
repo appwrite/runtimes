@@ -81,12 +81,12 @@ class RuntimesTest extends TestCase
                 'tarname' => 'python-3-9.tar.gz',
                 'filename' => 'index.py'
             ],
-            'deno-1.13' => [
+            'deno-1.14' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
-                'runtime' => 'deno-1.13',
-                'tarname' => 'deno-1-13.tar.gz',
+                'runtime' => 'deno-1.14',
+                'tarname' => 'deno-1-14.tar.gz',
                 'filename' => 'index.ts'
             ],
             'rust-1.55' => [

@@ -16,6 +16,7 @@ ENV FLASK_APP="/usr/src/code/server.py"
 
 EXPOSE 3000
 
-RUN ["chmod", "+x", "./launch.sh"]
+RUN ["chmod", "+x", "/usr/local/src/launch.sh"]
+RUN ["chmod", "+x", "/usr/local/src/build.sh"]
 
 CMD [ "/usr/src/code/launch.sh" ]

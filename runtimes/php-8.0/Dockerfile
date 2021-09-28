@@ -63,7 +63,7 @@ COPY composer* /usr/local/src/
 
 # Add Source Code
 COPY ./server.php /usr/local/src/
-COPY ./launch.sh /usr/local/src/
+COPY /usr/local/src/launch.sh /usr/local/src/
 COPY ./build.sh /usr/local/src/
 
 # Enable Extensions
@@ -71,7 +71,7 @@ RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
 
 EXPOSE 3000
 
-RUN ["chmod", "+x", "./launch.sh"]
-RUN ["chmod", "+x", "./build.sh"]
+RUN ["chmod", "+x", "/usr/local/src/launch.sh"]
+RUN ["chmod", "+x", "/usr/local/src/build.sh"]
 
 CMD [ "/usr/local/src/launch.sh" ]

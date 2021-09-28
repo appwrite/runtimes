@@ -1,7 +1,7 @@
 echo 'Starting build...'
 
-echo 'Deno 1.13...'
-docker build -t deno-runtime:1.13 ./runtimes/deno-1.13
+echo 'Deno 1.14...'
+docker build -t deno-runtime:1.14 ./runtimes/deno-1.14
 
 echo 'Node 14.5...'
 docker build -t node-runtime:14.5 ./runtimes/node-14.5
