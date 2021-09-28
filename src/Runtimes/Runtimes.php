@@ -34,6 +34,7 @@ class Runtimes
         $python = new Runtime('python', 'Python');
         $python->addVersion('3.8', 'python-runtime:3.8', 'python-runtime:3.8', [System::X86, System::ARM]);
         $python->addVersion('3.9', 'python-runtime:3.9', 'python-runtime:3.9', [System::X86, System::ARM]);
+        $this->runtimes['python'] = $python;
 
         $rust = new Runtime('rust', 'Rust');
         $rust->addVersion('1.55', 'rust-runtime:1.55', 'appwrite-alpine:3.13.6', [System::X86, System::ARM]);
