@@ -6,6 +6,8 @@ RUN mkdir -p /usr/local/src
 
 WORKDIR /usr/local/src
 
+RUN apk add --no-cache rsync
+
 COPY package* /usr/local/src/
 
 RUN npm install pm2 -g

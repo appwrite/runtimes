@@ -4,6 +4,8 @@ LABEL maintainer="team@appwrite.io"
 
 RUN mkdir -p /usr/local/src
 
+RUN apk add --no-cache rsync
+
 WORKDIR /usr/local/src
 
 COPY package* /usr/local/src/
