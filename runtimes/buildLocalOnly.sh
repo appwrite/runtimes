@@ -29,3 +29,6 @@ docker build -t appwrite-alpine:3.13.6 ./runtimes/alpine-3.13.6
 
 echo 'Java 16.0...'
 docker build -t java-runtime:16.0 ./runtimes/java-16.0
+
+echo 'Julia 1.6.3...'
+docker build -t julia-runtime:1.6.3 ./runtimes/julia-1.6.3
