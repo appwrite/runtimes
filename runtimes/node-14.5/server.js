@@ -21,11 +21,16 @@ const server = micro(async (req, res) => {
         if (!(userFunction || userFunction.constructor || userFunction.call || userFunction.apply)) {
             throw new Error("User function is not valid.")
         }
-        userFunction(request, response);
-    } catch (error) {
+        userFunction(request, response).catch(e => {
+            send(res, 500, {
+                code: 500,
+                message: e.code === 'MODULE_NOT_FOUND' ? "Code file not found." : e.stack || e
+            });
+        });
+    } catch (e) {
         send(res, 500, {
             code: 500,
-            message: error.code === 'MODULE_NOT_FOUND' ? "Code file not found." : error.message
+            message: e.code === 'MODULE_NOT_FOUND' ? "Code file not found." : e.stack || e
         });
     }
 });

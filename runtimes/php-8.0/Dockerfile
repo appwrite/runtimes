@@ -63,7 +63,7 @@ COPY composer* /usr/local/src/
 
 # Add Source Code
 COPY ./server.php /usr/local/src/
-COPY /usr/local/src/launch.sh /usr/local/src/
+COPY ./launch.sh /usr/local/src/
 COPY ./build.sh /usr/local/src/
 
 # Enable Extensions

@@ -64,17 +64,17 @@ $server->on("Request", function($req, $res) {
     $response = new Response($res);
 
     try {
-        $userFunction = require(join_paths($body['path'], $body['file']));
+        $userFunction = include(join_paths($body['path'], $body['file']));
 
         if (!is_callable($userFunction)) {
             return throw new Exception('Function not valid');
         }
         $userFunction($request, $response);
-    } catch (Exception $e) {
+    } catch (\Throwable $e) {
         $res->status(500);
-        $res->end(json_encode([
+        return $res->end(json_encode([
             'code' => 500,
-            'message' => $e->getMessage()
+            'message' => $e->getMessage()."\r\n".$e->getTraceAsString(),
         ]));
     }
 });

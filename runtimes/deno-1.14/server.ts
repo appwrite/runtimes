@@ -36,7 +36,7 @@ app.use(async (ctx) => {
     ctx.response.status = 500;
     ctx.response.body = {
       code: 500,
-      message: error.message.includes("Cannot resolve module") ? 'Code file not found.' : error.message
+      message: error.message.includes("Cannot resolve module") ? 'Code file not found.' : error.stack || error.message
     };
   }
 });
