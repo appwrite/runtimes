@@ -45,7 +45,7 @@ body:
         - Different version (specify in environment)
     validations:
       required: true
-   - type: dropdown
+  - type: dropdown
     id: appwrite-runtimes-version
     attributes:
       label: "🎲 Appwrite Runtimes version"
