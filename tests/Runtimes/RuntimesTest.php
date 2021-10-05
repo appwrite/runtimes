@@ -155,6 +155,12 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'java-16'
             ],
+            'swift-5.5' => [
+                'code' => $functionsDir . '/swift.tar.gz',
+                'command' => './helloworld',
+                'timeout' => 15,
+                'runtime' => 'swift-5.5'
+            ],
         ];
         $this->instance = new Runtimes();
         $this->tests = array_filter($this->tests, function($test) {
@@ -206,7 +212,7 @@ class RuntimesTest extends TestCase
     }
 
     /**
-     * @depends testPullRuntimes
+     * 
      */
     public function testRunRuntimes()
     {

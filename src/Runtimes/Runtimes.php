@@ -57,6 +57,10 @@ class Runtimes
         $java->addVersion('11.0', 'openjdk/11-jre', 'appwrite/runtime-for-java:11.0', [System::X86]);
         $java->addVersion('16.0', 'openjdk/16-jdk-alpine', 'appwrite/runtime-for-java:16.0', [System::X86]);
         $this->runtimes['java'] = $java;
+
+        $swift = new Runtime('swift', 'Swift');
+        $swift->addVersion('5.5', 'swift:5.5-slim', 'appwrite/runtime-for-swift:5.5', [System::X86]);
+        $this->runtimes['swift'] = $swift;
     }
 
     /**
