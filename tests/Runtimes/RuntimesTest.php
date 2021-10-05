@@ -33,6 +33,14 @@ class RuntimesTest extends TestCase
             //     'tarname' => 'java-16-0.tar.gz',
             //     'filename' => 'index.jar'
             // ],
+            'dart-2.12' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.12',
+                'tarname' => 'dart-2-12.tar.gz',
+                'filename' => 'index.dart'
+            ],
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
@@ -169,7 +177,7 @@ class RuntimesTest extends TestCase
                 ],
                 volumes: [
                     $test['code'] . ":/tmp/code.tar.gz",
-                    $this->tempDir . ":/tmp/builtCode:rw"
+                    $this->tempDir . ":/usr/builtCode:rw"
                 ]
             );
 
@@ -218,13 +226,11 @@ class RuntimesTest extends TestCase
             $compressSuccess = $this->orchestration->execute(
                 name: 'build-container',
                 command: [
-                    'sh',
-                    '-c',
-                    'rm -f /tmp/builtCode/'.$test['tarname'].' && cd /usr/code && tar -czvf /tmp/builtCode/'.$test['tarname'].' .'
+                    'tar', '-C', '/usr/code', '-czvf', '/usr/builtCode/'.$test['tarname'], './'
                 ],
                 stdout: $compressStdout,
                 stderr: $compressStderr,
-                timeout: 600
+                timeout: 60
             );
 
             $this->assertEquals(true, $compressSuccess);
@@ -239,13 +245,16 @@ class RuntimesTest extends TestCase
     public function testRunRuntimes()
     {
         $stdout = $stderr = '';
+        $secret = \bin2hex(\random_bytes(16));
         foreach ($this->tests as $key => $test) {
             $runtime = $this->instance->getAll()[$test['runtime']];
             $containerID = $this->orchestration->run(
                 image: $runtime['image'],
-                command: [],
                 name: $key,
                 hostname: $key,
+                vars: [
+                    'APPWRITE_INTERNAL_RUNTIME_KEY' => $secret,
+                ],
                 volumes: [
                     $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
                 ]
@@ -279,7 +288,8 @@ class RuntimesTest extends TestCase
             \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
             \curl_setopt($ch, CURLOPT_HTTPHEADER, [
                 'Content-Type: application/json',
-                'Content-Length: ' . \strlen($body)
+                'Content-Length: ' . \strlen($body),
+                'x-internal-challenge: ' . $secret
             ]);
     
             $executorResponse = \curl_exec($ch);

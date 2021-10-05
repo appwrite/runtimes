@@ -1,5 +1,8 @@
 echo 'Starting build...'
 
+echo 'Dart 2.12...'
+docker build -t dart-runtime:2.12 ./runtimes/dart-2.12
+
 echo 'Deno 1.14...'
 docker build -t deno-runtime:1.14 ./runtimes/deno-1.14
 
