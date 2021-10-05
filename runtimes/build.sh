@@ -21,6 +21,9 @@ docker buildx build --platform linux/amd64,linux/386 -t appwrite/runtime-for-den
 echo 'Deno 1.13...'
 docker buildx build --platform linux/amd64,linux/386 -t appwrite/runtime-for-deno:1.13 ./runtimes/deno-1.13/ --push
 
+echo 'Deno 1.14...'
+docker buildx build --platform linux/amd64,linux/386 -t appwrite/runtime-for-deno:1.14 ./runtimes/deno-1.14/ --push
+
 echo 'Node 14.5...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le -t appwrite/runtime-for-node:14.5 ./runtimes/node-14.5/ --push
 
