@@ -59,7 +59,7 @@ class Runtimes
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift');
-        $java->addVersion('5.5', 'swift:5.5-slim', 'appwrite/runtime-for-swift:5.5', [System::X86]);
+        $swift->addVersion('5.5', 'swift:5.5-slim', 'appwrite/runtime-for-swift:5.5', [System::X86]);
         $this->runtimes['swift'] = $swift;
     }
 

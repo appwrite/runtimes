@@ -157,7 +157,7 @@ class RuntimesTest extends TestCase
             ],
             'swift-5.5' => [
                 'code' => $functionsDir . '/swift.tar.gz',
-                'command' => 'helloworld',
+                'command' => './helloworld',
                 'timeout' => 15,
                 'runtime' => 'swift-5.5'
             ],
@@ -212,7 +212,7 @@ class RuntimesTest extends TestCase
     }
 
     /**
-     * @depends testPullRuntimes
+     * 
      */
     public function testRunRuntimes()
     {

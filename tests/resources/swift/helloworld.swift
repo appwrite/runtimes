@@ -9,7 +9,10 @@ if let funcName = ProcessInfo.processInfo.environment["APPWRITE_FUNCTION_NAME"] 
 if let funcTag = ProcessInfo.processInfo.environment["APPWRITE_FUNCTION_TAG"] {
     print(funcTag);
 }
-if let funcEnvName = ProcessInfo.processInfo.environment["APPWRITE_FUNCTION_ENV_Name"] {
+if let funcTrigger = ProcessInfo.processInfo.environment["APPWRITE_FUNCTION_TRIGGER"] {
+    print(funcTrigger);
+}
+if let funcEnvName = ProcessInfo.processInfo.environment["APPWRITE_FUNCTION_ENV_NAME"] {
     print(funcEnvName);
 }
 if let funcEnvVersion = ProcessInfo.processInfo.environment["APPWRITE_FUNCTION_ENV_VERSION"] {
