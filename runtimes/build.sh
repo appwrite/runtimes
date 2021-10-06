@@ -45,6 +45,9 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'Python 3.9...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-python:3.9 ./runtimes/python-3.9/ --push
 
+echo 'Python 3.10...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t appwrite/runtime-for-python:3.10 ./runtimes/python-3.10/ --push
+
 echo 'Ruby 2.7...'
 docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-ruby:2.7 ./runtimes/ruby-2.7/ --push
 

@@ -34,6 +34,7 @@ class Runtimes
         $python = new Runtime('python', 'Python');
         $python->addVersion('3.8', 'python:3.8-alpine', 'appwrite/runtime-for-python:3.8', [System::X86, System::PPC, System::ARM]);
         $python->addVersion('3.9', 'python:3.9-alpine', 'appwrite/runtime-for-python:3.9', [System::X86, System::PPC, System::ARM]);
+        $python->addVersion('3.10', 'python:3.10-alpine', 'appwrite/runtime-for-python:3.10', [System::X86, System::ARM]);
         $this->runtimes['python'] = $python;
 
         $deno = new Runtime('deno', 'Deno');
