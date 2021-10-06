@@ -6,5 +6,6 @@ WORKDIR /usr/local/src
 COPY . /usr/local/src
 
 RUN chmod +x ./build.sh
+RUN chmod +x ./launch.sh
 
 CMD ["tail", "-f", "/dev/null"]

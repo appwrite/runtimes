@@ -1,4 +1,4 @@
-FROM alpine:3.13.6
+FROM ubuntu:21.10
 
 WORKDIR /usr/local/src/
 

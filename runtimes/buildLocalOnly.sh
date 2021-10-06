@@ -30,8 +30,8 @@ docker build -t rust-runtime:1.55 ./runtimes/rust-1.55
 echo 'Alpine 3.13.6...'
 docker build -t appwrite-alpine:3.13.6 ./runtimes/alpine-3.13.6
 
+echo 'Ubuntu 21.10'
+docker build -t appwrite-ubuntu:21.10 ./runtimes/ubuntu-21.10
+
 echo 'Java 16.0...'
 docker build -t java-runtime:16.0 ./runtimes/java-16.0
-
-echo 'Julia 1.6.3...'
-docker build -t julia-runtime:1.6.3 ./runtimes/julia-1.6.3

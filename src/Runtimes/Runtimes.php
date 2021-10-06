@@ -15,6 +15,10 @@ class Runtimes
      */
     public function __construct()
     {
+        $dart = new Runtime('dart', 'Dart');
+        $dart->addVersion('2.12', 'dart-runtime:2.12', 'dart-runtime:2.12', [System::X86, System::ARM]);
+        $this->runtimes['dart'] = $dart;
+
         $node = new Runtime('node', 'Node.js');
         $node->addVersion('14.5', 'node-runtime:14.5', 'node-runtime:14.5', [System::X86, System::ARM]);
         $node->addVersion('15.5', 'node-runtime:15.5', 'node-runtime:15.5', [System::X86, System::ARM]);
@@ -39,10 +43,6 @@ class Runtimes
         $rust = new Runtime('rust', 'Rust');
         $rust->addVersion('1.55', 'rust-runtime:1.55', 'appwrite-alpine:3.13.6', [System::X86, System::ARM]);
         $this->runtimes['rust'] = $rust;
-
-        $julia = new Runtime('julia', 'Julia');
-        $julia->addVersion('1.6.3', 'julia-runtime:1.6.3', 'julia-runtime:1.6.3', [System::X86, System::ARM]);
-        $this->runtimes['julia'] = $julia;
     }
 
     /**
