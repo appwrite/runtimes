@@ -15,7 +15,7 @@ void main(List<String> arguments) async {
       final request = Request(
         env: body['env'] ?? {},
         headers: body['headers'] ?? {},
-        payload: body['payload'] ?? {},
+        payload: body['payload'] ?? '',
       );
 
       final response = Response();
@@ -24,6 +24,7 @@ void main(List<String> arguments) async {
     } on FormatException catch (_) {
       return shelf.Response(500, body: 'Unable to properly load request body');
     } catch (e) {
+      print(e);
       return shelf.Response(500, body: e);
     }
   }, '0.0.0.0', 3000);
