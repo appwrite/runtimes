@@ -78,5 +78,8 @@ docker buildx build --platform linux/amd64 -t appwrite/runtime-for-java:11.0 ./r
 echo 'Java 16...'
 docker buildx build --platform linux/amd64 -t appwrite/runtime-for-java:16.0 ./runtimes/java-16.0/ --push
 
+echo 'Java 17...'
+docker buildx build --platform linux/amd64 -t appwrite/runtime-for-java:17.0 ./runtimes/java-17.0/ --push
+
 echo 'Swift 5.5...'
 docker buildx build --platform linux/amd64 -t appwrite/runtime-for-swift:5.5 ./runtimes/swift-5.5/ --push
