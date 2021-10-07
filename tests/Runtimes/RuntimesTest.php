@@ -31,7 +31,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'java-16.0',
             //     'tarname' => 'java-16-0.tar.gz',
-            //     'filename' => 'index.jar'
             // ],
             'dart-2.12' => [
                 'code' => $functionsDir . '/dart.tar.gz',
@@ -47,7 +46,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'node-14.5',
             //     'tarname' => 'node-14-5.tar.gz',
-            //     'filename' => 'index.js'
             // ],
             // 'node-15.5' => [
             //     'code' => $functionsDir . '/node.tar.gz',
@@ -55,7 +53,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'node-15.5',
             //     'tarname' => 'node-15-5.tar.gz',
-            //     'filename' => 'index.js'
             // ],
             // 'node-16' => [
             //     'code' => $functionsDir . '/node.tar.gz',
@@ -63,7 +60,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'node-16.0',
             //     'tarname' => 'node-16.tar.gz',
-            //     'filename' => 'index.js'
             // ],
             // 'php-8.0' => [
             //     'code' => $functionsDir . '/php.tar.gz',
@@ -71,7 +67,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'php-8.0',
             //     'tarname' => 'php-8-0.tar.gz',
-            //     'filename' => 'index.php'
             // ],
             // 'python-3.8' => [
             //     'code' => $functionsDir . '/python.tar.gz',
@@ -79,7 +74,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'python-3.8',
             //     'tarname' => 'python-3-8.tar.gz',
-            //     'filename' => 'index.py'
             // ],
             // 'python-3.9' => [
             //     'code' => $functionsDir . '/python.tar.gz',
@@ -87,7 +81,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'python-3.9',
             //     'tarname' => 'python-3-9.tar.gz',
-            //     'filename' => 'index.py'
             // ],
             // 'deno-1.14' => [
             //     'code' => $functionsDir . '/deno.tar.gz',
@@ -95,7 +88,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'deno-1.14',
             //     'tarname' => 'deno-1-14.tar.gz',
-            //     'filename' => 'index.ts'
             // ],
             // 'rust-1.55' => [
             //     'code' => $functionsDir . '/rust.tar.gz',
@@ -103,7 +95,6 @@ class RuntimesTest extends TestCase
             //     'timeout' => 15,
             //     'runtime' => 'rust-1.55',
             //     'tarname' => 'rust-1-55.tar.gz',
-            //     'filename' => 'index.rs'
             // ],
         ];
         $this->orchestration = new Orchestration(new DockerAPI());
@@ -270,7 +261,7 @@ class RuntimesTest extends TestCase
 
             $body = json_encode([
                 'path' => '/usr/code',
-                'file' => $test['filename'],
+                'file' => $test['entrypoint'],
                 'env' => [
                     'ENV1' => 'Hello World!'
                 ],
