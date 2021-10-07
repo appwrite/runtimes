@@ -70,14 +70,14 @@ class RuntimesTest extends TestCase
             ],
             'python-3.8' => [
                 'code' => $functionsDir . '/python.tar.gz',
-                'entrypoint' => 'main.py',
+                'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.8',
                 'tarname' => 'python-3-8.tar.gz',
             ],
             'python-3.9' => [
                 'code' => $functionsDir . '/python.tar.gz',
-                'entrypoint' => 'main.py',
+                'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.9',
                 'tarname' => 'python-3-9.tar.gz',
