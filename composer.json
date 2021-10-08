@@ -14,12 +14,19 @@
             "email": "torsten@appwrite.io"
         }
     ],
+    "repositories": [
+        {
+            "url": "https://github.com/PineappleIOnic/orchestration.git",
+            "type": "git"
+        }
+    ],
     "autoload": {
         "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes"}
     },
     "require": {
         "php": ">=8.0",
-        "utopia-php/system": "0.4.*"
+        "utopia-php/system": "0.4.*",
+        "utopia-php/orchestration": "dev-exp1"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3",

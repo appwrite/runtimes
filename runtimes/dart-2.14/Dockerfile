@@ -2,8 +2,10 @@ FROM dart:2.14
 
 LABEL maintainer="team@appwrite.io"
 
-RUN apt-get update -y && apt-get install -y tar
+WORKDIR /usr/local/src
+COPY . /usr/local/src
 
-WORKDIR /usr/local/src/
+RUN chmod +x ./build.sh
+RUN chmod +x ./launch.sh
 
-ENV PUB_CACHE=/usr/local/src/.appwrite
+CMD ["tail", "-f", "/dev/null"]

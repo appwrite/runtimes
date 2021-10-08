@@ -2,8 +2,22 @@ FROM node:14.5-alpine
 
 LABEL maintainer="team@appwrite.io"
 
-RUN apk add tar
+RUN mkdir -p /usr/local/src
 
-RUN mkdir /usr/local/src
+WORKDIR /usr/local/src
 
-WORKDIR /usr/local/src/
+RUN apk add --no-cache rsync
+
+COPY package* /usr/local/src/
+
+RUN npm install pm2 -g
+
+RUN npm ci && npm cache clean --force
+
+COPY . .
+
+RUN ["chmod", "+x", "/usr/local/src/launch.sh"]
+RUN ["chmod", "+x", "/usr/local/src/build.sh"]
+CMD ["/usr/local/src/launch.sh"]
+
+EXPOSE 3000

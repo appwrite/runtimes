@@ -24,8 +24,10 @@ class Runtime
      * 
      * @param string $key
      * @param string $name
+     * @param string[] $buildCommand
+     * @param string[] $runCommand // NOTE: Only used for compiled languages.
      */
-    public function __construct(string $key, string $name)
+    public function __construct(string $key, string $name, array $buildCommand = [], array $runCommand = [])
     {
         $this->key = $key;
         $this->name = $name;
@@ -68,7 +70,7 @@ class Runtime
             $list[$key] = array_merge(
                 [
                     'name' => $this->name,
-                    'logo' => "{$this->key}.png",
+                    'logo' => "{$this->key}.png"
                 ],
                 $version->get()
             );

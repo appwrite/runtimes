@@ -9,5 +9,5 @@ All the supported enviornments are based on Docker Alpine images.
 Build envs for all supported cloud functions (multicore builds)
 
 ```bash
-bash ./docker/environments/build.sh
+bash ./build.sh
 ```

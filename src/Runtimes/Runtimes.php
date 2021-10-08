@@ -15,58 +15,38 @@ class Runtimes
      */
     public function __construct()
     {
-        $node = new Runtime('node', 'Node.js');
-        $node->addVersion('14.5', 'node:14.5-alpine', 'appwrite/runtime-for-node:14.5', [System::X86, System::PPC, System::ARM]);
-        $node->addVersion('15.5', 'node:15.5-alpine', 'appwrite/runtime-for-node:15.5', [System::X86, System::PPC, System::ARM]);
-        $node->addVersion('16.0', 'node:16-alpine', 'appwrite/runtime-for-node:16.0', [System::X86, System::PPC, System::ARM]);
-        $this->runtimes['node'] = $node;
-
-        $php = new Runtime('php', 'PHP');
-        $php->addVersion('7.4', 'php:7.4-cli-alpine', 'appwrite/runtime-for-php:7.4', [System::X86, System::PPC, System::ARM]);
-        $php->addVersion('8.0', 'php:8.0-cli-alpine', 'appwrite/runtime-for-php:8.0', [System::X86, System::PPC, System::ARM]);
-        $this->runtimes['php'] = $php;
-
-        $ruby = new Runtime('ruby', 'Ruby');
-        $ruby->addVersion('2.7', 'ruby:2.7-alpine', 'appwrite/runtime-for-ruby:2.7', [System::X86, System::PPC, System::ARM]);
-        $ruby->addVersion('3.0', 'ruby:3.0-alpine', 'appwrite/runtime-for-ruby:3.0', [System::X86, System::PPC, System::ARM]);
-        $this->runtimes['ruby'] = $ruby;
-
-        $python = new Runtime('python', 'Python');
-        $python->addVersion('3.8', 'python:3.8-alpine', 'appwrite/runtime-for-python:3.8', [System::X86, System::PPC, System::ARM]);
-        $python->addVersion('3.9', 'python:3.9-alpine', 'appwrite/runtime-for-python:3.9', [System::X86, System::PPC, System::ARM]);
-        $python->addVersion('3.10', 'python:3.10-alpine', 'appwrite/runtime-for-python:3.10', [System::X86, System::ARM]);
-        $this->runtimes['python'] = $python;
-
-        $deno = new Runtime('deno', 'Deno');
-        $deno->addVersion('1.8', 'hayd/deno:alpine-1.8.3', 'appwrite/runtime-for-deno:1.8', [System::X86]);
-        $deno->addVersion('1.10', 'denoland/deno:alpine-1.10.3', 'appwrite/runtime-for-deno:1.10', [System::X86]);
-        $deno->addVersion('1.11', 'denoland/deno:alpine-1.11.5', 'appwrite/runtime-for-deno:1.11', [System::X86]);
-        $deno->addVersion('1.12', 'denoland/deno:alpine-1.12.2', 'appwrite/runtime-for-deno:1.12', [System::X86]);
-        $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'appwrite/runtime-for-deno:1.13', [System::X86]);
-        $deno->addVersion('1.14', 'denoland/deno:alpine-1.14.3', 'appwrite/runtime-for-deno:1.14', [System::X86]);
-        $this->runtimes['deno'] = $deno;
-
         $dart = new Runtime('dart', 'Dart');
-        $dart->addVersion('2.10', 'google/dart:2.10', 'appwrite/runtime-for-dart:2.10', [System::X86]);
-        $dart->addVersion('2.12', 'dart:2.12', 'appwrite/runtime-for-dart:2.12', [System::X86]);
-        $dart->addVersion('2.13', 'dart:2.13', 'appwrite/runtime-for-dart:2.13', [System::X86]);
-        $dart->addVersion('2.14', 'dart:2.14', 'appwrite/runtime-for-dart:2.14', [System::X86]);
+        $dart->addVersion('2.12', 'dart-runtime:2.12', 'appwrite-ubuntu:20.04', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
-        $dotnet = new Runtime('dotnet', '.NET');
-        $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/runtime:3.1-alpine', 'appwrite/runtime-for-dotnet:3.1', [System::X86]);
-        $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'appwrite/runtime-for-dotnet:5.0', [System::X86, System::ARM]);
-        $this->runtimes['dotnet'] = $dotnet;
+        $node = new Runtime('node', 'Node.js');
+        $node->addVersion('14.5', 'node-runtime:14.5', 'node-runtime:14.5', [System::X86, System::ARM]);
+        $node->addVersion('15.5', 'node-runtime:15.5', 'node-runtime:15.5', [System::X86, System::ARM]);
+        $node->addVersion('16.0', 'node-runtime:16.0', 'node-runtime:16.0', [System::X86, System::ARM]);
+        $this->runtimes['node'] = $node;
 
-        $java = new Runtime('java', 'Java');
-        $java->addVersion('11.0', 'openjdk/11-jre', 'appwrite/runtime-for-java:11.0', [System::X86]);
-        $java->addVersion('16.0', 'openjdk/16-jdk-alpine', 'appwrite/runtime-for-java:16.0', [System::X86]);
-        $java->addVersion('17.0', 'openjdk/17-jdk-alpine', 'appwrite/runtime-for-java:17.0', [System::X86]);
-        $this->runtimes['java'] = $java;
+        $deno = new Runtime('deno', 'Deno');
+        $deno->addVersion('1.10', 'deno-runtime:1.10', 'deno-runtime:1.10', [System::X86]);
+        $deno->addVersion('1.11', 'deno-runtime:1.11', 'deno-runtime:1.11', [System::X86]);
+        $deno->addVersion('1.14', 'deno-runtime:1.14', 'deno-runtime:1.14', [System::X86]);
+        $this->runtimes['deno'] = $deno;
 
-        $swift = new Runtime('swift', 'Swift');
-        $swift->addVersion('5.5', 'swift:5.5-slim', 'appwrite/runtime-for-swift:5.5', [System::X86]);
-        $this->runtimes['swift'] = $swift;
+        $php = new Runtime('php', 'PHP');
+        $php->addVersion('8.0', 'php-runtime:8.0', 'php-runtime:8.0', [System::X86, System::ARM]);
+        $this->runtimes['php'] = $php;
+
+        $python = new Runtime('python', 'Python');
+        $python->addVersion('3.8', 'python-runtime:3.8', 'python-runtime:3.8', [System::X86, System::ARM]);
+        $python->addVersion('3.9', 'python-runtime:3.9', 'python-runtime:3.9', [System::X86, System::ARM]);
+        $this->runtimes['python'] = $python;
+
+        $rust = new Runtime('rust', 'Rust');
+        $rust->addVersion('1.55', 'rust-runtime:1.55', 'appwrite-alpine:3.13.6', [System::X86, System::ARM]);
+        $this->runtimes['rust'] = $rust;
+
+        $ruby = new Runtime('ruby', 'Ruby');
+        $ruby->addVersion('3.0', 'ruby-runtime:3.0', 'ruby-runtime:3.0', [System::X86, System::ARM]);
+        $this->runtimes['ruby'] = $ruby;
     }
 
     /**

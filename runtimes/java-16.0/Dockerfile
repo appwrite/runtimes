@@ -1,7 +1,8 @@
-FROM openjdk:16-jdk-alpine
+FROM openjdk:16-jdk-alpine3.13
 
-LABEL maintainer="team@appwrite.io"
+WORKDIR /usr/local/src
+COPY . /usr/local/src/
 
-RUN apk add tar
+#TODO: Copy user code.
 
-WORKDIR /usr/local/src/
+CMD ["gradlew", "build"]
