@@ -43,6 +43,10 @@ class Runtimes
         $rust = new Runtime('rust', 'Rust');
         $rust->addVersion('1.55', 'rust-runtime:1.55', 'appwrite-alpine:3.13.6', [System::X86, System::ARM]);
         $this->runtimes['rust'] = $rust;
+
+        $ruby = new Runtime('ruby', 'Ruby');
+        $ruby->addVersion('3.0', 'ruby-runtime:3.0', 'ruby-runtime:3.0', [System::X86, System::ARM]);
+        $this->runtimes['ruby'] = $ruby;
     }
 
     /**

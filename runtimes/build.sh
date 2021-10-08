@@ -3,6 +3,12 @@ echo 'Starting build...'
 echo 'Dart 2.12...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t dart-runtime:2.12 ./runtimes/dart-2.12/ --push
 
+echo 'Dart 2.13...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t dart-runtime:2.13 ./runtimes/dart-2.13/ --push
+
+echo 'Dart 2.14...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t dart-runtime:2.14 ./runtimes/dart-2.14/ --push
+
 echo 'Deno 1.14...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t deno-runtime:1.14 ./runtimes/deno-1.14/ --push
 
@@ -24,8 +30,11 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'Python 3.8...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t python-runtime:3.9 ./runtimes/python-3.9/ --push
 
-echo 'Rust 1.55.'
+echo 'Rust 1.55...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t rust-runtime:1.55 ./runtimes/rust-1.55/ --push
+
+echo 'Ruby 3.0...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t ruby-runtime:3.0 ./runtimes/ruby-3.0/ --push
 
 echo 'Ubuntu 20.04...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t ubuntu-runtime:20.04 ./runtimes/ubuntu-20.04/ --push

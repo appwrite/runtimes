@@ -25,13 +25,13 @@ class RuntimesTest extends TestCase
         $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 
         $this->tests = [
-            // 'java-16.0' => [
-            //     'code' => $functionsDir . '/java.tar.gz',
-            //     'entrypoint' => 'index.jar',
-            //     'timeout' => 15,
-            //     'runtime' => 'java-16.0',
-            //     'tarname' => 'java-16-0.tar.gz',
-            // ],
+            'java-16.0' => [
+                'code' => $functionsDir . '/java.tar.gz',
+                'entrypoint' => 'index.jar',
+                'timeout' => 15,
+                'runtime' => 'java-16.0',
+                'tarname' => 'java-16-0.tar.gz',
+            ],
             'dart-2.12' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
@@ -95,6 +95,13 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'rust-1.55',
                 'tarname' => 'rust-1-55.tar.gz',
+            ],
+            'ruby-3.0' => [
+                'code' => $functionsDir . '/ruby.tar.gz',
+                'entrypoint' => 'index.rb',
+                'timeout' => 15,
+                'runtime' => 'ruby-3.0',
+                'tarname' => 'ruby-3-0.tar.gz',
             ],
         ];
         $this->orchestration = new Orchestration(new DockerAPI());

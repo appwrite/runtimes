@@ -1,0 +1,11 @@
+dart:
+  - dev
+  - 2.12.0
+
+stages:
+  - analysis:
+    - analyze: --fatal-infos .
+    - format:
+      dart: dev
+  - unit_test:
+    - test
