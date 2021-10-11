@@ -25,49 +25,49 @@ class RuntimesTest extends TestCase
         $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 
         $this->tests = [
-            'java-16.0' => [
-                'code' => $functionsDir . '/java.tar.gz',
-                'entrypoint' => 'index.jar',
-                'timeout' => 15,
-                'runtime' => 'java-16.0',
-                'tarname' => 'java-16-0.tar.gz',
-            ],
-            'dart-2.12' => [
-                'code' => $functionsDir . '/dart.tar.gz',
-                'entrypoint' => 'index.dart',
-                'timeout' => 15,
-                'runtime' => 'dart-2.12',
-                'tarname' => 'dart-2-12.tar.gz',
-                'filename' => 'index.dart'
-            ],
-            'node-14.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'entrypoint' => 'index.js',
-                'timeout' => 15,
-                'runtime' => 'node-14.5',
-                'tarname' => 'node-14-5.tar.gz',
-            ],
-            'node-15.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'entrypoint' => 'index.js',
-                'timeout' => 15,
-                'runtime' => 'node-15.5',
-                'tarname' => 'node-15-5.tar.gz',
-            ],
-            'node-16' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'entrypoint' => 'index.js',
-                'timeout' => 15,
-                'runtime' => 'node-16.0',
-                'tarname' => 'node-16.tar.gz',
-            ],
-            'php-8.0' => [
-                'code' => $functionsDir . '/php.tar.gz',
-                'entrypoint' => 'index.php',
-                'timeout' => 15,
-                'runtime' => 'php-8.0',
-                'tarname' => 'php-8-0.tar.gz',
-            ],
+            // 'java-16.0' => [
+            //     'code' => $functionsDir . '/java.tar.gz',
+            //     'entrypoint' => 'index.jar',
+            //     'timeout' => 15,
+            //     'runtime' => 'java-16.0',
+            //     'tarname' => 'java-16-0.tar.gz',
+            // ],
+            // 'dart-2.12' => [
+            //     'code' => $functionsDir . '/dart.tar.gz',
+            //     'entrypoint' => 'index.dart',
+            //     'timeout' => 15,
+            //     'runtime' => 'dart-2.12',
+            //     'tarname' => 'dart-2-12.tar.gz',
+            //     'filename' => 'index.dart'
+            // ],
+            // 'node-14.5' => [
+            //     'code' => $functionsDir . '/node.tar.gz',
+            //     'entrypoint' => 'index.js',
+            //     'timeout' => 15,
+            //     'runtime' => 'node-14.5',
+            //     'tarname' => 'node-14-5.tar.gz',
+            // ],
+            // 'node-15.5' => [
+            //     'code' => $functionsDir . '/node.tar.gz',
+            //     'entrypoint' => 'index.js',
+            //     'timeout' => 15,
+            //     'runtime' => 'node-15.5',
+            //     'tarname' => 'node-15-5.tar.gz',
+            // ],
+            // 'node-16' => [
+            //     'code' => $functionsDir . '/node.tar.gz',
+            //     'entrypoint' => 'index.js',
+            //     'timeout' => 15,
+            //     'runtime' => 'node-16.0',
+            //     'tarname' => 'node-16.tar.gz',
+            // ],
+            // 'php-8.0' => [
+            //     'code' => $functionsDir . '/php.tar.gz',
+            //     'entrypoint' => 'index.php',
+            //     'timeout' => 15,
+            //     'runtime' => 'php-8.0',
+            //     'tarname' => 'php-8-0.tar.gz',
+            // ],
             'python-3.8' => [
                 'code' => $functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
@@ -75,34 +75,34 @@ class RuntimesTest extends TestCase
                 'runtime' => 'python-3.8',
                 'tarname' => 'python-3-8.tar.gz',
             ],
-            'python-3.9' => [
-                'code' => $functionsDir . '/python.tar.gz',
-                'entrypoint' => 'index.py',
-                'timeout' => 15,
-                'runtime' => 'python-3.9',
-                'tarname' => 'python-3-9.tar.gz',
-            ],
-            'deno-1.14' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'entrypoint' => 'index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.14',
-                'tarname' => 'deno-1-14.tar.gz',
-            ],
-            'rust-1.55' => [
-                'code' => $functionsDir . '/rust.tar.gz',
-                'entrypoint' => 'index.rs',
-                'timeout' => 15,
-                'runtime' => 'rust-1.55',
-                'tarname' => 'rust-1-55.tar.gz',
-            ],
-            'ruby-3.0' => [
-                'code' => $functionsDir . '/ruby.tar.gz',
-                'entrypoint' => 'index.rb',
-                'timeout' => 15,
-                'runtime' => 'ruby-3.0',
-                'tarname' => 'ruby-3-0.tar.gz',
-            ],
+            // 'python-3.9' => [
+            //     'code' => $functionsDir . '/python.tar.gz',
+            //     'entrypoint' => 'index.py',
+            //     'timeout' => 15,
+            //     'runtime' => 'python-3.9',
+            //     'tarname' => 'python-3-9.tar.gz',
+            // ],
+            // 'deno-1.14' => [
+            //     'code' => $functionsDir . '/deno.tar.gz',
+            //     'entrypoint' => 'index.ts',
+            //     'timeout' => 15,
+            //     'runtime' => 'deno-1.14',
+            //     'tarname' => 'deno-1-14.tar.gz',
+            // ],
+            // 'rust-1.55' => [
+            //     'code' => $functionsDir . '/rust.tar.gz',
+            //     'entrypoint' => 'index.rs',
+            //     'timeout' => 15,
+            //     'runtime' => 'rust-1.55',
+            //     'tarname' => 'rust-1-55.tar.gz',
+            // ],
+            // 'ruby-3.0' => [
+            //     'code' => $functionsDir . '/ruby.tar.gz',
+            //     'entrypoint' => 'index.rb',
+            //     'timeout' => 15,
+            //     'runtime' => 'ruby-3.0',
+            //     'tarname' => 'ruby-3-0.tar.gz',
+            // ],
         ];
         $this->orchestration = new Orchestration(new DockerAPI());
         $this->instance = new Runtimes();
@@ -305,6 +305,76 @@ class RuntimesTest extends TestCase
             $this->assertEquals('Hello World!', $response['normal']);
             $this->assertEquals('Hello World! 2', $response['payload']);
             $this->assertEquals('Hello World!', $response['env1']);
+        }
+    }
+
+    public function testRuntimeSecurityFail()
+    {
+        $stdout = $stderr = '';
+        $secret = 'secret';
+        foreach ($this->tests as $key => $test) {
+            $runtime = $this->instance->getAll()[$test['runtime']];
+            $containerID = $this->orchestration->run(
+                image: $runtime['image'],
+                command: ['/usr/local/src/launch.sh'],
+                name: $key,
+                hostname: $key,
+                vars: [
+                    'APPWRITE_INTERNAL_RUNTIME_KEY' => $secret,
+                ],
+                volumes: [
+                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
+                ]
+            );
+
+            $this->assertNotFalse($containerID);
+
+            $this->assertNotFalse($this->orchestration->networkConnect($containerID, 'php-runtimes_runtime-tests'));
+
+            // Wait for server to launch
+            sleep(5);
+
+            $body = json_encode([
+                'path' => '/usr/code',
+                'file' => $test['entrypoint'],
+                'env' => [
+                    'ENV1' => 'Hello World!'
+                ],
+                'payload' => 'Hello World! 2',
+                'timeout' => 60
+            ]);
+
+            // Make a test execution
+            $ch = \curl_init();
+            \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
+            \curl_setopt($ch, CURLOPT_POST, true);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+    
+            \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+            \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            \curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . \strlen($body),
+                'x-internal-challenge: ' . 'notthesecretexpected'
+            ]);
+    
+            $executorResponse = \curl_exec($ch);
+    
+            $error = \curl_error($ch);
+    
+            $errNo = \curl_errno($ch);
+
+            // Remove container
+            $this->orchestration->remove($containerID, true);
+
+            $response = json_decode($executorResponse, true);
+
+            // Status Code
+            $this->assertEquals(401, \curl_getinfo($ch, CURLINFO_HTTP_CODE));
+            $this->assertEquals(401, $response['code']);
+            $this->assertEquals('Unauthorized', $response['message']);
+            \curl_close($ch);
         }
     }
 }

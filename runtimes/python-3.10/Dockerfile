@@ -1,11 +1,13 @@
-FROM python:3.10-alpine
-
-LABEL maintainer="team@appwrite.io"
-
-RUN apk add tar
-
-RUN mkdir /usr/local/src
+FROM python:3.10.0-alpine3.14
 
 WORKDIR /usr/local/src/
+COPY . .
 
-ENV PYTHONPATH "${PYTHONPATH}:/usr/local/src/.appwrite"
+ENV FLASK_APP="/usr/local/src/server.py"
+
+EXPOSE 3000
+
+RUN ["chmod", "+x", "/usr/local/src/launch.sh"]
+RUN ["chmod", "+x", "/usr/local/src/build.sh"]
+
+CMD [ "/usr/local/src/launch.sh" ]
