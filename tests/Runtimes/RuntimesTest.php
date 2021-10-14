@@ -25,19 +25,35 @@ class RuntimesTest extends TestCase
         $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 
         $this->tests = [
-            'java-16.0' => [
-                'code' => $functionsDir . '/java.tar.gz',
-                'entrypoint' => 'index.jar',
-                'timeout' => 15,
-                'runtime' => 'java-16.0',
-                'tarname' => 'java-16-0.tar.gz',
-            ],
+            // 'java-16.0' => [
+            //     'code' => $functionsDir . '/java.tar.gz',
+            //     'entrypoint' => 'index.jar',
+            //     'timeout' => 15,
+            //     'runtime' => 'java-16.0',
+            //     'tarname' => 'java-16-0.tar.gz',
+            // ],
             'dart-2.12' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.12',
                 'tarname' => 'dart-2-12.tar.gz',
+                'filename' => 'index.dart'
+            ],
+            'dart-2.13' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.13',
+                'tarname' => 'dart-2-13.tar.gz',
+                'filename' => 'index.dart'
+            ],
+            'dart-2.14' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.14',
+                'tarname' => 'dart-2-14.tar.gz',
                 'filename' => 'index.dart'
             ],
             'node-14.5' => [
@@ -81,6 +97,27 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'python-3.9',
                 'tarname' => 'python-3-9.tar.gz',
+            ],
+            'python-3.10' => [
+                'code' => $functionsDir . '/python.tar.gz',
+                'entrypoint' => 'index.py',
+                'timeout' => 15,
+                'runtime' => 'python-3.10',
+                'tarname' => 'python-3-10.tar.gz',
+            ],
+            'deno-1.12' => [
+                'code' => $functionsDir . '/deno.tar.gz',
+                'entrypoint' => 'index.ts',
+                'timeout' => 15,
+                'runtime' => 'deno-1.12',
+                'tarname' => 'deno-1-12.tar.gz',
+            ],
+            'deno-1.13' => [
+                'code' => $functionsDir . '/deno.tar.gz',
+                'entrypoint' => 'index.ts',
+                'timeout' => 15,
+                'runtime' => 'deno-1.13',
+                'tarname' => 'deno-1-13.tar.gz',
             ],
             'deno-1.14' => [
                 'code' => $functionsDir . '/deno.tar.gz',
@@ -305,6 +342,76 @@ class RuntimesTest extends TestCase
             $this->assertEquals('Hello World!', $response['normal']);
             $this->assertEquals('Hello World! 2', $response['payload']);
             $this->assertEquals('Hello World!', $response['env1']);
+        }
+    }
+
+    public function testRuntimeSecurityFail()
+    {
+        $stdout = $stderr = '';
+        $secret = 'secret';
+        foreach ($this->tests as $key => $test) {
+            $runtime = $this->instance->getAll()[$test['runtime']];
+            $containerID = $this->orchestration->run(
+                image: $runtime['image'],
+                command: ['/usr/local/src/launch.sh'],
+                name: $key,
+                hostname: $key,
+                vars: [
+                    'APPWRITE_INTERNAL_RUNTIME_KEY' => $secret,
+                ],
+                volumes: [
+                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
+                ]
+            );
+
+            $this->assertNotFalse($containerID);
+
+            $this->assertNotFalse($this->orchestration->networkConnect($containerID, 'php-runtimes_runtime-tests'));
+
+            // Wait for server to launch
+            sleep(5);
+
+            $body = json_encode([
+                'path' => '/usr/code',
+                'file' => $test['entrypoint'],
+                'env' => [
+                    'ENV1' => 'Hello World!'
+                ],
+                'payload' => 'Hello World! 2',
+                'timeout' => 60
+            ]);
+
+            // Make a test execution
+            $ch = \curl_init();
+            \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
+            \curl_setopt($ch, CURLOPT_POST, true);
+            \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+    
+            \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+            \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
+            \curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . \strlen($body),
+                'x-internal-challenge: ' . 'notthesecretexpected'
+            ]);
+    
+            $executorResponse = \curl_exec($ch);
+    
+            $error = \curl_error($ch);
+    
+            $errNo = \curl_errno($ch);
+
+            // Remove container
+            $this->orchestration->remove($containerID, true);
+
+            $response = json_decode($executorResponse, true);
+
+            // Status Code
+            $this->assertEquals(401, \curl_getinfo($ch, CURLINFO_HTTP_CODE));
+            $this->assertEquals(401, $response['code']);
+            $this->assertEquals('Unauthorized', $response['message']);
+            \curl_close($ch);
         }
     }
 }

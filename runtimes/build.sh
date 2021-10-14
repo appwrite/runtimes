@@ -9,6 +9,12 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'Dart 2.14...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t dart-runtime:2.14 ./runtimes/dart-2.14/ --push
 
+echo 'Deno 1.12...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t deno-runtime:1.12 ./runtimes/deno-1.12/ --push
+
+echo 'Deno 1.13...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t deno-runtime:1.13 ./runtimes/deno-1.13/ --push
+
 echo 'Deno 1.14...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386 -t deno-runtime:1.14 ./runtimes/deno-1.14/ --push
 
@@ -27,8 +33,11 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'Python 3.8...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t python-runtime:3.8 ./runtimes/python-3.8/ --push
 
-echo 'Python 3.8...'
+echo 'Python 3.9...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t python-runtime:3.9 ./runtimes/python-3.9/ --push
+
+echo 'Python 3.10...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t python-runtime:3.10 ./runtimes/python-3.10/ --push
 
 echo 'Rust 1.55...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 -t rust-runtime:1.55 ./runtimes/rust-1.55/ --push

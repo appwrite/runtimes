@@ -16,7 +16,7 @@ class Runtimes
     public function __construct()
     {
         $dart = new Runtime('dart', 'Dart');
-        $dart->addVersion('2.12', 'dart-runtime:2.12', 'appwrite-ubuntu:20.04', [System::X86, System::ARM]);
+        $dart->addVersion('2.12', 'dart-runtime:2.12', 'appwrite-ubuntu:20.04', [System::X86]);
         $this->runtimes['dart'] = $dart;
 
         $node = new Runtime('node', 'Node.js');

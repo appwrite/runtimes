@@ -9,6 +9,12 @@ docker build -t dart-runtime:2.13 ./runtimes/dart-2.13
 echo 'Dart 2.14...'
 docker build -t dart-runtime:2.14 ./runtimes/dart-2.14
 
+echo 'Deno 1.12...'
+docker build -t deno-runtime:1.12 ./runtimes/deno-1.12
+
+echo 'Deno 1.13...'
+docker build -t deno-runtime:1.13 ./runtimes/deno-1.13
+
 echo 'Deno 1.14...'
 docker build -t deno-runtime:1.14 ./runtimes/deno-1.14
 
@@ -29,6 +35,9 @@ docker build -t python-runtime:3.8 ./runtimes/python-3.8
 
 echo 'Python 3.9...'
 docker build -t python-runtime:3.9 ./runtimes/python-3.9
+
+echo 'Python 3.10...'
+docker build -t python-runtime:3.10 ./runtimes/python-3.10
 
 echo 'Rust 1.55'
 docker build -t rust-runtime:1.55 ./runtimes/rust-1.55
