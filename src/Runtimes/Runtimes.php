@@ -26,9 +26,9 @@ class Runtimes
         $this->runtimes['node'] = $node;
 
         $deno = new Runtime('deno', 'Deno');
-        $deno->addVersion('1.10', 'deno-runtime:1.10', 'deno-runtime:1.10', [System::X86]);
-        $deno->addVersion('1.11', 'deno-runtime:1.11', 'deno-runtime:1.11', [System::X86]);
-        $deno->addVersion('1.14', 'deno-runtime:1.14', 'deno-runtime:1.14', [System::X86]);
+        $deno->addVersion('1.10', 'deno-runtime:1.10', 'deno-runtime:1.10', [System::X86, System::ARM]);
+        $deno->addVersion('1.11', 'deno-runtime:1.11', 'deno-runtime:1.11', [System::X86, System::ARM]);
+        $deno->addVersion('1.14', 'deno-runtime:1.14', 'deno-runtime:1.14', [System::X86, System::ARM]);
         $this->runtimes['deno'] = $deno;
 
         $php = new Runtime('php', 'PHP');
