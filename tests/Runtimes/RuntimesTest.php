@@ -282,6 +282,9 @@ class RuntimesTest extends TestCase
         }
     }
 
+    /**
+     * @depends testRunBuildCommand
+     */
     public function testRunRuntimes()
     {
         $stdout = $stderr = '';
@@ -350,6 +353,9 @@ class RuntimesTest extends TestCase
         }
     }
 
+    /**
+     * @depends testRunRuntimes
+     */
     public function testRuntimeSecurityFail()
     {
         $stdout = $stderr = '';
