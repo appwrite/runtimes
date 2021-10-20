@@ -22,6 +22,7 @@ class RuntimesTest extends TestCase
     {
         $this->hostDirectory = getenv('CURRENT_DIR');
         $this->functionsDir = $functionsDir = $this->hostDirectory . '/tests/resources';
+
         $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 
         $this->tests = [
@@ -225,7 +226,7 @@ class RuntimesTest extends TestCase
                 command: [
                     'sh',
                     '-c',
-                    'mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/code.tar.gz && cd /usr && tar -zxf /usr/code.tar.gz -C /usr/code && rm /usr/code.tar.gz'
+                    'mkdir -p /usr/code && cp /tmp/code.tar.gz /usr/workspace/code.tar.gz && cd /usr && tar -zxf /usr/workspace/code.tar.gz -C /usr/code && rm /usr/workspace/code.tar.gz'
                 ],
                 stdout: $untarStdout,
                 stderr: $untarStderr,

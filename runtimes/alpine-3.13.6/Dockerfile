@@ -8,7 +8,12 @@ COPY ./launch.sh /usr/local/src/
 
 RUN [ "chmod", "+x", "/usr/local/src/launch.sh" ]
 
-RUN ["chown", "-R", "appwrite:appwrite", "/usr"]
+RUN ["mkdir", "-p", "/usr/workspace"]
+RUN ["mkdir", "-p", "/usr/code"]
+
+RUN ["chown", "-R", "appwrite:appwrite", "/usr/workspace"]
+RUN ["chown", "-R", "appwrite:appwrite", "/usr/local/src"]
+RUN ["chown", "-R", "appwrite:appwrite", "/usr/code"]
 
 USER appwrite
 
