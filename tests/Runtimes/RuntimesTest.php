@@ -269,10 +269,6 @@ class RuntimesTest extends TestCase
                 timeout: 60
             );
 
-            var_dump($compressSuccess);
-            var_dump($compressStdout);
-            var_dump($compressStderr);
-
             $this->assertEquals(true, $compressSuccess);
             $this->assertEquals(true, file_exists($builtCodePath));
             $this->assertEmpty($compressStderr);
