@@ -17,6 +17,8 @@ class Runtimes
     {
         $dart = new Runtime('dart', 'Dart');
         $dart->addVersion('2.12', 'dart-runtime:2.12', 'appwrite-ubuntu:20.04', [System::X86]);
+        $dart->addVersion('2.13', 'dart-runtime:2.13', 'appwrite-ubuntu:20.04', [System::X86]);
+        $dart->addVersion('2.14', 'dart-runtime:2.14', 'appwrite-ubuntu:20.04', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
         $node = new Runtime('node', 'Node.js');
