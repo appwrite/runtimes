@@ -19,6 +19,7 @@ RUN ["chown", "-R", "appwrite:appwrite", "/usr/local/src"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/code"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/workspace"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/builtCode"]
+RUN ["chown", "-R", "appwrite:appwrite", "/usr/lib/dart"]
 
 USER appwrite
 

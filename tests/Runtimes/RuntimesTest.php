@@ -33,30 +33,30 @@ class RuntimesTest extends TestCase
             //     'runtime' => 'java-16.0',
             //     'tarname' => 'java-16-0.tar.gz',
             // ],
-            // 'dart-2.12' => [
-            //     'code' => $functionsDir . '/dart.tar.gz',
-            //     'entrypoint' => 'index.dart',
-            //     'timeout' => 15,
-            //     'runtime' => 'dart-2.12',
-            //     'tarname' => 'dart-2-12.tar.gz',
-            //     'filename' => 'index.dart'
-            // ],
-            // 'dart-2.13' => [
-            //     'code' => $functionsDir . '/dart.tar.gz',
-            //     'entrypoint' => 'index.dart',
-            //     'timeout' => 15,
-            //     'runtime' => 'dart-2.13',
-            //     'tarname' => 'dart-2-13.tar.gz',
-            //     'filename' => 'index.dart'
-            // ],
-            // 'dart-2.14' => [
-            //     'code' => $functionsDir . '/dart.tar.gz',
-            //     'entrypoint' => 'index.dart',
-            //     'timeout' => 15,
-            //     'runtime' => 'dart-2.14',
-            //     'tarname' => 'dart-2-14.tar.gz',
-            //     'filename' => 'index.dart'
-            // ],
+            'dart-2.12' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.12',
+                'tarname' => 'dart-2-12.tar.gz',
+                'filename' => 'index.dart'
+            ],
+            'dart-2.13' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.13',
+                'tarname' => 'dart-2-13.tar.gz',
+                'filename' => 'index.dart'
+            ],
+            'dart-2.14' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.14',
+                'tarname' => 'dart-2-14.tar.gz',
+                'filename' => 'index.dart'
+            ],
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
