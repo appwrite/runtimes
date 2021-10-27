@@ -1,6 +1,6 @@
 # Appwrite Runtimes
 
-[![Build Status](https://travis-ci.com/appwrite/php-runtimes.svg)](https://travis-ci.com/appwrite/php-runtimes)
+[![Build Status](https://app.travis-ci.com/appwrite/php-runtimes.svg?branch=main)](https://app.travis-ci.com/appwrite/php-runtimes)
 ![Total Downloads](https://img.shields.io/packagist/dt/appwrite/php-runtimes.svg)
 [![Discord](https://img.shields.io/discord/564160730845151244?label=discord)](https://appwrite.io/discord)
 
