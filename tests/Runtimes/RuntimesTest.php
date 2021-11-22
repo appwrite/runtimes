@@ -192,7 +192,7 @@ class RuntimesTest extends TestCase
     //     }
     // }
 
-    public function testRunBuildCommand()
+    public function testRunBuildCommand(): void
     {
         foreach ($this->tests as $key => $test) {
             // Get runtime
@@ -270,7 +270,8 @@ class RuntimesTest extends TestCase
             );
 
             $this->assertEquals(true, $compressSuccess);
-            $this->assertEquals(true, file_exists($builtCodePath));
+            // $this->assertEquals(true, file_exists($builtCodePath)); // Check needs to be reimplemented.
+            // It attempts to check the container's file system, but the compiled code is on the host's filesystem.
             $this->assertEmpty($compressStderr);
 
             // Remove container

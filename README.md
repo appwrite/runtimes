@@ -69,6 +69,8 @@ First of all, a script for the runtime environment must be created. Plenty of ex
 
 After that start options must be added to the `setUp()` method found in `tests/Runtimes/RuntimesTest.php`.
 
+**WARNING:** On MacOS and Windows the `/tmp/builtCode/` needs to be created before the tests are run. This is due to a wierd permission issue on Docker Desktop that occours if the directory does not exist since Docker Desktop does not create it automatically.
+
 ## Authors
 
 **Torsten Dittmann**

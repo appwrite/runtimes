@@ -25,6 +25,8 @@ RUN ["chown", "-R", "appwrite:appwrite", "/usr/local/src"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/code"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/workspace"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/builtCode"]
+RUN ["chmod", "+w", "/tmp"]
+
 
 USER appwrite
 CMD [ "/usr/local/src/launch.sh" ]

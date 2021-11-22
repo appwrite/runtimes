@@ -24,7 +24,7 @@ class Response {
     function json($json, $status = 200) {
         $this->res->status($status);
         $this->res->headers['Content-Type'] = 'application/json';
-        $this->res->end(json_encode($json));
+        $this->res->end(json_encode($json, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES));
     }
 }
 
