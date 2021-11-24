@@ -25,6 +25,7 @@ class Runtimes
         $node->addVersion('14.5', 'node-runtime:14.5', 'node-runtime:14.5', [System::X86, System::ARM]);
         $node->addVersion('15.5', 'node-runtime:15.5', 'node-runtime:15.5', [System::X86, System::ARM]);
         $node->addVersion('16.0', 'node-runtime:16.0', 'node-runtime:16.0', [System::X86, System::ARM]);
+        $node->addVersion('17.0', 'node-runtime:17.0', 'node-runtime:17.0', [System::X86, System::ARM]);
         $this->runtimes['node'] = $node;
 
         $deno = new Runtime('deno', 'Deno');

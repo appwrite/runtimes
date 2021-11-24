@@ -27,6 +27,9 @@ docker buildx build --platform linux/amd64,linux/arm64 -t node-runtime-node:15.5
 echo 'Node 16...'
 docker buildx build --platform linux/amd64,linux/arm64 -t node-runtime:16.0 ./runtimes/node-16.0/ --push
 
+echo 'Node 17...'
+docker buildx build --platform linux/amd64,linux/arm64 -t node-runtime:17.0 ./runtimes/node-17.0/ --push
+
 echo 'PHP 8...'
 docker buildx build --platform linux/amd64,linux/arm64 -t php-runtime:8.0 ./runtimes/php-8.0/ --push
 

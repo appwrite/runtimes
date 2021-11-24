@@ -4,7 +4,6 @@ namespace Appwrite\Tests;
 
 use Appwrite\Runtimes\Runtimes;
 use PHPUnit\Framework\TestCase;
-use Utopia\CLI\Console;
 use Utopia\Orchestration\Orchestration;
 use Utopia\Orchestration\Adapter\DockerAPI;
 
@@ -77,6 +76,13 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-16.0',
                 'tarname' => 'node-16.tar.gz',
+            ],
+            'node-17' => [
+                'code' => $functionsDir . '/node.tar.gz',
+                'entrypoint' => 'index.js',
+                'timeout' => 15,
+                'runtime' => 'node-17.0',
+                'tarname' => 'node-17.tar.gz',
             ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',

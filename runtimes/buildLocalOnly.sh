@@ -27,6 +27,9 @@ docker build -t node-runtime:15.5 ./runtimes/node-15.5
 echo 'Node 16...'
 docker build -t node-runtime:16.0 ./runtimes/node-16.0
 
+echo 'Node 17...'
+docker build -t node-runtime:17.0 ./runtimes/node-17.0
+
 echo 'PHP 8...'
 docker build -t php-runtime:8.0 ./runtimes/php-8.0
 
