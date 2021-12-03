@@ -24,6 +24,7 @@ class Runtimes
         $php = new Runtime('php', 'PHP');
         $php->addVersion('7.4', 'php:7.4-cli-alpine', 'appwrite/runtime-for-php:7.4', [System::X86, System::PPC, System::ARM]);
         $php->addVersion('8.0', 'php:8.0-cli-alpine', 'appwrite/runtime-for-php:8.0', [System::X86, System::PPC, System::ARM]);
+        $php->addVersion('8.1', 'php:8.1-cli-alpine', 'appwrite/runtime-for-php:8.1', [System::X86, System::PPC, System::ARM]);
         $this->runtimes['php'] = $php;
 
         $ruby = new Runtime('ruby', 'Ruby');
