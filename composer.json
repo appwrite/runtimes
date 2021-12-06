@@ -12,6 +12,10 @@
         {
             "name": "Torsten Dittmann",
             "email": "torsten@appwrite.io"
+        },
+        {
+            "name": "Bradley Schofield",
+            "email": "bradley@appwrite.io"
         }
     ],
     "repositories": [

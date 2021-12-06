@@ -1,6 +1,8 @@
-# Install User Function Dependencies
+# Install User Function Dependencies if package.json exists
 cd /usr/code
-npm install
+if [ -f package.json ]; then
+  npm install
+fi
 
 mkdir -p node_modules
 
