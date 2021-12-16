@@ -1,8 +1,9 @@
 # Appwrite Runtimes
 
-[![Build Status](https://app.travis-ci.com/appwrite/php-runtimes.svg?branch=main)](https://app.travis-ci.com/appwrite/php-runtimes)
-![Total Downloads](https://img.shields.io/packagist/dt/appwrite/php-runtimes.svg)
-[![Discord](https://img.shields.io/discord/564160730845151244?label=discord)](https://appwrite.io/discord)
+[![Discord](https://img.shields.io/discord/564160730845151244?label=discord&style=flat-square)](https://appwrite.io/discord?r=Github)
+![Total Downloads](https://img.shields.io/packagist/dt/appwrite/php-runtimes.svg?style=flat-square)
+[![Build Status](https://img.shields.io/travis/com/appwrite/php-runtimes?style=flat-square)](https://travis-ci.com/appwrite/php-runtimes)
+[![Twitter Account](https://img.shields.io/twitter/follow/appwrite?color=00acee&label=twitter&style=flat-square)](https://twitter.com/appwrite)
 
 Appwrite repository for Cloud Function runtimes that contains the configurations and tests for all of the Appwrite runtime environments. This library is maintained by the [Appwrite team](https://appwrite.io).
 
