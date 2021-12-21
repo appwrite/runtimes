@@ -88,6 +88,8 @@ After that start options must be added to the `setUp()` method found in `tests/R
 
 + [https://twitter.com/dittmanntorsten](https://twitter.com/dittmanntorsten)
 + [https://github.com/torstendittmann](https://github.com/torstendittmann)
+
+**Bradley Schofield**
 + [https://github.com/PineappleIOnic](https://github.com/PineappleIOnic)
 
 ## Copyright and license
