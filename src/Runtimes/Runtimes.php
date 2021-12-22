@@ -52,7 +52,7 @@ class Runtimes
         $this->runtimes['ruby'] = $ruby;
 
         $swift = new Runtime('swift', 'Swift');
-        $ruby->addVersion('5.5', 'swift-runtime:5.5', 'appwrite-ubuntu:20.04', [System::X86]);
+        $swift->addVersion('5.5', 'swift-runtime:5.5', 'appwrite-ubuntu:20.04', [System::X86]);
         $this->runtimes['swift'] = $swift;
     }
 
