@@ -63,8 +63,20 @@ extension RequestResponse {
     }
     
     func error(data: Error) -> RequestResponse {
+        let jsonObject: NSMutableDictionary = NSMutableDictionary()
+        jsonObject.setValue(500, forKey: "code")
+        jsonObject.setValue(data.localizedDescription, forKey: "message")
+        
+        do {
+            let jsonData: NSData
+            jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: JSONSerialization.WritingOptions()) as NSData
+            let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue) as! String
+            self.data = jsonString
+        } catch _ {
+            self.data = "{'code': 500, 'message': 'Something went wrong internally. Check the docker logs.'}";
+        }
+            
         self.error = true;
-        self.data = "";
         self.isJson = true;
         return self;
     }
@@ -81,6 +93,12 @@ extension RequestResponse: ResponseEncodable {
             headers.add(name: .contentType, value: "application/json");
         }
         
+        if self.error {
+            return request.eventLoop.makeSucceededFuture(.init(
+                status: .internalServerError, headers: headers, body: .init(string: self.data)
+            ))
+        }
+        
         return request.eventLoop.makeSucceededFuture(.init(
             status: .ok, headers: headers, body: .init(string: self.data)
         ))
@@ -89,7 +107,6 @@ extension RequestResponse: ResponseEncodable {
 
 func routes(_ app: Application) throws {
     app.on(.POST, "", body: .stream) { req -> RequestResponse in
-        
         do {
             let requestData = Data(req.body.string!.utf8);
             let request = try JSONDecoder().decode(RequestValue.self, from: requestData);

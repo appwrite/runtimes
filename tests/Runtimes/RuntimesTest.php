@@ -147,6 +147,13 @@ class RuntimesTest extends TestCase
                 'runtime' => 'ruby-3.0',
                 'tarname' => 'ruby-3-0.tar.gz',
             ],
+            'swift-5.5' => [
+                'code' => $functionsDir . '/swift.tar.gz',
+                'entrypoint' => 'index.swift',
+                'timeout' => 15,
+                'runtime' => 'swift-5.5',
+                'tarname' => 'swift-5-5.tar.gz',
+            ]
         ];
         $this->orchestration = new Orchestration(new DockerAPI());
         $this->instance = new Runtimes();
@@ -321,7 +328,8 @@ class RuntimesTest extends TestCase
                     'ENV1' => 'Hello World!'
                 ],
                 'payload' => 'Hello World! 2',
-                'timeout' => 60
+                'timeout' => 60,
+                'headers' => []
             ]);
 
             // Make a test execution
