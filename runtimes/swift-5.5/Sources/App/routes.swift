@@ -5,25 +5,8 @@ struct RequestValue: Codable {
     let path: String;
     let file: String;
     let env: [String: String];
-    let headers: [String: String];
+    let headers: [String: String]?;
     let payload: String;
-}
-
-extension RequestValue {
-    init?(json: [String: Any]) {
-        guard let path = json["path"] as? String,
-            let file = json["file"] as? String,
-            let env = json["env"] as? [String: String],
-            let headers = json["headers"] as? [String: String],
-            let payload = json["payload"] as? String else {
-                return nil
-        }
-        self.path = path
-        self.file = file
-        self.env = env
-        self.headers = headers
-        self.payload = payload
-    }
 }
 
 class RequestResponse {
