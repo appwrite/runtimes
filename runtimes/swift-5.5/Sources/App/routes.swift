@@ -1,0 +1,104 @@
+import Vapor
+import Foundation
+
+struct RequestValue: Codable {
+    let path: String;
+    let file: String;
+    let env: [String: String];
+    let headers: [String: String];
+    let payload: String;
+}
+
+extension RequestValue {
+    init?(json: [String: Any]) {
+        guard let path = json["path"] as? String,
+            let file = json["file"] as? String,
+            let env = json["env"] as? [String: String],
+            let headers = json["headers"] as? [String: String],
+            let payload = json["payload"] as? String else {
+                return nil
+        }
+        self.path = path
+        self.file = file
+        self.env = env
+        self.headers = headers
+        self.payload = payload
+    }
+}
+
+class RequestResponse {
+    var data: String;
+    private var error: Bool = false;
+    private var isJson: Bool = false;
+    
+    init(data: String) {
+        self.data = data
+    }
+}
+
+extension RequestResponse {
+    func send(data: String) -> RequestResponse {
+        self.isJson = false;
+        self.data = data;
+        self.error = false;
+        return self;
+    }
+    
+    func json(data: [String: Any]) -> RequestResponse {
+        if let JSONData = try?  JSONSerialization.data(
+          withJSONObject: data,
+          options: .prettyPrinted
+          ),
+          let JSONText = String(data: JSONData,
+                                   encoding: String.Encoding.ascii) {
+            self.error = false;
+            self.data = JSONText;
+            self.isJson = true;
+        } else {
+            self.error = true;
+            self.data = "{'code': 500, 'message': 'Something went wrong encoding the Response JSON Object!'}";
+            self.isJson = true;
+        }
+        return self;
+    }
+    
+    func error(data: Error) -> RequestResponse {
+        self.error = true;
+        self.data = "";
+        self.isJson = true;
+        return self;
+    }
+}
+
+extension RequestResponse: ResponseEncodable {
+    func encodeResponse(for request: Request) -> EventLoopFuture<Response> {
+        var headers = HTTPHeaders()
+        
+        switch self.isJson {
+        case false:
+            headers.add(name: .contentType, value: "text/plain");
+        case true:
+            headers.add(name: .contentType, value: "application/json");
+        }
+        
+        return request.eventLoop.makeSucceededFuture(.init(
+            status: .ok, headers: headers, body: .init(string: self.data)
+        ))
+    }
+}
+
+func routes(_ app: Application) throws {
+    app.on(.POST, "", body: .stream) { req -> RequestResponse in
+        
+        do {
+            let requestData = Data(req.body.string!.utf8);
+            let request = try JSONDecoder().decode(RequestValue.self, from: requestData);
+            
+            let userFunctionResponse = main(req: request, res: RequestResponse(data: ""));
+            
+            return userFunctionResponse;
+        } catch let error {
+            return RequestResponse(data: "").error(data: error);
+        }
+    }
+}

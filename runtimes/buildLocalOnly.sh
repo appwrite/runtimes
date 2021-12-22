@@ -56,3 +56,6 @@ docker build -t appwrite-ubuntu:20.04 ./runtimes/ubuntu-20.04
 
 echo 'Java 16.0...'
 docker build -t java-runtime:16.0 ./runtimes/java-16.0
+
+echo 'Swift 5.5...'
+docker build -t swift-runtime:5.5 ./runtimes/swift-5.5 --platform linux/amd64
