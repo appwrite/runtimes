@@ -92,7 +92,7 @@ extension RequestResponse: ResponseEncodable {
 func routes(_ app: Application) throws {
     app.on(.POST, "", body: .stream) { req -> RequestResponse in
         do {
-            if (req.headers["x-internal-challenge"].count === 0) {
+            if (!req.headers.contains(name: "x-internal-challenge") || req.headers["x-internal-challenge"].isEmpty) {
                 return RequestResponse.unauthorized(RequestResponse(data: ""))();
             }
 
