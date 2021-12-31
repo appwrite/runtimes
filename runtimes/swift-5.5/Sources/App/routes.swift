@@ -11,7 +11,7 @@ struct RequestValue: Codable {
 
 class RequestResponse {
     var data: String;
-    private var error: Bool = false;
+    private var statusCode: HTTPResponseStatus = HTTPResponseStatus.ok;
     private var isJson: Bool = false;
     
     init(data: String) {
@@ -23,7 +23,7 @@ extension RequestResponse {
     func send(data: String) -> RequestResponse {
         self.isJson = false;
         self.data = data;
-        self.error = false;
+        self.statusCode = HTTPResponseStatus.ok;
         return self;
     }
     
@@ -34,11 +34,11 @@ extension RequestResponse {
           ),
           let JSONText = String(data: JSONData,
                                    encoding: String.Encoding.ascii) {
-            self.error = false;
+            self.statusCode = HTTPResponseStatus.ok;
             self.data = JSONText;
             self.isJson = true;
         } else {
-            self.error = true;
+            self.statusCode = HTTPResponseStatus.internalServerError;
             self.data = "{'code': 500, 'message': 'Something went wrong encoding the Response JSON Object!'}";
             self.isJson = true;
         }
@@ -59,9 +59,19 @@ extension RequestResponse {
             self.data = "{'code': 500, 'message': 'Something went wrong internally. Check the docker logs.'}";
         }
             
-        self.error = true;
+        self.statusCode = HTTPResponseStatus.internalServerError;
         self.isJson = true;
         return self;
+    }
+    
+    func unauthorized() -> RequestResponse {
+        let jsonObject: NSMutableDictionary = NSMutableDictionary()
+        jsonObject["code"] = 401
+        jsonObject["message"] = "Unauthorized"
+        
+        self.statusCode = HTTPResponseStatus.unauthorized
+        self.isJson = true
+        return self
     }
 }
 
@@ -76,14 +86,8 @@ extension RequestResponse: ResponseEncodable {
             headers.add(name: .contentType, value: "application/json");
         }
         
-        if self.error {
-            return request.eventLoop.makeSucceededFuture(.init(
-                status: .internalServerError, headers: headers, body: .init(string: self.data)
-            ))
-        }
-        
         return request.eventLoop.makeSucceededFuture(.init(
-            status: .ok, headers: headers, body: .init(string: self.data)
+            status: self.statusCode, headers: headers, body: .init(string: self.data)
         ))
     }
 }
@@ -91,6 +95,12 @@ extension RequestResponse: ResponseEncodable {
 func routes(_ app: Application) throws {
     app.on(.POST, "", body: .stream) { req -> RequestResponse in
         do {
+            // Validate Security Header.
+            if (req.headers["x-internal-challenge"][0] != ProcessInfo.processInfo.environment["APPWRITE_INTERNAL_RUNTIME_KEY"])
+            {
+                return RequestResponse.unauthorized(RequestResponse(data: ""))();
+            }
+            
             let requestData = Data(req.body.string!.utf8);
             let request = try JSONDecoder().decode(RequestValue.self, from: requestData);
             
