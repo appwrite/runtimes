@@ -65,12 +65,9 @@ extension RequestResponse {
     }
     
     func unauthorized() -> RequestResponse {
-        let jsonObject: NSMutableDictionary = NSMutableDictionary()
-        jsonObject["code"] = 401
-        jsonObject["message"] = "Unauthorized"
-        
         self.statusCode = HTTPResponseStatus.unauthorized
         self.isJson = true
+        self.data = "{'code': 401, 'message': 'Unauthorized'}";
         return self
     }
 }
@@ -95,6 +92,10 @@ extension RequestResponse: ResponseEncodable {
 func routes(_ app: Application) throws {
     app.on(.POST, "", body: .stream) { req -> RequestResponse in
         do {
+            if (req.headers["x-internal-challenge"].count === 0) {
+                return RequestResponse.unauthorized(RequestResponse(data: ""))();
+            }
+
             // Validate Security Header.
             if (req.headers["x-internal-challenge"][0] != ProcessInfo.processInfo.environment["APPWRITE_INTERNAL_RUNTIME_KEY"])
             {
