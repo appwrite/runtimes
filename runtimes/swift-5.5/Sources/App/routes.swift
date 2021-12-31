@@ -47,8 +47,8 @@ extension RequestResponse {
     
     func error(data: Error) -> RequestResponse {
         let jsonObject: NSMutableDictionary = NSMutableDictionary()
-        jsonObject.setValue(500, forKey: "code")
-        jsonObject.setValue(data.localizedDescription, forKey: "message")
+        jsonObject["code"] = 500
+        jsonObject["message"] = data.localizedDescription
         
         do {
             let jsonData: NSData

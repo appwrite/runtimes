@@ -10,7 +10,7 @@ import Foundation
 func main(req: RequestValue, res: RequestResponse) -> RequestResponse {
     return res.json(data: [
         "normal": "Hello World!",
-        "env1": req.env["env1"],
+        "env1": req.env["ENV1"],
         "payload": req.payload,
     ]);
 }

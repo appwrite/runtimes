@@ -329,7 +329,9 @@ class RuntimesTest extends TestCase
                 ],
                 'payload' => 'Hello World! 2',
                 'timeout' => 60,
-                'headers' => []
+                'headers' => [
+                    'test' => 'test1'
+                ]
             ]);
 
             // Make a test execution
