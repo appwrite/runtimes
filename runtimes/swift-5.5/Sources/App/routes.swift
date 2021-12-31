@@ -39,7 +39,7 @@ extension RequestResponse {
             self.isJson = true;
         } else {
             self.statusCode = HTTPResponseStatus.internalServerError;
-            self.data = "{'code': 500, 'message': 'Something went wrong encoding the Response JSON Object!'}";
+            self.data = "{\"code\": 500, \"message\": \"Something went wrong encoding the Response JSON Object!\"}";
             self.isJson = true;
         }
         return self;
@@ -56,7 +56,7 @@ extension RequestResponse {
             let jsonString = NSString(data: jsonData as Data, encoding: String.Encoding.utf8.rawValue) as! String
             self.data = jsonString
         } catch _ {
-            self.data = "{'code': 500, 'message': 'Something went wrong internally. Check the docker logs.'}";
+            self.data = "{\"code\": 500, \"message\": \"Something went wrong internally. Check the docker logs.\"}";
         }
             
         self.statusCode = HTTPResponseStatus.internalServerError;
@@ -67,7 +67,7 @@ extension RequestResponse {
     func unauthorized() -> RequestResponse {
         self.statusCode = HTTPResponseStatus.unauthorized
         self.isJson = true
-        self.data = "{'code': 401, 'message': 'Unauthorized'}";
+        self.data = "{\"code\": 401, \"message\": \"Unauthorized\"}";
         return self
     }
 }
