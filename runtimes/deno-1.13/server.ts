@@ -1,5 +1,5 @@
-import { Application } from "https://deno.land/x/oak/mod.ts";
-import * as path from "https://deno.land/std/path/mod.ts";
+import { Application } from "https://deno.land/x/oak@v10.1.0/mod.ts";
+import * as path from "https://deno.land/std@0.119.0/path/mod.ts";
 
 const app = new Application();
 
