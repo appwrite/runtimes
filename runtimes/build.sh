@@ -72,6 +72,9 @@ docker buildx build --platform linux/amd64 -t appwrite/runtime-for-dart:2.13 ./r
 echo 'Dart 2.14...'
 docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t appwrite/runtime-for-dart:2.14 ./runtimes/dart-2.14/ --push
 
+echo 'Dart 2.15...'
+docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t appwrite/runtime-for-dart:2.15 ./runtimes/dart-2.15/ --push
+
 echo '.NET 3.1...'
 docker buildx build --platform linux/amd64 -t appwrite/runtime-for-dotnet:3.1 ./runtimes/dotnet-3.1/ --push
 
