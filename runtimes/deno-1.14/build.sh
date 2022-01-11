@@ -11,4 +11,4 @@ deno cache server.ts
 
 # Cache user function depdenencies
 cd /usr/code
-deno cache $APPWRITE_ENTRYPOINT_NAME
+deno cache $ENTRYPOINT_NAME

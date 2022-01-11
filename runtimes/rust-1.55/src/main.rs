@@ -47,7 +47,7 @@ impl<'r> FromRequest<'r> for ChallengeKey {
             return Outcome::Failure((Status::Unauthorized, json!({ "code": 401, "message": "Unauthorized"})));
         }
 
-        let secret = match std::env::var("APPWRITE_INTERNAL_RUNTIME_KEY") {
+        let secret = match std::env::var("INTERNAL_RUNTIME_KEY") {
             Ok(val) => val,
             Err(_) => return Outcome::Failure((Status::InternalServerError, json!({ "code": 500, "message": "Internal Server Error"})))
         };

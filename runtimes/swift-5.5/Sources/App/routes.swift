@@ -97,7 +97,7 @@ func routes(_ app: Application) throws {
             }
 
             // Validate Security Header.
-            if (req.headers["x-internal-challenge"][0] != ProcessInfo.processInfo.environment["APPWRITE_INTERNAL_RUNTIME_KEY"])
+            if (req.headers["x-internal-challenge"][0] != ProcessInfo.processInfo.environment["INTERNAL_RUNTIME_KEY"])
             {
                 return RequestResponse.unauthorized(RequestResponse(data: ""))();
             }

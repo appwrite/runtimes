@@ -222,7 +222,7 @@ class RuntimesTest extends TestCase
                     '/dev/null'
                 ],
                 vars: [
-                    'APPWRITE_ENTRYPOINT_NAME' => $test['entrypoint'],
+                    'ENTRYPOINT_NAME' => $test['entrypoint'],
                 ],
                 volumes: [
                     $test['code'] . ":/tmp/code.tar.gz",
@@ -257,7 +257,7 @@ class RuntimesTest extends TestCase
                 name: 'build-container',
                 command: ['sh', '-c', 'cd /usr/local/src && ./build.sh'],
                 vars: [
-                    'APPWRITE_ENTRYPOINT_NAME' => $test['entrypoint'],
+                    'ENTRYPOINT_NAME' => $test['entrypoint'],
                 ],  
                 stdout: $buildStdout,
                 stderr: $buildStderr,
@@ -307,7 +307,7 @@ class RuntimesTest extends TestCase
                 name: $key,
                 hostname: $key,
                 vars: [
-                    'APPWRITE_INTERNAL_RUNTIME_KEY' => $secret,
+                    'INTERNAL_RUNTIME_KEY' => $secret,
                 ],
                 volumes: [
                     $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
@@ -355,14 +355,14 @@ class RuntimesTest extends TestCase
     
             $errNo = \curl_errno($ch);
 
-            // Remove container
-            $this->orchestration->remove($containerID, true);
-
             $response = json_decode($executorResponse, true);
 
             $this->assertEquals('Hello World!', $response['normal']);
             $this->assertEquals('Hello World! 2', $response['payload']);
             $this->assertEquals('Hello World!', $response['env1']);
+
+            // Remove container
+            $this->orchestration->remove($containerID, true);
         }
     }
 
@@ -381,7 +381,7 @@ class RuntimesTest extends TestCase
                 name: $key,
                 hostname: $key,
                 vars: [
-                    'APPWRITE_INTERNAL_RUNTIME_KEY' => $secret,
+                    'INTERNAL_RUNTIME_KEY' => $secret,
                 ],
                 volumes: [
                     $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"

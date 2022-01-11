@@ -11,7 +11,7 @@ void main(List<String> arguments) async {
       return shelf.Response(500, body: 'Invalid request');
     }
     if (req.headers['x-internal-challenge'] !=
-        Platform.environment['APPWRITE_INTERNAL_RUNTIME_KEY']) {
+        Platform.environment['INTERNAL_RUNTIME_KEY']) {
       return shelf.Response(401,
           body: jsonEncode({'code': 401, 'message': 'Unauthorized'}));
     }
@@ -25,7 +25,7 @@ void main(List<String> arguments) async {
       );
 
       final response = Response();
-      await user_code.start(request, response);
+      await user_code.main(request, response);
       return shelf.Response.ok(response.body);
     } on FormatException catch (_) {
       return shelf.Response(500,

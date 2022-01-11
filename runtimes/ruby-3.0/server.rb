@@ -44,7 +44,7 @@ post '/' do
     return { code: 401, message: 'Unauthorized' }.to_json
   end
 
-  if challenge != ENV['APPWRITE_INTERNAL_RUNTIME_KEY']
+  if challenge != ENV['INTERNAL_RUNTIME_KEY']
     status 401
     content_type :json
     return { code: 401, message: 'Unauthorized' }.to_json

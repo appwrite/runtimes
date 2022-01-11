@@ -36,7 +36,7 @@ class Request:
 @app.route('/<path:u_path>', methods = ['POST'])
 def handler(u_path):
 
-    if (request.headers.get('x-internal-challenge') != os.getenv('APPWRITE_INTERNAL_RUNTIME_KEY')):
+    if (request.headers.get('x-internal-challenge') != os.getenv('INTERNAL_RUNTIME_KEY')):
         return {'message': 'Unauthorized', 'code': 401}, 401;
 
     requestData = request.get_json();

@@ -44,7 +44,7 @@ $server->on("Request", function($req, $res) {
         return;
     }
 
-    $key = getenv('APPWRITE_INTERNAL_RUNTIME_KEY');
+    $key = getenv('INTERNAL_RUNTIME_KEY');
 
     if ($key != $internal_challenge) {
         $res->status(401);

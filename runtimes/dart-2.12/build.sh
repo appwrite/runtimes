@@ -4,7 +4,7 @@
 cp -a /usr/code/. /usr/local/src/user_code
 
 # Rename Main Function Dart
-mv /usr/local/src/user_code/$APPWRITE_ENTRYPOINT_NAME /usr/local/src/user_code/main.dart
+mv /usr/local/src/user_code/$ENTRYPOINT_NAME /usr/local/src/user_code/main.dart
 
 cd /usr/local/src/user_code
 

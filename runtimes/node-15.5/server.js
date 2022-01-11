@@ -5,7 +5,7 @@ const { json, send } = require("micro");
 const server = micro(async (req, res) => {
     const body = await json(req);
 
-    if (req.headers[`x-internal-challenge`] !== process.env['APPWRITE_INTERNAL_RUNTIME_KEY']) {
+    if (req.headers[`x-internal-challenge`] !== process.env['INTERNAL_RUNTIME_KEY']) {
         return send(res, 401, { code: 401, message: 'Unauthorized' });
     }
 

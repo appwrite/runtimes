@@ -5,13 +5,13 @@ import 'user_code/main.dart' as user_code;
 import 'dart:io' show Platform;
 import 'package:appwrite_function_types/appwrite_function_types.dart';
 
-void main(List<String> arguments) async {
+void main() async {
   await shelf_io.serve((req) async {
     if (req.method != 'POST') {
       return shelf.Response(500, body: 'Invalid request');
     }
     if (req.headers['x-internal-challenge'] !=
-        Platform.environment['APPWRITE_INTERNAL_RUNTIME_KEY']) {
+        Platform.environment['INTERNAL_RUNTIME_KEY']) {
       return shelf.Response(401,
           body: jsonEncode({'code': 401, 'message': 'Unauthorized'}));
     }

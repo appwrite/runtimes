@@ -7,7 +7,7 @@ app.use(async (ctx) => {
   const { value } = ctx.request.body({ type: 'json' });
   const body = await value;
 
-  if (ctx.request.headers.get("x-internal-challenge") !== Deno.env.get("APPWRITE_INTERNAL_RUNTIME_KEY")) {
+  if (ctx.request.headers.get("x-internal-challenge") !== Deno.env.get("INTERNAL_RUNTIME_KEY")) {
     ctx.response.status = 401;
     ctx.response.body = {
       code: 401,
