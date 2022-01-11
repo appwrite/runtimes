@@ -24,6 +24,5 @@ before_script:
   - composer install --ignore-platform-reqs
 
 script:
-  - runtimes/buildLocalOnly.sh
   - docker-compose up
   - vendor/bin/psalm --show-info=true
