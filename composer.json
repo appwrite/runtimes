@@ -1,5 +1,5 @@
 {
-    "name": "appwrite/php-runtimes",
+    "name": "appwrite/runtimes",
     "description": "Appwrite repository for Cloud Function runtimes that contains the configurations and tests for all of the Appwrite runtime environments.",
     "type": "library",
     "keywords": ["php","appwrite","runtimes"],
