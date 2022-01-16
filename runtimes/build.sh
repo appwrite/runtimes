@@ -60,6 +60,9 @@ docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -
 echo 'Ruby 3.0...'
 docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-ruby:3.0 ./runtimes/ruby-3.0/ --push
 
+echo 'Ruby 3.1...'
+docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-ruby:3.1 ./runtimes/ruby-3.1/ --push
+
 echo 'Dart 2.10...'
 docker buildx build --platform linux/amd64 -t appwrite/runtime-for-dart:2.10 ./runtimes/dart-2.10/ --push
 
@@ -71,6 +74,9 @@ docker buildx build --platform linux/amd64 -t appwrite/runtime-for-dart:2.13 ./r
 
 echo 'Dart 2.14...'
 docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t appwrite/runtime-for-dart:2.14 ./runtimes/dart-2.14/ --push
+
+echo 'Dart 2.15...'
+docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t appwrite/runtime-for-dart:2.15 ./runtimes/dart-2.15/ --push
 
 echo '.NET 3.1...'
 docker buildx build --platform linux/amd64 -t appwrite/runtime-for-dotnet:3.1 ./runtimes/dotnet-3.1/ --push
