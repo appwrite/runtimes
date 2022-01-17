@@ -1,5 +1,5 @@
 name: runtime
-description: A simple command-line application.
+description: Runtime server for function execution
 version: 1.0.0
 publish_to: none
 # homepage: https://www.example.com
