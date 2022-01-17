@@ -8,33 +8,27 @@ To create a function for the runtime, you must create a asyncronous Dart functio
 The function **must** be named `start` otherwise it will not compile.
 
 ## Handling User Dependencies
-User Dependencies are not currently supported. This is a planned feature.
+To install your own dependencies for your code you can add a `pubspec.yaml` file to the root of your function. Dependencies in this file will automatically be installed for you.
 
-## Custom Structures/Classes
+## Types
 
-**Request**
-```dart
-class Request {
-  final Map<String, dynamic> env;
-  final Map<String, dynamic> headers;
-  final String payload;
-}
+Types can be found [here.](/appwrite_function_types)
+
+You can also import them into your IDE by adding the following to the `pubspec.yaml` file of your function:
+```yaml
+dependencies:
+  appwrite-function-types:
+    git: 
+      url: https://github.com/appwrite/function-types.git
+      ref: dart-2.13
 ```
 
-**Response**
-
-```dart
-class Response {
-  Response send(String? text, {int status = 200}) // Used for returning text
-
-  Response json(Map<String, dynamic> json, {int status = 200}) // Used for returning a json object
-}
-```
 
 ## Running the runtime manually without an executor
 Running the runtime without an executor is possible by following the steps below.
 
-**Building the image**
+### 1. Building the image
+
 The Docker image for this runtime must be built before it can be used.
 
 Within the directory of the runtime you must run the following command:
@@ -42,7 +36,8 @@ Within the directory of the runtime you must run the following command:
 docker build -t dart-runtime:2.13 .
 ```
 
-**Building the Code**
+### 2. Building the Code
+
 You can run the following command to build the code in the directory where your code is located:
 ```bash
 docker run -it --rm -v $(pwd)/YourDartFileName.dart:/usr/code/main.dart -v $(pwd)/code:/usr/code dart-runtime:2.13 /usr/local/src/build.sh
@@ -58,7 +53,8 @@ tar -czvf ./code.tar.gz ./
 ```
 This should create a file called `code.tar.gz` which can be used for running the code on the runtime.
 
-**Running the Code**
+### 3. Running the Code Server
+
 With the `code.tar.gz` file you can now run the following command to launch the runtime on port 3000:
 ```bash
 docker run -it -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v $(pwd)/code.tar.gz:/tmp/code.tar.gz dart-runtime:2.13 /usr/local/src/launch.sh
@@ -70,7 +66,8 @@ docker run -d -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v 
 
 Note: The runtime does not output anything to the terminal, so if you see no output upon launch that's completely normal.
 
-**Making a Request to Execute the Code**
+### 4. Making a Request to Execute the Code
+
 To make a request to the runtime you can use your favorite HTTP client.
 
 You have to send a `POST` request to `localhost:3000` with the following JSON body:
@@ -98,7 +95,20 @@ The header `x-internal-challenge` must be set to the value of the `INTERNAL_RUNT
 If execution is successful you'll get a response of whatever your code returns using the `Response` class.
 
 ## Footguns to note
-No footguns of note.
+ - This image does not support ARM, upgrade to `dart-2.14` for ARM support.
+
+## Example Code
+
+```dart
+import 'dart:async';
+import 'package:appwrite_function_types/appwrite_function_types.dart';
+
+Future<void> start(Request request, Response response) async {
+  response.json({
+    'Hello': 'World!'
+  });
+}
+```
 
 ## Credits
 **Damodar Lohani**
