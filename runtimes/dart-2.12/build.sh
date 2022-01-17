@@ -19,6 +19,16 @@ cd /usr/local/src
 # Get dependencies
 dart pub get
 
+cd /usr/local/src/user_code
+
+# Get user code dependencies
+
+dart pub get
+
+# Move back to server directory
+
+cd /usr/local/src
+
 # Compile the Code
 dart compile exe server.dart -o runtime
 
