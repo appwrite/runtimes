@@ -12,7 +12,7 @@ To install your own dependencies for your code you can add a `pubspec.yaml` file
 
 ## Types
 
-Types can be found [here.](runtimes/dart-2.14/appwrite_function_types)
+Types can be found [here.](appwrite_function_types)
 
 You can also import them into your IDE by adding the following to the `pubspec.yaml` file of your function:
 ```yaml
