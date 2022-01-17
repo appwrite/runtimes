@@ -8,8 +8,8 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "appwrite_function_types",
-      "rootUri": "../appwrite_function_types",
+      "name": "function_types",
+      "rootUri": "../function_types",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },

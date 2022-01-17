@@ -12,7 +12,7 @@ To install your own dependencies for your code you can add a `pubspec.yaml` file
 
 ## Types
 
-Types can be found [here.](appwrite_function_types)
+Types can be found [here.](function_types)
 
 You can also import them into your IDE by adding the following to the `pubspec.yaml` file of your function:
 ```yaml
@@ -99,7 +99,7 @@ No footguns of note.
 
 ```dart
 import 'dart:async';
-import 'package:appwrite_function_types/appwrite_function_types.dart';
+import 'package:function_types/function_types.dart';
 
 Future<void> start(Request request, Response response) async {
   response.json({
