@@ -10,8 +10,8 @@ environment:
 dependencies:
   path: ^1.8.0
   alfred: ^0.1.4+5
-  appwrite_function_types:
-    path: ./appwrite_function_types/
+  function_types:
+    path: ./function_types/
   shelf: ^1.2.0
 
 dev_dependencies:

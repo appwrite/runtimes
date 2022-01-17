@@ -20,10 +20,8 @@ dependencies:
   appwrite-function-types:
     git: 
       url: https://github.com/appwrite/function-types.git
-      ref: dart-2.14
+      ref: dart
 ```
-
-
 ## Running the runtime manually without an executor
 Running the runtime without an executor is possible by following the steps below.
 
