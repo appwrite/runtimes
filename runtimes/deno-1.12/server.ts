@@ -3,6 +3,40 @@ import * as path from "https://deno.land/std@0.110.0/path/mod.ts";
 
 const app = new Application();
 
+class Request {
+  constructor(
+    env: Record<string, string>,
+    headers: Record<string, string>,
+    payload: string,
+  ) {
+    this.env = env;
+    this.headers = headers;
+    this.payload = payload;
+  };
+
+  public env: Record<string, string>;
+  public headers: Record<string, string>;
+  public payload: string;
+}
+
+class Response {
+  private ctx: &any;
+
+  constructor(ctx: &any) {
+    this.ctx = ctx;
+  }
+
+  send(text: string, status = 200) {
+    this.ctx.response.status = status;
+    this.ctx.response.body = text;
+  }
+
+  json(json: Record<string, unknown>, status = 200) {
+    this.ctx.response.status = status;
+    this.ctx.response.body = json;
+  }
+}
+
 app.use(async (ctx) => {
   const { value } = ctx.request.body({ type: 'json' });
   const body = await value;
@@ -16,22 +50,8 @@ app.use(async (ctx) => {
     return;
   }
 
-  const request = {
-    env: body.env ?? {},
-    headers: body.headers ?? {},
-    payload: body.payload ?? {}
-  };
-
-  const response = {
-    send: (text: string, status = 200) => {
-      ctx.response.status = status;
-      ctx.response.body = text;
-    },
-    json: (json: Record<string, unknown>, status = 200) => {
-      ctx.response.status = status;
-      ctx.response.body = json;
-    }
-  };
+  const request = new Request(body.env, body.headers, body.payload);
+  const response = new Response(ctx);
 
   try {
     const userFunction = (await import(path.join(body.path, body.file))).default;
