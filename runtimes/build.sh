@@ -31,10 +31,16 @@ echo 'Node 16...'
 docker buildx build --platform linux/amd64,linux/arm64 -t node-runtime:16.0 ./runtimes/node-16.0/ --push
 
 echo 'Node 17...'
-docker buildx build --platform linux/amd64,linux/arm64 -t node-runtime:17.0 ./runtimes/node-17.0/ --push
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le -t appwrite/runtime-for-node:17.0 ./runtimes/node-17.0/ --push
+
+echo 'PHP 7.4...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-php:7.4 ./runtimes/php-7.4/ --push
 
 echo 'PHP 8...'
 docker buildx build --platform linux/amd64,linux/arm64 -t php-runtime:8.0 ./runtimes/php-8.0/ --push
+
+echo 'PHP 8.1...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-php:8.1 ./runtimes/php-8.1/ --push
 
 echo 'Python 3.8...'
 docker buildx build --platform linux/amd64,linux/arm64 -t python-runtime:3.8 ./runtimes/python-3.8/ --push
@@ -49,7 +55,7 @@ echo 'Rust 1.55...'
 docker buildx build --platform linux/amd64,linux/arm64 -t rust-runtime:1.55 ./runtimes/rust-1.55/ --push
 
 echo 'Ruby 3.0...'
-docker buildx build --platform linux/amd64,linux/arm64 -t ruby-runtime:3.0 ./runtimes/ruby-3.0/ --push
+docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-ruby:3.0 ./runtimes/ruby-3.0/ --push
 
 echo 'Ubuntu 20.04...'
 docker buildx build --platform linux/amd64,linux/arm64 -t ubuntu-runtime:20.04 ./runtimes/ubuntu-20.04/ --push

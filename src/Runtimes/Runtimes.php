@@ -37,6 +37,7 @@ class Runtimes
 
         $php = new Runtime('php', 'PHP');
         $php->addVersion('8.0', 'php-runtime:8.0', 'php-runtime:8.0', [System::X86, System::ARM]);
+        $php->addVersion('8.1', 'php-runtime:8.0', 'php-runtime:8.0', [System::X86, System::ARM]);
         $this->runtimes['php'] = $php;
 
         $python = new Runtime('python', 'Python');
@@ -95,13 +96,13 @@ class Runtimes
         $supportedRuntimes = [];
 
         foreach ($this->runtimes as $runtime) {
-            $supportedRuntimes = array_merge(array_filter($runtime->list(), function (array $version, string $key) use ($supported, $filter) {
+            $supportedRuntimes = array_merge(array_reverse(array_filter($runtime->list(), function (array $version, string $key) use ($supported, $filter) {
                 $isSupported = in_array(System::getArchEnum(), $version["supports"]);
                 $isFiltered = in_array($key, $filter);
                 return $supported ? ($isSupported && ($filter ? $isFiltered : true)) : true;
-            }, ARRAY_FILTER_USE_BOTH), $supportedRuntimes);
+            }, ARRAY_FILTER_USE_BOTH)), $supportedRuntimes);
         }
 
-        return $supportedRuntimes;
+        return array_reverse($supportedRuntimes);
     }
 }
