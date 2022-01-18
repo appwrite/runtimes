@@ -99,6 +99,13 @@ class RuntimesTest extends TestCase
                 'runtime' => 'php-8.0',
                 'tarname' => 'php-8-0.tar.gz',
             ],
+            'php-8.1' => [
+                'code' => $functionsDir . '/php.tar.gz',
+                'entrypoint' => 'index.php',
+                'timeout' => 15,
+                'runtime' => 'php-8.1',
+                'tarname' => 'php-8-1.tar.gz',
+            ],
             'python-3.8' => [
                 'code' => $functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
