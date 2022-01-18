@@ -51,6 +51,7 @@ class Runtimes
 
         $ruby = new Runtime('ruby', 'Ruby');
         $ruby->addVersion('3.0', 'ruby-runtime:3.0', 'ruby-runtime:3.0', [System::X86, System::ARM]);
+        $ruby->addVersion('3.1', 'ruby-runtime:3.1', 'ruby-runtime:3.1', [System::X86, System::ARM]);
         $this->runtimes['ruby'] = $ruby;
 
         $swift = new Runtime('swift', 'Swift');

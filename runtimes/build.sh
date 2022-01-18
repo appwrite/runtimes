@@ -55,7 +55,10 @@ echo 'Rust 1.55...'
 docker buildx build --platform linux/amd64,linux/arm64 -t rust-runtime:1.55 ./runtimes/rust-1.55/ --push
 
 echo 'Ruby 3.0...'
-docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-ruby:3.0 ./runtimes/ruby-3.0/ --push
+docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t ruby-runtime:3.0 ./runtimes/ruby-3.0/ --push
+
+echo 'Ruby 3.1...'
+docker buildx build --platform linux/amd64,linux/arm64,linux/386,linux/ppc64le -t ruby-runtime:3.1 ./runtimes/ruby-3.1/ --push
 
 echo 'Ubuntu 20.04...'
 docker buildx build --platform linux/amd64,linux/arm64 -t ubuntu-runtime:20.04 ./runtimes/ubuntu-20.04/ --push
