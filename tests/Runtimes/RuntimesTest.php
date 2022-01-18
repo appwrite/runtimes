@@ -56,6 +56,14 @@ class RuntimesTest extends TestCase
                 'tarname' => 'dart-2-14.tar.gz',
                 'filename' => 'index.dart'
             ],
+            'dart-2.15' => [
+                'code' => $functionsDir . '/dart.tar.gz',
+                'entrypoint' => 'index.dart',
+                'timeout' => 15,
+                'runtime' => 'dart-2.15',
+                'tarname' => 'dart-2-15.tar.gz',
+                'filename' => 'index.dart'
+            ],
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',

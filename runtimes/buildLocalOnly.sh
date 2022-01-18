@@ -9,6 +9,9 @@ docker build -t dart-runtime:2.13 ./runtimes/dart-2.13
 echo 'Dart 2.14...'
 docker build -t dart-runtime:2.14 ./runtimes/dart-2.14
 
+echo 'Dart 2.15...'
+docker build -t dart-runtime:2.15 ./runtimes/dart-2.15
+
 echo 'Deno 1.12...'
 docker build -t deno-runtime:1.12 ./runtimes/deno-1.12
 

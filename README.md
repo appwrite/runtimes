@@ -7,8 +7,9 @@
 Appwrite repository for Cloud Function runtimes that contains the configurations and tests for all of the Appwrite runtime environments. This library is maintained by the [Appwrite team](https://appwrite.io).
 
 ## Runtimes Supported:
-| Dart   | 2.12 | 2.13 | 2.14 |      |
+| Language | Versions |      |      |      |
 |--------|------|------|------|------|
+| Dart   | 2.12 | 2.13 | 2.14 |      |
 | Deno   | 1.12 | 1.13 | 1.14 |      |
 | Java   | 16.0 | 17.0 |      |      |
 | Node   | 14.5 | 15.5 | 16.0 | 17.0 |
