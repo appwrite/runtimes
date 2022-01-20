@@ -34,15 +34,15 @@ docker build -t node-runtime:15.5 .
 
 You can run the following command to build the code in the directory where your code is located:
 ```bash
-docker run -it --rm -v $(pwd)/:/usr/code/ -v $(pwd)/code:/usr/code -e ENTRYPOINT_NAME=YourNodeFileName.js node-runtime:15.5 /usr/local/src/build.sh
+docker run -it --rm -v $(pwd):/usr/code/ -e ENTRYPOINT_NAME=YourNodeFileName.js node-runtime:15.5 /usr/local/src/build.sh
 ```
 
 Make sure to replace `YourNodeFileName.js` with the name of your file.
 
-After running the command if it's successful you should now have a folder called `code` which has a `node_modules` folder within it.
+After running the command if it's successful you should now have a `node_modules` folder aswell as a `pacakge-lock.json`.
 This is a cached version of all the dependencies that were installed for your code and the runtime itself.
 
-Next you want to tarball the `code` folder, so within the code folder you can run the following command:
+Next you want to tarball the folder you the build command in, you can run the following command:
 ```bash
 tar -czvf ./code.tar.gz ./
 ```
@@ -58,6 +58,8 @@ This launches the runtime server and allows you to now make requests to the runt
 ```bash
 docker run -d -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v $(pwd)/code.tar.gz:/tmp/code.tar.gz node-runtime:15.5 /usr/local/src/launch.sh
 ```
+
+Keep note of the `INTERNAL_RUNTIME_KEY`. This is a security precaution to ensure that only you or the executor which brought up the runtime can access it.
 
 ### 4. Making a Request to Execute the Code
 
