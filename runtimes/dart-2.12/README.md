@@ -3,7 +3,7 @@ A runtime container for Dart 2.12
 Developed to easily run and build Dart Code within a container.
 
 ## Creating a function for the runtime
-To create a function for the runtime, you must create a asyncronous Dart function that returns a `Future<void>`. It must take two parameters, `Request` and `Response` in that order. What you can expect these functions to contain can be found below in the `Custom Structures/Classes` section.
+To create a function for the runtime, you must create a asyncronous Dart function that returns a `Future<void>`. It must take two parameters, `Request` and `Response` in that order. what you can expect these types to contain can be found below in the `Custom Structures/Classes` section.
 
 The function **must** be named `start` otherwise it will not compile.
 

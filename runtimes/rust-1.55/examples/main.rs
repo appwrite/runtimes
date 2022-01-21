@@ -1,5 +1,8 @@
 use super::{Response, RequestValue};
+use serde_json::value::Value;
 
 pub fn main(req: RequestValue) -> Response {
-    return Response::send("test".to_string());
+    return Response::json(json!({
+        "hello": "world"
+    }));
 }

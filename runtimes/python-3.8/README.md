@@ -1,22 +1,21 @@
-# Node Runtime 14.5
-A runtime container for Node 14.5
-Developed to easily run and build Node Code within a container.
+# Python Runtime 3.8
+A runtime container for Python 3.8
+Developed to easily run and build Python Code within a container.
 
 ## Creating a function for the runtime
-To create a function for the runtime, you must set `module.exports` your asyncronous function. It must take two parameters, `Request` and `Response` in that order. what you can expect these types to contain can be found below in the `Types` section.
+To create a function for the runtime, your function **must** be named `main`. It must take two parameters, `Request` and `Response` in that order. what you can expect these types to contain can be found below in the `Types` section.
 
 ## Handling User Dependencies
-When packaging your code for the runtime you will need to include your `package.json` file. Dependencies will be automatically cached and installed if they are defined.
+In order to install dependencies for Python code you only need to add your `requirements.txt` file and the build stage will automatically fetch the dependencies for you. 
 
 ## Types
 
 Types can be found [here.](function_types)
 
-You can also import them into your IDE by running the following command where your code is:
+You can also import them into your IDE, simply run this pip install command:
 ```bash
-npm i https://github.com/appwrite/function-types#node
+pip install git+https://github.com/appwrite/function-types.git/python/
 ```
-
 
 ## Running the runtime manually without an executor
 Running the runtime without an executor is possible by following the steps below.
@@ -27,22 +26,22 @@ The Docker image for this runtime must be built before it can be used.
 
 Within the directory of the runtime you must run the following command:
 ```bash
-docker build -t node-runtime:14.5 .
+docker build -t python-runtime:3.8 .
 ```
 
 ### 2. Building the Code
 
 You can run the following command to build the code in the directory where your code is located:
 ```bash
-docker run -it --rm -v $(pwd):/usr/code/ -e ENTRYPOINT_NAME=YourNodeFileName.js node-runtime:14.5 /usr/local/src/build.sh
+docker run -it --rm -v $(pwd):/usr/code/ -e ENTRYPOINT_NAME=YourPythonFileName.py python-runtime:3.8 /usr/local/src/build.sh
 ```
 
-Make sure to replace `YourNodeFileName.js` with the name of your file.
+Make sure to replace `YourPythonFileName.py` with the name of your file.
 
-After running the command if it's successful you should now have a `node_modules` folder aswell as a `pacakge-lock.json`.
+After running the command if it's successful you should now have a `runtime-env` folder.
 This is a cached version of all the dependencies that were installed for your code and the runtime itself.
 
-Next you want to tarball the folder you the build command in, you can run the following command:
+Next you want to tarball the `runtime-env` folder and your code. You can run the following command:
 ```bash
 tar -czvf ./code.tar.gz ./
 ```
@@ -52,14 +51,15 @@ This should create a file called `code.tar.gz` which can be used for running the
 
 With the `code.tar.gz` file you can now run the following command to launch the runtime on port 3000:
 ```bash
-docker run -it -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v $(pwd)/code.tar.gz:/tmp/code.tar.gz node-runtime:14.5 /usr/local/src/launch.sh
+docker run -it -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v $(pwd)/code.tar.gz:/tmp/code.tar.gz python-runtime:3.8 /usr/local/src/launch.sh
 ```
 This launches the runtime server and allows you to now make requests to the runtime. You can also run the following command to launch the runtime in a detached mode:
 ```bash
-docker run -d -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v $(pwd)/code.tar.gz:/tmp/code.tar.gz node-runtime:14.5 /usr/local/src/launch.sh
+docker run -d -p 3000:3000 -e INTERNAL_RUNTIME_KEY=TheRuntimeKeyYouWant --rm -v $(pwd)/code.tar.gz:/tmp/code.tar.gz python-runtime:3.8 /usr/local/src/launch.sh
 ```
 
 Keep note of the `INTERNAL_RUNTIME_KEY`. This is a security precaution to ensure that only you or the executor which brought up the runtime can access it.
+
 ### 4. Making a Request to Execute the Code
 
 To make a request to the runtime you can use your favorite HTTP client.
@@ -67,7 +67,7 @@ To make a request to the runtime you can use your favorite HTTP client.
 You have to send a `POST` request to `localhost:3000` with the following JSON body:
 ```json
 {
-    "file": "main.js",
+    "file": "index.py",
     "path": "/usr/code",
     "env": {
     },
@@ -93,14 +93,11 @@ If execution is successful you'll get a response of whatever your code returns u
 
 ## Example Code
 
-```js
-module.exports = async (req, res) => {
-    res.json({
-        Hello: 'World!'
-    });
-}
+```python
+def main(req, res):
+    return res.json({'Hello': 'World!'})
 ```
 
 ## Credits
-**Torsten Dittmann**
- - [GitHub](https://github.com/TorstenDittmann/)
+**Bradley Schofield**
+ - [GitHub](https://github.com/PineappleIOnic/)

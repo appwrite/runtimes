@@ -3,7 +3,7 @@ A runtime container for Deno 1.12
 Developed to easily run and build Deno Code within a container.
 
 ## Creating a function for the runtime
-To create a function for the runtime, you must export a default function. It must take two parameters, `Request` and `Response` in that order. What you can expect these functions to contain can be found below in the `Types` section.
+To create a function for the runtime, you must export a default function. It must take two parameters, `Request` and `Response` in that order. what you can expect these types to contain can be found below in the `Types` section.
 
 ## Handling User Dependencies
 Deno dependencies are automatically cached and installed if they are defined.

@@ -3,7 +3,7 @@ A runtime container for Node 17.0
 Developed to easily run and build Node Code within a container.
 
 ## Creating a function for the runtime
-To create a function for the runtime, you must set `module.exports` your asyncronous function. It must take two parameters, `Request` and `Response` in that order. What you can expect these functions to contain can be found below in the `Types` section.
+To create a function for the runtime, you must set `module.exports` your asyncronous function. It must take two parameters, `Request` and `Response` in that order. what you can expect these types to contain can be found below in the `Types` section.
 
 ## Handling User Dependencies
 When packaging your code for the runtime you will need to include your `package.json` file. Dependencies will be automatically cached and installed if they are defined.
