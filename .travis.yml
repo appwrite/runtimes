@@ -22,6 +22,7 @@ before_script:
   - docker --version
   - composer install --ignore-platform-reqs
   - runtimes/buildLocalOnly.sh
+  - mkdir /tmp/builtCode
 
 script:
   - docker-compose up -d

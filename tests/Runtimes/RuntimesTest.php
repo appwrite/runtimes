@@ -3,11 +3,9 @@
 namespace Appwrite\Tests;
 
 use Appwrite\Runtimes\Runtimes;
-use phpDocumentor\Reflection\DocBlock\Tags\Var_;
 use PHPUnit\Framework\TestCase;
 use Utopia\Orchestration\Orchestration;
 use Utopia\Orchestration\Adapter\DockerAPI;
-use Utopia\System\System;
 
 class RuntimesTest extends TestCase
 {
@@ -21,7 +19,7 @@ class RuntimesTest extends TestCase
     public function setUp(): void
     {
         $this->hostDirectory = getenv('CURRENT_DIR');
-        $this->functionsDir = $functionsDir = $this->hostDirectory . '/tests/resources';
+        $this->functionsDir = $this->hostDirectory . '/tests/resources';
 
         $this->tempDir = realpath('/tmp/builtCode');
 
@@ -34,7 +32,7 @@ class RuntimesTest extends TestCase
             //     'tarname' => 'java-16-0.tar.gz',
             // ],
             'dart-2.12' => [
-                'code' => $functionsDir . '/dart.tar.gz',
+                'code' => $this->functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.12',
@@ -42,7 +40,7 @@ class RuntimesTest extends TestCase
                 'filename' => 'index.dart',
             ],
             'dart-2.13' => [
-                'code' => $functionsDir . '/dart.tar.gz',
+                'code' => $this->functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.13',
@@ -50,7 +48,7 @@ class RuntimesTest extends TestCase
                 'filename' => 'index.dart',
             ],
             'dart-2.14' => [
-                'code' => $functionsDir . '/dart.tar.gz',
+                'code' => $this->functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.14',
@@ -58,7 +56,7 @@ class RuntimesTest extends TestCase
                 'filename' => 'index.dart',
             ],
             'dart-2.15' => [
-                'code' => $functionsDir . '/dart.tar.gz',
+                'code' => $this->functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.15',
@@ -66,105 +64,105 @@ class RuntimesTest extends TestCase
                 'filename' => 'index.dart',
             ],
             'node-14.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
+                'code' => $this->functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-14.5',
                 'tarname' => 'node-14-5.tar.gz',
             ],
             'node-15.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
+                'code' => $this->functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-15.5',
                 'tarname' => 'node-15-5.tar.gz',
             ],
             'node-16' => [
-                'code' => $functionsDir . '/node.tar.gz',
+                'code' => $this->functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-16.0',
                 'tarname' => 'node-16.tar.gz',
             ],
             'node-17' => [
-                'code' => $functionsDir . '/node.tar.gz',
+                'code' => $this->functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-17.0',
                 'tarname' => 'node-17.tar.gz',
             ],
             'php-8.0' => [
-                'code' => $functionsDir . '/php.tar.gz',
+                'code' => $this->functionsDir . '/php.tar.gz',
                 'entrypoint' => 'index.php',
                 'timeout' => 15,
                 'runtime' => 'php-8.0',
                 'tarname' => 'php-8-0.tar.gz',
             ],
             'php-8.1' => [
-                'code' => $functionsDir . '/php.tar.gz',
+                'code' => $this->functionsDir . '/php.tar.gz',
                 'entrypoint' => 'index.php',
                 'timeout' => 15,
                 'runtime' => 'php-8.1',
                 'tarname' => 'php-8-1.tar.gz',
             ],
             'python-3.8' => [
-                'code' => $functionsDir . '/python.tar.gz',
+                'code' => $this->functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.8',
                 'tarname' => 'python-3-8.tar.gz',
             ],
             'python-3.9' => [
-                'code' => $functionsDir . '/python.tar.gz',
+                'code' => $this->functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.9',
                 'tarname' => 'python-3-9.tar.gz',
             ],
             'python-3.10' => [
-                'code' => $functionsDir . '/python.tar.gz',
+                'code' => $this->functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.10',
                 'tarname' => 'python-3-10.tar.gz',
             ],
             'deno-1.12' => [
-                'code' => $functionsDir . '/deno.tar.gz',
+                'code' => $this->functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.12',
                 'tarname' => 'deno-1-12.tar.gz',
             ],
             'deno-1.13' => [
-                'code' => $functionsDir . '/deno.tar.gz',
+                'code' => $this->functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.13',
                 'tarname' => 'deno-1-13.tar.gz',
             ],
             'deno-1.14' => [
-                'code' => $functionsDir . '/deno.tar.gz',
+                'code' => $this->functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.14',
                 'tarname' => 'deno-1-14.tar.gz',
             ],
             'rust-1.55' => [
-                'code' => $functionsDir . '/rust.tar.gz',
+                'code' => $this->functionsDir . '/rust.tar.gz',
                 'entrypoint' => 'index.rs',
                 'timeout' => 15,
                 'runtime' => 'rust-1.55',
                 'tarname' => 'rust-1-55.tar.gz',
             ],
             'ruby-3.0' => [
-                'code' => $functionsDir . '/ruby.tar.gz',
+                'code' => $this->functionsDir . '/ruby.tar.gz',
                 'entrypoint' => 'index.rb',
                 'timeout' => 15,
                 'runtime' => 'ruby-3.0',
                 'tarname' => 'ruby-3-0.tar.gz',
             ],
             'swift-5.5' => [
-                'code' => $functionsDir . '/swift.tar.gz',
+                'code' => $this->functionsDir . '/swift.tar.gz',
                 'entrypoint' => 'index.swift',
                 'timeout' => 15,
                 'runtime' => 'swift-5.5',
