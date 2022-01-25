@@ -25,10 +25,11 @@ before_script:
     fi
   - docker --version
   # Install latest Compose
-  - mkdir -p ~/.docker/cli-plugins/
-  - curl -SL https://github.com/docker/compose/releases/download/v2.2.3/docker-compose-linux-x86_64 -o ~/.docker/cli-plugins/docker-compose
-  - chmod +x ~/.docker/cli-plugins/docker-compose
-  - docker compose version
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
   # Enable Buildkit
   - docker buildx create --name travis_builder --use
   - export COMPOSE_INTERACTIVE_NO_CLI
@@ -39,6 +40,6 @@ before_script:
   - runtimes/buildLocalOnly.sh
 
 script:
-  - docker compose up -d
-  - docker compose exec tests vendor/bin/phpunit --debug
-  - docker compose exec tests vendor/bin/psalm --show-info=true
+  - docker-compose up -d
+  - docker-compose exec tests vendor/bin/phpunit --debug
+  - docker-compose exec tests vendor/bin/psalm --show-info=true
