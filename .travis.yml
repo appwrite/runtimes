@@ -7,18 +7,14 @@ arch:
   - amd64
   - arm64
 
+services:
+  - docker
+
 notifications:
   email:
     - team@appwrite.io
 
-before_script: 
-  # Install latest Docker
-  - curl -fsSL https://get.docker.com | sh
-  # Enable Buildkit in Docker config
-  - echo '{"experimental":"enabled"}' | sudo tee /etc/docker/daemon.json
-  - mkdir -p $HOME/.docker
-  - echo '{"experimental":"enabled"}' | sudo tee $HOME/.docker/config.json
-  - sudo service docker start
+before_script:
   - >
     if [ ! -z "${DOCKERHUB_PULL_USERNAME:-}" ]; then
       echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
