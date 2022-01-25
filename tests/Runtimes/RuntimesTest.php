@@ -281,8 +281,8 @@ class RuntimesTest extends TestCase
                 timeout: 600
             );
 
-            $this->assertEquals(true, $untarSuccess);
-            $this->assertEmpty($untarStderr);
+            $this->assertEquals(true, $untarSuccess, $untarStderr);
+            $this->assertEmpty($untarStderr, $untarStderr);
 
             // Build Code / Install Dependencies
             $buildStdout = '';
@@ -299,7 +299,7 @@ class RuntimesTest extends TestCase
                 timeout: 600
             );
 
-            $this->assertEquals(true, $buildSuccess);
+            $this->assertEquals(true, $buildSuccess, $buildStderr);
 
             // Repackage Code and Save.
             $compressStdout = '';
@@ -317,10 +317,10 @@ class RuntimesTest extends TestCase
                 timeout: 60
             );
 
-            $this->assertEquals(true, $compressSuccess);
+            $this->assertEquals(true, $compressSuccess, $compressStderr);
             // $this->assertEquals(true, file_exists($builtCodePath)); // Check needs to be reimplemented.
             // It attempts to check the container's file system, but the compiled code is on the host's filesystem.
-            $this->assertEmpty($compressStderr);
+            $this->assertEmpty($compressStderr, $compressStderr);
 
             // Remove container
             $this->orchestration->remove($id, true);
