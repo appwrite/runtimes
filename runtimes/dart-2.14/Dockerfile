@@ -9,6 +9,7 @@ RUN mkdir -p /usr/local/src/
 RUN mkdir -p /usr/code
 RUN mkdir -p /usr/workspace
 RUN mkdir -p /usr/builtCode
+RUN mkdir -p /tmp
 
 WORKDIR /usr/local/src
 COPY . /usr/local/src
@@ -20,6 +21,7 @@ RUN ["chown", "-R", "appwrite:appwrite", "/usr/code"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/workspace"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/builtCode"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/lib/dart"]
+RUN ["chmod", "-R", "777", "/tmp"]`
 
 USER appwrite
 
