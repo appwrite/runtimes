@@ -12,19 +12,15 @@ mv /usr/local/src/user_code/$ENTRYPOINT_NAME /usr/local/src/user_code/lib/main.d
 cd /usr/local/src/user_code
 
 # Add a pubspec.yaml if one doesn't already exist.
-if [[ ! -f "pubspec.yaml" ]]; then
-    mv /usr/local/src/pubspec.yaml.fallback /usr/local/src/user_code/pubspec.yaml
+if [ ! -f "pubspec.yaml" ]; then
+    cp /usr/local/src/pubspec.yaml.fallback /usr/local/src/user_code/pubspec.yaml
 fi
-
 
 # Move to server directory
 cd /usr/local/src
 
-# Get dependencies
-dart -v pub get
-
-# Run package preparation script
-dart ./prepare.dart
+# Handle pubspec.yaml
+./prepare
 
 # Get dependencies again
 dart -v pub get
