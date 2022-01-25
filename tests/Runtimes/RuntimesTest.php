@@ -40,7 +40,6 @@ class RuntimesTest extends TestCase
                 'runtime' => 'dart-2.12',
                 'tarname' => 'dart-2-12.tar.gz',
                 'filename' => 'index.dart',
-                'arch' => [System::X86]
             ],
             'dart-2.13' => [
                 'code' => $functionsDir . '/dart.tar.gz',
@@ -49,7 +48,6 @@ class RuntimesTest extends TestCase
                 'runtime' => 'dart-2.13',
                 'tarname' => 'dart-2-13.tar.gz',
                 'filename' => 'index.dart',
-                'arch' => [System::X86]
             ],
             'dart-2.14' => [
                 'code' => $functionsDir . '/dart.tar.gz',
@@ -58,7 +56,6 @@ class RuntimesTest extends TestCase
                 'runtime' => 'dart-2.14',
                 'tarname' => 'dart-2-14.tar.gz',
                 'filename' => 'index.dart',
-                'arch' => [System::X86]
             ],
             'dart-2.15' => [
                 'code' => $functionsDir . '/dart.tar.gz',
@@ -67,7 +64,6 @@ class RuntimesTest extends TestCase
                 'runtime' => 'dart-2.15',
                 'tarname' => 'dart-2-15.tar.gz',
                 'filename' => 'index.dart',
-                'arch' => [System::X86]
             ],
             'node-14.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
@@ -75,7 +71,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-14.5',
                 'tarname' => 'node-14-5.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'node-15.5' => [
                 'code' => $functionsDir . '/node.tar.gz',
@@ -83,7 +78,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-15.5',
                 'tarname' => 'node-15-5.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'node-16' => [
                 'code' => $functionsDir . '/node.tar.gz',
@@ -91,7 +85,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-16.0',
                 'tarname' => 'node-16.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'node-17' => [
                 'code' => $functionsDir . '/node.tar.gz',
@@ -99,7 +92,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-17.0',
                 'tarname' => 'node-17.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',
@@ -107,7 +99,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'php-8.0',
                 'tarname' => 'php-8-0.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'php-8.1' => [
                 'code' => $functionsDir . '/php.tar.gz',
@@ -115,7 +106,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'php-8.1',
                 'tarname' => 'php-8-1.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'python-3.8' => [
                 'code' => $functionsDir . '/python.tar.gz',
@@ -123,7 +113,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'python-3.8',
                 'tarname' => 'python-3-8.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'python-3.9' => [
                 'code' => $functionsDir . '/python.tar.gz',
@@ -131,7 +120,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'python-3.9',
                 'tarname' => 'python-3-9.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'python-3.10' => [
                 'code' => $functionsDir . '/python.tar.gz',
@@ -139,7 +127,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'python-3.10',
                 'tarname' => 'python-3-10.tar.gz',
-                'arch' => [System::X86, System::ARM, System::PPC]
             ],
             'deno-1.12' => [
                 'code' => $functionsDir . '/deno.tar.gz',
@@ -147,7 +134,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'deno-1.12',
                 'tarname' => 'deno-1-12.tar.gz',
-                'arch' => [System::X86, System::ARM]
             ],
             'deno-1.13' => [
                 'code' => $functionsDir . '/deno.tar.gz',
@@ -155,7 +141,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'deno-1.13',
                 'tarname' => 'deno-1-13.tar.gz',
-                'arch' => [System::X86, System::ARM]
             ],
             'deno-1.14' => [
                 'code' => $functionsDir . '/deno.tar.gz',
@@ -163,7 +148,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'deno-1.14',
                 'tarname' => 'deno-1-14.tar.gz',
-                'arch' => [System::X86, System::ARM]
             ],
             'rust-1.55' => [
                 'code' => $functionsDir . '/rust.tar.gz',
@@ -171,7 +155,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'rust-1.55',
                 'tarname' => 'rust-1-55.tar.gz',
-                'arch' => [System::X86, System::ARM]
             ],
             'ruby-3.0' => [
                 'code' => $functionsDir . '/ruby.tar.gz',
@@ -179,7 +162,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'ruby-3.0',
                 'tarname' => 'ruby-3-0.tar.gz',
-                'arch' => [System::X86, System::ARM]
             ],
             'swift-5.5' => [
                 'code' => $functionsDir . '/swift.tar.gz',
@@ -187,13 +169,12 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'swift-5.5',
                 'tarname' => 'swift-5-5.tar.gz',
-                'arch' => [System::X86]
             ]
         ];
         $this->orchestration = new Orchestration(new DockerAPI());
         $this->instance = new Runtimes();
         $this->tests = array_filter($this->tests, function ($test) {
-            return array_key_exists($test['runtime'], $this->instance->getAll()) && in_array(System::getArchEnum(), $test['arch']);
+            return array_key_exists($test['runtime'], $this->instance->getAll());
         });
     }
 
