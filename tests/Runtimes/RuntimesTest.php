@@ -182,7 +182,7 @@ class RuntimesTest extends TestCase
     {
     }
 
-    public function testSupportedRuntimes()
+    public function testSupportedRuntimes(): void
     {
         $this->assertNotEmpty($this->instance->get('node'));
         $this->assertNotEmpty($this->instance->getAll());
@@ -192,7 +192,7 @@ class RuntimesTest extends TestCase
         $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-15.5']));
     }
 
-    public function testGetRuntimes()
+    public function testGetRuntimes(): void
     {
         foreach ($this->instance->getAll() as $runtime) {
             $this->assertArrayHasKey('name', $runtime, $runtime['name']);
@@ -274,7 +274,7 @@ class RuntimesTest extends TestCase
                 command: ['sh', '-c', 'cd /usr/local/src && ./build.sh'],
                 vars: [
                     'ENTRYPOINT_NAME' => $test['entrypoint'],
-                ],  
+                ],
                 stdout: $buildStdout,
                 stderr: $buildStderr,
                 timeout: 600
@@ -286,12 +286,12 @@ class RuntimesTest extends TestCase
             $compressStdout = '';
             $compressStderr = '';
 
-            $builtCodePath = $this->tempDir.'/'.$test['tarname'];
+            $builtCodePath = $this->tempDir . '/' . $test['tarname'];
 
             $compressSuccess = $this->orchestration->execute(
                 name: 'build-container',
                 command: [
-                    'tar', '-C', '/usr/code', '-czvf', '/usr/builtCode/'.$test['tarname'], './'
+                    'tar', '-C', '/usr/code', '-czvf', '/usr/builtCode/' . $test['tarname'], './'
                 ],
                 stdout: $compressStdout,
                 stderr: $compressStderr,
@@ -311,7 +311,7 @@ class RuntimesTest extends TestCase
     /**
      * @depends testRunBuildCommand
      */
-    public function testRunRuntimes()
+    public function testRunRuntimes(): void
     {
         $stdout = $stderr = '';
         $secret = \bin2hex(\random_bytes(16));
@@ -326,7 +326,7 @@ class RuntimesTest extends TestCase
                     'INTERNAL_RUNTIME_KEY' => $secret,
                 ],
                 volumes: [
-                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
+                    $this->tempDir . '/' . $test['tarname'] . ":/tmp/code.tar.gz"
                 ]
             );
 
@@ -355,7 +355,7 @@ class RuntimesTest extends TestCase
             \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
             \curl_setopt($ch, CURLOPT_POST, true);
             \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-    
+
             \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
             \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
@@ -364,11 +364,11 @@ class RuntimesTest extends TestCase
                 'Content-Length: ' . \strlen($body),
                 'x-internal-challenge: ' . $secret
             ]);
-    
+
             $executorResponse = \curl_exec($ch);
-    
+
             $error = \curl_error($ch);
-    
+
             $errNo = \curl_errno($ch);
 
             $response = json_decode($executorResponse, true);
@@ -385,7 +385,7 @@ class RuntimesTest extends TestCase
     /**
      * @depends testRunRuntimes
      */
-    public function testRuntimeSecurityFail()
+    public function testRuntimeSecurityFail(): void
     {
         $stdout = $stderr = '';
         $secret = 'secret';
@@ -400,7 +400,7 @@ class RuntimesTest extends TestCase
                     'INTERNAL_RUNTIME_KEY' => $secret,
                 ],
                 volumes: [
-                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
+                    $this->tempDir . '/' . $test['tarname'] . ":/tmp/code.tar.gz"
                 ]
             );
 
@@ -426,7 +426,7 @@ class RuntimesTest extends TestCase
             \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
             \curl_setopt($ch, CURLOPT_POST, true);
             \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-    
+
             \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
             \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
@@ -435,11 +435,11 @@ class RuntimesTest extends TestCase
                 'Content-Length: ' . \strlen($body),
                 'x-internal-challenge: ' . 'notthesecretexpected'
             ]);
-    
+
             $executorResponse = \curl_exec($ch);
-    
+
             $error = \curl_error($ch);
-    
+
             $errNo = \curl_errno($ch);
 
             // Remove container
