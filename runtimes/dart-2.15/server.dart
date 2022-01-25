@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shelf/shelf.dart' as shelf;
 import 'package:shelf/shelf_io.dart' as shelf_io;
-import 'user_code/main.dart' as user_code;
+import '{entrypoint}' as user_code;
 import 'dart:io' show Platform;
 import 'package:function_types/function_types.dart';
 
