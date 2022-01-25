@@ -24,5 +24,6 @@ before_script:
   - composer install --ignore-platform-reqs
 
 script:
-  - docker-compose up
-  - vendor/bin/psalm --show-info=true
+  - docker-compose up -d
+  - docker-compose exec tests vendor/bin/phpunit --debug
+  - docker-compose exec tests vendor/bin/psalm --show-info=true
