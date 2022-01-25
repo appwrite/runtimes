@@ -20,15 +20,6 @@ before_script:
       echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
     fi
   - docker --version
-  # Install latest Compose
-  - curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-  - chmod +x /usr/local/bin/docker-compose
-  # Enable Buildkit
-  - docker buildx create --name travis_builder --use
-  - export COMPOSE_INTERACTIVE_NO_CLI
-  - export DOCKER_BUILDKIT=1
-  - export COMPOSE_DOCKER_CLI_BUILD=1
-  - export BUILDKIT_PROGRESS=plain
   - composer install --ignore-platform-reqs
   - runtimes/buildLocalOnly.sh
 
