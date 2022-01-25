@@ -3,8 +3,11 @@
 # Copy User Code
 cp -a /usr/code/. /usr/local/src/user_code
 
+# make lib directory if not exist
+mkdir -p /usr/local/src/user_code/lib
+
 # Rename Main Function Dart
-mv /usr/local/src/user_code/$ENTRYPOINT_NAME /usr/local/src/user_code/main.dart
+mv /usr/local/src/user_code/$ENTRYPOINT_NAME /usr/local/src/user_code/lib/main.dart
 
 cd /usr/local/src/user_code
 
@@ -13,24 +16,31 @@ if [[ ! -f "pubspec.yaml" ]]; then
     mv /usr/local/src/pubspec.yaml.fallback /usr/local/src/user_code/pubspec.yaml
 fi
 
+
 # Move to server directory
 cd /usr/local/src
 
 # Get dependencies
-dart pub get
+dart -v pub get
+
+# Run package preparation script
+dart ./prepare.dart
+
+# Get dependencies again
+dart -v pub get
 
 cd /usr/local/src/user_code
 
 # Get user code dependencies
 
-dart pub get
+dart -v pub get
 
 # Move back to server directory
 
 cd /usr/local/src
 
 # Compile the Code
-dart compile exe server.dart -o runtime
+dart -v compile exe server.dart -o runtime
 
 rm -r /usr/code/*
 
