@@ -291,7 +291,7 @@ class RuntimesTest extends TestCase
             $compressSuccess = $this->orchestration->execute(
                 name: 'build-container',
                 command: [
-                    'tar', '-C', '/usr/code', '-czvf', '/usr/builtCode/' . $test['tarname'], './'
+                    'sudo', 'tar', '-C', '/usr/code', '-czvf', $builtCodePath, './'
                 ],
                 stdout: $compressStdout,
                 stderr: $compressStderr,
