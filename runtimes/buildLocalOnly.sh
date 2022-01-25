@@ -33,7 +33,10 @@ docker build -t node-runtime:16.0 ./runtimes/node-16.0
 echo 'Node 17...'
 docker build -t node-runtime:17.0 ./runtimes/node-17.0
 
-echo 'PHP 8...'
+echo 'PHP 8.0...'
+docker build -t php-runtime:8.0 ./runtimes/php-8.0
+
+echo 'PHP 8.1...'
 docker build -t php-runtime:8.0 ./runtimes/php-8.0
 
 echo 'Python 3.8...'

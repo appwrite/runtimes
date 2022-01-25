@@ -1,4 +1,4 @@
-FROM php:8.1-cli-alpine as step0
+FROM php:8.1.0-cli-alpine as step0
 
 ENV PHP_SWOOLE_VERSION=v4.7.0
 
@@ -10,10 +10,7 @@ RUN \
   gcc \
   g++ \
   git \
-  zlib-dev \
-  brotli-dev \
-  yaml-dev \
-  libmaxminddb-dev
+  zlib-dev 
 
 RUN docker-php-ext-install sockets
 
@@ -26,7 +23,7 @@ RUN \
   make && make install && \
   cd ..
 
-FROM php:8.1-cli-alpine as final
+FROM php:8.1.0-cli-alpine as final
 
 LABEL maintainer="team@appwrite.io"
 
@@ -41,11 +38,6 @@ RUN \
   curl-dev \
   && apk add --no-cache \
   libstdc++ \
-  certbot \
-  brotli-dev \
-  yaml-dev \
-  libmaxminddb-dev \
-  libgomp \
   && docker-php-ext-install opcache \
   && apk del .deps \
   && rm -rf /var/cache/apk/*
@@ -61,7 +53,7 @@ WORKDIR /usr/local/src/
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-COPY --from=step0 /usr/local/lib/php/extensions/no-debug-non-zts-20200930/swoole.so /usr/local/lib/php/extensions/no-debug-non-zts-20200930/yasd.so* /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+COPY --from=step0 /usr/local/lib/php/extensions/no-debug-non-zts-20210902/swoole.so /usr/local/lib/php/extensions/no-debug-non-zts-20210902/
 
 COPY composer* /usr/local/src/
 

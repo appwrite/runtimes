@@ -36,8 +36,8 @@ docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
 echo 'PHP 7.4...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-php:7.4 ./runtimes/php-7.4/ --push
 
-echo 'PHP 8...'
-docker buildx build --platform linux/amd64,linux/arm64 -t php-runtime:8.0 ./runtimes/php-8.0/ --push
+echo 'PHP 8.0...'
+docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t php-runtime:8.0 ./runtimes/php-8.0/ --push
 
 echo 'PHP 8.1...'
 docker buildx build --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le -t appwrite/runtime-for-php:8.1 ./runtimes/php-8.1/ --push
