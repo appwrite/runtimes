@@ -2,6 +2,9 @@ FROM dart:2.12
 
 LABEL maintainer="team@appwrite.io"
 
+RUN apt-get update && \
+    apt-get install git -y
+
 RUN groupadd -g 2000 appwrite \
 && useradd -m -u 2001 -g appwrite appwrite
 
