@@ -19,7 +19,7 @@ fi
 # Move to server directory
 cd /usr/local/src
 
-# Handle pubspec.yaml
+# Handle user code package dependency
 ./prepare
 
 # Get dependencies again

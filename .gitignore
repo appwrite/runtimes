@@ -2,5 +2,5 @@
 /.vscode/
 .phpunit.result.cache
 **/.DS_Store
-.packages
-.dart_tool/
+**/.packages
+**/.dart_tool/
