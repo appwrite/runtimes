@@ -11,4 +11,3 @@ dependencies:
   function_types:
     git: https://github.com/lohanidamodar/function_types
   shelf: ^1.2.0
-  pubspec: ^2.0.1
