@@ -22,6 +22,8 @@ RUN ["chown", "-R", "appwrite:appwrite", "/usr/workspace"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/builtCode"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/lib/dart"]
 
+RUN dart --disable-analytics
+
 USER appwrite
 
 CMD ["tail", "-f", "/dev/null"]
