@@ -8,7 +8,7 @@ environment:
 
 dependencies:
   function_types:
-    path: ../function_types
+    git: https://github.com/lohanidamodar/function_types
 
 dev_dependencies:
   pedantic: ^1.10.0

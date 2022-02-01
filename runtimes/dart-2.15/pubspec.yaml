@@ -8,11 +8,6 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
-  path: ^1.8.0
-  alfred: ^0.1.4+5
   function_types:
-    path: ./function_types/
+    git: https://github.com/lohanidamodar/function_types
   shelf: ^1.2.0
-
-dev_dependencies:
-  pedantic: ^1.10.0

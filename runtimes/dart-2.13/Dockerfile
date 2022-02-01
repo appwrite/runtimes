@@ -15,11 +15,14 @@ COPY . /usr/local/src
 
 RUN ["chmod", "+x", "/usr/local/src/launch.sh"]
 RUN ["chmod", "+x", "/usr/local/src/build.sh"]
+RUN ["chmod", "+x", "/usr/local/src/prepare"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/local/src"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/code"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/workspace"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/builtCode"]
 RUN ["chown", "-R", "appwrite:appwrite", "/usr/lib/dart"]
+
+RUN dart --disable-analytics
 
 USER appwrite
 
