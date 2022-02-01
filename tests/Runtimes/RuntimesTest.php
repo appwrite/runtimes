@@ -9,19 +9,20 @@ use Utopia\Orchestration\Adapter\DockerAPI;
 
 class RuntimesTest extends TestCase
 {
-    public array $tests;
-    public Runtimes $instance;
-    public string $functionsDir;
-    public string $tempDir;
-    public Orchestration $orchestration;
-    public string $hostDirectory;
+    public $tests;
+    /** @var Runtimes $instance */
+    public $instance;
+    public $functionsDir;
+    public $tempDir;
+    public $orchestration;
+    public $hostDirectory;
 
     public function setUp(): void
     {
         $this->hostDirectory = getenv('CURRENT_DIR');
-        $this->functionsDir = $this->hostDirectory . '/tests/resources';
+        $this->functionsDir = $functionsDir = $this->hostDirectory . '/tests/resources';
 
-        $this->tempDir = realpath('/tmp/builtCode');
+        $this->tempDir = $tempDir = realpath('/tmp/builtCode');
 
         $this->tests = [
             // 'java-16.0' => [
@@ -32,137 +33,137 @@ class RuntimesTest extends TestCase
             //     'tarname' => 'java-16-0.tar.gz',
             // ],
             'dart-2.12' => [
-                'code' => $this->functionsDir . '/dart.tar.gz',
+                'code' => $functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.12',
                 'tarname' => 'dart-2-12.tar.gz',
-                'filename' => 'index.dart',
+                'filename' => 'index.dart'
             ],
             'dart-2.13' => [
-                'code' => $this->functionsDir . '/dart.tar.gz',
+                'code' => $functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.13',
                 'tarname' => 'dart-2-13.tar.gz',
-                'filename' => 'index.dart',
+                'filename' => 'index.dart'
             ],
             'dart-2.14' => [
-                'code' => $this->functionsDir . '/dart.tar.gz',
+                'code' => $functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.14',
                 'tarname' => 'dart-2-14.tar.gz',
-                'filename' => 'index.dart',
+                'filename' => 'index.dart'
             ],
             'dart-2.15' => [
-                'code' => $this->functionsDir . '/dart.tar.gz',
+                'code' => $functionsDir . '/dart.tar.gz',
                 'entrypoint' => 'index.dart',
                 'timeout' => 15,
                 'runtime' => 'dart-2.15',
                 'tarname' => 'dart-2-15.tar.gz',
-                'filename' => 'index.dart',
+                'filename' => 'index.dart'
             ],
             'node-14.5' => [
-                'code' => $this->functionsDir . '/node.tar.gz',
+                'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-14.5',
                 'tarname' => 'node-14-5.tar.gz',
             ],
             'node-15.5' => [
-                'code' => $this->functionsDir . '/node.tar.gz',
+                'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-15.5',
                 'tarname' => 'node-15-5.tar.gz',
             ],
             'node-16' => [
-                'code' => $this->functionsDir . '/node.tar.gz',
+                'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-16.0',
                 'tarname' => 'node-16.tar.gz',
             ],
             'node-17' => [
-                'code' => $this->functionsDir . '/node.tar.gz',
+                'code' => $functionsDir . '/node.tar.gz',
                 'entrypoint' => 'index.js',
                 'timeout' => 15,
                 'runtime' => 'node-17.0',
                 'tarname' => 'node-17.tar.gz',
             ],
             'php-8.0' => [
-                'code' => $this->functionsDir . '/php.tar.gz',
+                'code' => $functionsDir . '/php.tar.gz',
                 'entrypoint' => 'index.php',
                 'timeout' => 15,
                 'runtime' => 'php-8.0',
                 'tarname' => 'php-8-0.tar.gz',
             ],
             'php-8.1' => [
-                'code' => $this->functionsDir . '/php.tar.gz',
+                'code' => $functionsDir . '/php.tar.gz',
                 'entrypoint' => 'index.php',
                 'timeout' => 15,
                 'runtime' => 'php-8.1',
                 'tarname' => 'php-8-1.tar.gz',
             ],
             'python-3.8' => [
-                'code' => $this->functionsDir . '/python.tar.gz',
+                'code' => $functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.8',
                 'tarname' => 'python-3-8.tar.gz',
             ],
             'python-3.9' => [
-                'code' => $this->functionsDir . '/python.tar.gz',
+                'code' => $functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.9',
                 'tarname' => 'python-3-9.tar.gz',
             ],
             'python-3.10' => [
-                'code' => $this->functionsDir . '/python.tar.gz',
+                'code' => $functionsDir . '/python.tar.gz',
                 'entrypoint' => 'index.py',
                 'timeout' => 15,
                 'runtime' => 'python-3.10',
                 'tarname' => 'python-3-10.tar.gz',
             ],
             'deno-1.12' => [
-                'code' => $this->functionsDir . '/deno.tar.gz',
+                'code' => $functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.12',
                 'tarname' => 'deno-1-12.tar.gz',
             ],
             'deno-1.13' => [
-                'code' => $this->functionsDir . '/deno.tar.gz',
+                'code' => $functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.13',
                 'tarname' => 'deno-1-13.tar.gz',
             ],
             'deno-1.14' => [
-                'code' => $this->functionsDir . '/deno.tar.gz',
+                'code' => $functionsDir . '/deno.tar.gz',
                 'entrypoint' => 'index.ts',
                 'timeout' => 15,
                 'runtime' => 'deno-1.14',
                 'tarname' => 'deno-1-14.tar.gz',
             ],
             'rust-1.55' => [
-                'code' => $this->functionsDir . '/rust.tar.gz',
+                'code' => $functionsDir . '/rust.tar.gz',
                 'entrypoint' => 'index.rs',
                 'timeout' => 15,
                 'runtime' => 'rust-1.55',
                 'tarname' => 'rust-1-55.tar.gz',
             ],
             'ruby-3.0' => [
-                'code' => $this->functionsDir . '/ruby.tar.gz',
+                'code' => $functionsDir . '/ruby.tar.gz',
                 'entrypoint' => 'index.rb',
                 'timeout' => 15,
                 'runtime' => 'ruby-3.0',
                 'tarname' => 'ruby-3-0.tar.gz',
             ],
             'swift-5.5' => [
-                'code' => $this->functionsDir . '/swift.tar.gz',
+                'code' => $functionsDir . '/swift.tar.gz',
                 'entrypoint' => 'index.swift',
                 'timeout' => 15,
                 'runtime' => 'swift-5.5',
@@ -180,7 +181,7 @@ class RuntimesTest extends TestCase
     {
     }
 
-    public function testSupportedRuntimes(): void
+    public function testSupportedRuntimes()
     {
         $this->assertNotEmpty($this->instance->get('node'));
         $this->assertNotEmpty($this->instance->getAll());
@@ -190,7 +191,7 @@ class RuntimesTest extends TestCase
         $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-15.5']));
     }
 
-    public function testGetRuntimes(): void
+    public function testGetRuntimes()
     {
         foreach ($this->instance->getAll() as $runtime) {
             $this->assertArrayHasKey('name', $runtime, $runtime['name']);
@@ -221,7 +222,7 @@ class RuntimesTest extends TestCase
 
     public function testRunBuildCommand(): void
     {
-        foreach ($this->tests as $test) {
+        foreach ($this->tests as $key => $test) {
             // Get runtime
             $runtime = $this->instance->getAll()[$test['runtime']];
 
@@ -260,8 +261,8 @@ class RuntimesTest extends TestCase
                 timeout: 600
             );
 
-            $this->assertEquals(true, $untarSuccess, $untarStderr);
-            $this->assertEmpty($untarStderr, $untarStderr);
+            $this->assertEquals(true, $untarSuccess);
+            $this->assertEmpty($untarStderr);
 
             // Build Code / Install Dependencies
             $buildStdout = '';
@@ -272,34 +273,34 @@ class RuntimesTest extends TestCase
                 command: ['sh', '-c', 'cd /usr/local/src && ./build.sh'],
                 vars: [
                     'ENTRYPOINT_NAME' => $test['entrypoint'],
-                ],
+                ],  
                 stdout: $buildStdout,
                 stderr: $buildStderr,
                 timeout: 600
             );
 
-            $this->assertEquals(true, $buildSuccess, $buildStderr);
+            $this->assertEquals(true, $buildSuccess);
 
             // Repackage Code and Save.
             $compressStdout = '';
             $compressStderr = '';
 
-            $builtCodePath = $this->tempDir . '/' . $test['tarname'];
+            $builtCodePath = $this->tempDir.'/'.$test['tarname'];
 
             $compressSuccess = $this->orchestration->execute(
                 name: 'build-container',
                 command: [
-                    'sudo', 'tar', '-C', '/usr/code', '-czvf', $builtCodePath, './'
+                    'tar', '-C', '/usr/code', '-czvf', '/usr/builtCode/'.$test['tarname'], './'
                 ],
                 stdout: $compressStdout,
                 stderr: $compressStderr,
                 timeout: 60
             );
 
-            $this->assertEquals(true, $compressSuccess, $compressStderr);
+            $this->assertEquals(true, $compressSuccess);
             // $this->assertEquals(true, file_exists($builtCodePath)); // Check needs to be reimplemented.
             // It attempts to check the container's file system, but the compiled code is on the host's filesystem.
-            $this->assertEmpty($compressStderr, $compressStderr);
+            $this->assertEmpty($compressStderr);
 
             // Remove container
             $this->orchestration->remove($id, true);
@@ -309,7 +310,7 @@ class RuntimesTest extends TestCase
     /**
      * @depends testRunBuildCommand
      */
-    public function testRunRuntimes(): void
+    public function testRunRuntimes()
     {
         $stdout = $stderr = '';
         $secret = \bin2hex(\random_bytes(16));
@@ -324,7 +325,7 @@ class RuntimesTest extends TestCase
                     'INTERNAL_RUNTIME_KEY' => $secret,
                 ],
                 volumes: [
-                    $this->tempDir . '/' . $test['tarname'] . ":/tmp/code.tar.gz"
+                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
                 ]
             );
 
@@ -353,7 +354,7 @@ class RuntimesTest extends TestCase
             \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
             \curl_setopt($ch, CURLOPT_POST, true);
             \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-
+    
             \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
             \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
@@ -362,11 +363,11 @@ class RuntimesTest extends TestCase
                 'Content-Length: ' . \strlen($body),
                 'x-internal-challenge: ' . $secret
             ]);
-
+    
             $executorResponse = \curl_exec($ch);
-
+    
             $error = \curl_error($ch);
-
+    
             $errNo = \curl_errno($ch);
 
             $response = json_decode($executorResponse, true);
@@ -383,7 +384,7 @@ class RuntimesTest extends TestCase
     /**
      * @depends testRunRuntimes
      */
-    public function testRuntimeSecurityFail(): void
+    public function testRuntimeSecurityFail()
     {
         $stdout = $stderr = '';
         $secret = 'secret';
@@ -398,7 +399,7 @@ class RuntimesTest extends TestCase
                     'INTERNAL_RUNTIME_KEY' => $secret,
                 ],
                 volumes: [
-                    $this->tempDir . '/' . $test['tarname'] . ":/tmp/code.tar.gz"
+                    $this->tempDir.'/'.$test['tarname'].":/tmp/code.tar.gz"
                 ]
             );
 
@@ -424,7 +425,7 @@ class RuntimesTest extends TestCase
             \curl_setopt($ch, CURLOPT_URL, "http://" . $key . ":3000/");
             \curl_setopt($ch, CURLOPT_POST, true);
             \curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-
+    
             \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             \curl_setopt($ch, CURLOPT_TIMEOUT, 60);
             \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
@@ -433,11 +434,11 @@ class RuntimesTest extends TestCase
                 'Content-Length: ' . \strlen($body),
                 'x-internal-challenge: ' . 'notthesecretexpected'
             ]);
-
+    
             $executorResponse = \curl_exec($ch);
-
+    
             $error = \curl_error($ch);
-
+    
             $errNo = \curl_errno($ch);
 
             // Remove container

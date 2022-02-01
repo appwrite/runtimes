@@ -5,6 +5,7 @@ php:
 
 arch:
   - amd64
+  - ppc64le
   - arm64
 
 services:
@@ -14,17 +15,14 @@ notifications:
   email:
     - team@appwrite.io
 
-before_script:
+before_script: 
   - >
     if [ ! -z "${DOCKERHUB_PULL_USERNAME:-}" ]; then
       echo "${DOCKERHUB_PULL_PASSWORD}" | docker login --username "${DOCKERHUB_PULL_USERNAME}" --password-stdin
     fi
   - docker --version
   - composer install --ignore-platform-reqs
-  - runtimes/buildLocalOnly.sh
-  - mkdir /tmp/builtCode
 
 script:
-  - docker-compose up -d
-  - docker-compose exec tests vendor/bin/phpunit --debug
-  - docker-compose exec tests vendor/bin/psalm --show-info=true
+  - docker-compose up
+  - vendor/bin/psalm --show-info=true
