@@ -11,7 +11,7 @@ COPY composer.json /usr/local/src/
 RUN composer update --ignore-platform-reqs --optimize-autoloader \
     --no-plugins --no-scripts --prefer-dist
     
-FROM php:8.0-cli-alpine as final
+FROM php:8.0.14-cli-alpine3.15 as final
 
 LABEL maintainer="team@appwrite.io"
     
