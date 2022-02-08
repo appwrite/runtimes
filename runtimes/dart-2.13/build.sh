@@ -16,23 +16,19 @@ if [ ! -f "pubspec.yaml" ]; then
     cp /usr/local/src/pubspec.yaml.fallback /usr/local/src/user_code/pubspec.yaml
 fi
 
+# Move to prepare_package script directory
+cd /usr/local/src/prepare_package
+dart pub get
+dart prepare.dart
+
 # Move to server directory
 cd /usr/local/src
-
-# Handle pubspec.yaml
-./prepare
-
-# Get dependencies again
-dart -v pub get
+dart pub get
 
 cd /usr/local/src/user_code
-
-# Get user code dependencies
-
-dart -v pub get
+dart pub get
 
 # Move back to server directory
-
 cd /usr/local/src
 
 # Compile the Code
