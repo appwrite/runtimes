@@ -5,7 +5,7 @@ bundle config set --local path 'vendor/bundle'
 bundle install
 
 cd /usr/code
-if [[ -f "Gemfile" ]]; then
+if [[ ! -f "Gemfile" ]]; then
     bundle config set --local path '/usr/local/src/vendor/bundle'
     bundle install
 fi
