@@ -5,10 +5,3 @@ version: 1.0.0
 
 environment:
   sdk: '>=2.12.0 <3.0.0'
-
-dependencies:
-  function_types:
-    git: https://github.com/lohanidamodar/function_types
-
-dev_dependencies:
-  pedantic: ^1.10.0
