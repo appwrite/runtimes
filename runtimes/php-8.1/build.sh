@@ -3,6 +3,8 @@
 cd /usr/code
 if [[ ! -f "composer.json" ]]; then
     mv /usr/local/src/composer.json.fallback /usr/code/composer.json
+else
+    php /usr/local/src/prepare.php
 fi
 
 cd /usr/local/src/

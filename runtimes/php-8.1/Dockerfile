@@ -69,6 +69,7 @@ COPY composer* /usr/local/src/
 COPY ./server.php /usr/local/src/
 COPY ./launch.sh /usr/local/src/
 COPY ./build.sh /usr/local/src/
+COPY ./prepare.php /usr/local/src/
 
 # Enable Extensions
 RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
