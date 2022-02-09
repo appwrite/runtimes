@@ -12,6 +12,9 @@ docker buildx build --platform linux/amd64,linux/arm64 -t dart-runtime:2.14 ./ru
 echo 'Dart 2.15...'
 docker buildx build --platform linux/amd64,linux/arm64 -t dart-runtime:2.15 ./runtimes/dart-2.15/ --push
 
+echo 'Dart 2.16...'
+docker buildx build --platform linux/amd64,linux/arm64 -t dart-runtime:2.16 ./runtimes/dart-2.16/ --push
+
 echo 'Deno 1.12...'
 docker buildx build --platform linux/amd64,linux/arm64 -t deno-runtime:1.12 ./runtimes/deno-1.12/ --push
 
