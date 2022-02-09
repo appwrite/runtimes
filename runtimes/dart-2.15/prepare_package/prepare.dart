@@ -10,7 +10,7 @@ void main() async {
   dependencies[packageName] = PathReference('./user_code');
 
   final updatedPubspec = serverPub.copy(dependencies: dependencies);
-  await updatedPubspec.save(Directory.current);
+  await updatedPubspec.save(Directory.current.parent);
 
   File server = File("../server.dart");
   String serv = server.readAsStringSync();
