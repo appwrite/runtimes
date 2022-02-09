@@ -7,7 +7,7 @@ void main() async {
 
   var serverPub = await PubSpec.loadFile('../pubspec.yaml');
   var dependencies = serverPub.dependencies;
-  dependencies[packageName] = PathReference('../user_code');
+  dependencies[packageName] = PathReference('./user_code');
 
   final updatedPubspec = serverPub.copy(dependencies: dependencies);
   await updatedPubspec.save(Directory.current);
