@@ -14,4 +14,4 @@ swift build -Xswiftc -static-executable
 
 rm -r /usr/code/*
 
-cp /usr/local/src/.build/x86_64-unknown-linux-gnu/debug/Run /usr/code/runtime
+cp $(swift build --show-bin-path)/Run /usr/code/runtime
