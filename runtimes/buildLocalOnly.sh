@@ -36,8 +36,11 @@ docker build -t node-runtime:16.0 ./runtimes/node-16.0
 echo 'Node 17...'
 docker build -t node-runtime:17.0 ./runtimes/node-17.0
 
-echo 'PHP 8...'
+echo 'PHP 8.0...'
 docker build -t php-runtime:8.0 ./runtimes/php-8.0
+
+echo 'PHP 8.1...'
+docker build -t php-runtime:8.1 ./runtimes/php-8.1
 
 echo 'Python 3.8...'
 docker build -t python-runtime:3.8 ./runtimes/python-3.8
@@ -53,6 +56,9 @@ docker build -t rust-runtime:1.55 ./runtimes/rust-1.55
 
 echo 'Ruby 3.0'
 docker build -t ruby-runtime:3.0 ./runtimes/ruby-3.0
+
+echo 'Ruby 3.1'
+docker build -t ruby-runtime:3.1 ./runtimes/ruby-3.1
 
 echo 'Alpine 3.13.6...'
 docker build -t appwrite-alpine:3.13.6 ./runtimes/alpine-3.13.6

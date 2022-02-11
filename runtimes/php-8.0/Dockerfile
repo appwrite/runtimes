@@ -1,4 +1,4 @@
-FROM php:8.0-cli-alpine as step0
+FROM php:8.0.14-cli-alpine3.15 as step0
 
 ENV PHP_SWOOLE_VERSION=v4.7.0
 
@@ -26,7 +26,7 @@ RUN \
   make && make install && \
   cd ..
 
-FROM php:8.0-cli-alpine as final
+FROM php:8.0.14-cli-alpine3.15 as final
 
 LABEL maintainer="team@appwrite.io"
 
@@ -69,6 +69,7 @@ COPY composer* /usr/local/src/
 COPY ./server.php /usr/local/src/
 COPY ./launch.sh /usr/local/src/
 COPY ./build.sh /usr/local/src/
+COPY ./prepare.php /usr/local/src/
 
 # Enable Extensions
 RUN echo extension=swoole.so >> /usr/local/etc/php/conf.d/swoole.ini
