@@ -39,9 +39,9 @@ class Runtimes
         $this->runtimes['python'] = $python;
 
         $deno = new Runtime('deno', 'Deno');
-        $deno->addVersion('1.12', 'denoland/deno:alpine-1.12.2', 'openruntimes/deno:1.12', [System::X86, System::ARM]);
-        $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'openruntimes/deno:1.13', [System::X86, System::ARM]);
-        $deno->addVersion('1.14', 'denoland/deno:alpine-1.14.3', 'openruntimes/deno:1.14', [System::X86, System::ARM]);
+        $deno->addVersion('1.12', 'denoland/deno:alpine-1.12.2', 'openruntimes/deno:1.12', [System::X86]);
+        $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'openruntimes/deno:1.13', [System::X86]);
+        $deno->addVersion('1.14', 'denoland/deno:alpine-1.14.3', 'openruntimes/deno:1.14', [System::X86]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
