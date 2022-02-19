@@ -29,29 +29,6 @@ Runtimes::getAll();
 
 ## Adding a new Runtime
 
-### 1. Docker
-
-The first thing to do is to create a Dockerfile under `runtimes/`.
-
-> Important features for a base image are small sizes (Alpine preferred), multi-architecture (x86, ARM, PPC) and active maintenance.
-
-Example for a Dockerfile looks like this:
-
-```dockerfile
-# Base image
-FROM mcr.microsoft.com/dotnet/runtime:5.0-alpine
-# Maintainer label
-LABEL maintainer="team@appwrite.io"
-# Add tar (required for uncompressing functions)
-RUN apk add tar
-# Set working directory to /usr/local/src/
-WORKDIR /usr/local/src/
-```
-
-After that the build command must be added to the `build.sh` script.
-
-### 2. Add Runtime
-
 After the Docker image is created, this must be added to the main class of this library.
 
 References to this must be added to the constructor of `src/Runtimes/Runtimes.php`.
@@ -63,12 +40,6 @@ $dotnet = new Runtime('dotnet', '.NET');
 $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'appwrite/env-dotnet-5.0:1.0.0', [System::X86, System::ARM]);
 $runtimes[] = $dotnet;
 ```
-
-### 3. Add Tests
-
-First of all, a script for the runtime environment must be created. Plenty of examples can be found under `tests/resources`.
-
-After that start options must be added to the `setUp()` method found in `tests/Runtimes/RuntimesTest.php`.
 
 ## Authors
 
