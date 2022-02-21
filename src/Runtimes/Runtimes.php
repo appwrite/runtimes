@@ -62,9 +62,9 @@ class Runtimes
         // $java->addVersion('17.0', 'openjdk/17-jdk-alpine', 'openruntimes/java:17.0', [System::X86]);
         // $this->runtimes['java'] = $java;
 
-        // $swift = new Runtime('swift', 'Swift');
-        // $swift->addVersion('5.5', 'swift:5.5-slim', 'openruntimes/swift:5.5', [System::X86]);
-        // $this->runtimes['swift'] = $swift;
+        $swift = new Runtime('swift', 'Swift');
+        $swift->addVersion('5.5', 'swiftarm/swift:5.5.2-focal-multi-arch', 'openruntimes/swift:5.5', [System::X86, System::ARM]);
+        $this->runtimes['swift'] = $swift;
     }
 
     /**
