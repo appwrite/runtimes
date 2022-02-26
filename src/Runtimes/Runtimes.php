@@ -49,6 +49,7 @@ class Runtimes
         $dart->addVersion('2.13', 'dart:2.13', 'openruntimes/dart:2.13', [System::X86]);
         $dart->addVersion('2.14', 'dart:2.14', 'openruntimes/dart:2.14', [System::X86, System::ARM]);
         $dart->addVersion('2.15', 'dart:2.15', 'openruntimes/dart:2.15', [System::X86, System::ARM]);
+        $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:2.16', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
         // $dotnet = new Runtime('dotnet', '.NET');
