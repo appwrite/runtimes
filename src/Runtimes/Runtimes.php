@@ -45,11 +45,11 @@ class Runtimes
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
-        $dart->addVersion('2.12', 'dart:2.12', 'openruntimes/dart:2.12', [System::X86]);
-        $dart->addVersion('2.13', 'dart:2.13', 'openruntimes/dart:2.13', [System::X86]);
-        $dart->addVersion('2.14', 'dart:2.14', 'openruntimes/dart:2.14', [System::X86, System::ARM]);
-        $dart->addVersion('2.15', 'dart:2.15', 'openruntimes/dart:2.15', [System::X86, System::ARM]);
-        $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:2.16', [System::X86, System::ARM]);
+        $dart->addVersion('2.12', 'dart:2.12', 'openruntimes/dart:2.12', [System::X86], 'ubuntu:focal');
+        $dart->addVersion('2.13', 'dart:2.13', 'openruntimes/dart:2.13', [System::X86], 'ubuntu:focal');
+        $dart->addVersion('2.14', 'dart:2.14', 'openruntimes/dart:2.14', [System::X86, System::ARM], 'ubuntu:focal');
+        $dart->addVersion('2.15', 'dart:2.15', 'openruntimes/dart:2.15', [System::X86, System::ARM], 'ubuntu:focal');
+        $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:2.16', [System::X86, System::ARM], 'ubuntu:focal');
         $this->runtimes['dart'] = $dart;
 
         // $dotnet = new Runtime('dotnet', '.NET');
@@ -64,7 +64,7 @@ class Runtimes
         // $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift');
-        $swift->addVersion('5.5', 'swiftarm/swift:5.5.2-focal-multi-arch', 'openruntimes/swift:5.5', [System::X86, System::ARM]);
+        $swift->addVersion('5.5', 'swiftarm/swift:5.5.2-focal-multi-arch', 'openruntimes/swift:5.5', [System::X86, System::ARM], 'ubuntu:focal');
         $this->runtimes['swift'] = $swift;
     }
 
