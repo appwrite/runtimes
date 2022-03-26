@@ -51,9 +51,9 @@ class Runtime
      * @param string[] $supports
      * @param string $runImage
      */
-    public function addVersion(string $version, string $base, string $image, array $supports, string $runImage = $image): void
+    public function addVersion(string $version, string $base, string $image, array $supports, string $runImage = null): void
     {
-        $this->versions[] = new Version($version, $base, $image, $supports, $runImage);
+        $this->versions[] = new Version($version, $base, $image, $supports, $runImage || $image);
     }
 
     /**

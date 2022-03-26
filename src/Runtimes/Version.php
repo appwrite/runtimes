@@ -38,13 +38,13 @@ class Version
      * @param array $supports
      * @param string $runImage
      */
-    public function __construct(string $version, string $base, string $image, array $supports, string $runImage = $image)
+    public function __construct(string $version, string $base, string $image, array $supports, string $runImage = null)
     {
         $this->version = $version;
         $this->base = $base;
         $this->image = $image;
         $this->supports = $supports;
-        $this->runImage = $runImage;
+        $this->runImage = $runImage || $image;
     }
 
     /**
