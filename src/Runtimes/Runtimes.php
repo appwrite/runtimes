@@ -66,6 +66,10 @@ class Runtimes
         $swift = new Runtime('swift', 'Swift');
         $swift->addVersion('5.5', 'swiftarm/swift:5.5.2-focal-multi-arch', 'openruntimes/swift:5.5', [System::X86, System::ARM]);
         $this->runtimes['swift'] = $swift;
+
+        $kotlin = new Runtime('kotlin', 'Kotlin');
+        $kotlin->addVersion('1.6', 'openjdk/17-jdk-slim', 'openruntimes/kotlin:1.6', [System::X86, System::ARM]);
+        $this->runtimes['kotlin'] = $kotlin;
     }
 
     /**
