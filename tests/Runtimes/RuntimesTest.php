@@ -131,29 +131,23 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'dotnet-5.0'
             ],
-            'java-11' => [
+            'java-8.0' => [
+                'code' => $functionsDir . '/java-8.tar.gz',
+                'command' => 'java HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'java-8.0'
+            ],
+            'java-11.0' => [
                 'code' => $functionsDir . '/java-11.tar.gz',
                 'command' => 'java HelloWorld',
                 'timeout' => 15,
-                'runtime' => 'java-11'
+                'runtime' => 'java-11.0'
             ],
-            'kotlin-jar-11' => [
-                'code' => $functionsDir . '/kotlin.tar.gz',
-                'command' => 'java -jar HelloWorld.jar',
-                'timeout' => 15,
-                'runtime' => 'java-11'
-            ],
-            'java-16' => [
-                'code' => $functionsDir . '/java-11.tar.gz',
+            'java-17.0' => [
+                'code' => $functionsDir . '/java-17.tar.gz',
                 'command' => 'java HelloWorld',
                 'timeout' => 15,
-                'runtime' => 'java-16'
-            ],
-            'kotlin-jar-16' => [
-                'code' => $functionsDir . '/kotlin.tar.gz',
-                'command' => 'java -jar HelloWorld.jar',
-                'timeout' => 15,
-                'runtime' => 'java-16'
+                'runtime' => 'java-17.0'
             ],
             'swift-5.5' => [
                 'code' => $functionsDir . '/swift.tar.gz',
