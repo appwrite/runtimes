@@ -66,6 +66,10 @@ class Runtimes
         $swift = new Runtime('swift', 'Swift');
         $swift->addVersion('5.5', 'swiftarm/swift:5.5.2-focal-multi-arch', 'openruntimes/swift:5.5', [System::X86, System::ARM]);
         $this->runtimes['swift'] = $swift;
+
+        $cpp = new Runtime('cpp', 'C++');
+        $cpp->addVersion('17.0', 'alpine:3.15', 'openruntimes/cpp:17', [System::X86, System::ARM, System::PPC]);
+        $this->runtimes['cpp'] = $cpp;
     }
 
     /**
