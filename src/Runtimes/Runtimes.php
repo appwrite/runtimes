@@ -52,10 +52,10 @@ class Runtimes
         $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:2.16', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
-        // $dotnet = new Runtime('dotnet', '.NET');
-        // $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/runtime:3.1-alpine', 'openruntimes/dotnet:3.1', [System::X86]);
-        // $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'openruntimes/dotnet:5.0', [System::X86, System::ARM]);
-        // $this->runtimes['dotnet'] = $dotnet;
+        $dotnet = new Runtime('dotnet', '.NET');
+        $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/sdk:3.1', 'openruntimes/dotnet:3.1', [System::X86, System::ARM]);
+        $dotnet->addVersion('6.0', 'mcr.microsoft.com/dotnet/sdk:6.0-alpine', 'openruntimes/dotnet:6.0', [System::X86, System::ARM]);
+        $this->runtimes['dotnet'] = $dotnet;
 
         // $java = new Runtime('java', 'Java');
         // $java->addVersion('11.0', 'openjdk/11-jre', 'openruntimes/java:11.0', [System::X86]);
