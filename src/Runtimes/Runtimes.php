@@ -70,6 +70,10 @@ class Runtimes
         $kotlin = new Runtime('kotlin', 'Kotlin');
         $kotlin->addVersion('1.6', 'openjdk/17-jdk-slim', 'openruntimes/kotlin:1.6', [System::X86, System::ARM]);
         $this->runtimes['kotlin'] = $kotlin;
+
+        $cpp = new Runtime('cpp', 'C++');
+        $cpp->addVersion('17.0', 'alpine:3.15', 'openruntimes/cpp:17', [System::X86, System::ARM, System::PPC]);
+        $this->runtimes['cpp'] = $cpp;
     }
 
     /**
