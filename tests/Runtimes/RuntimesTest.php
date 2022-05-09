@@ -125,35 +125,29 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'dotnet-3.1'
             ],
-            'dotnet-5.0' => [
-                'code' => $functionsDir . '/dotnet-5.0.tar.gz',
+            'dotnet-6.0' => [
+                'code' => $functionsDir . '/dotnet-6.0.tar.gz',
                 'command' => 'dotnet dotnet.dll',
                 'timeout' => 15,
-                'runtime' => 'dotnet-5.0'
+                'runtime' => 'dotnet-6.0'
             ],
-            'java-11' => [
+            'java-8.0' => [
+                'code' => $functionsDir . '/java-8.tar.gz',
+                'command' => 'java HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'java-8.0'
+            ],
+            'java-11.0' => [
                 'code' => $functionsDir . '/java-11.tar.gz',
                 'command' => 'java HelloWorld',
                 'timeout' => 15,
-                'runtime' => 'java-11'
+                'runtime' => 'java-11.0'
             ],
-            'kotlin-jar-11' => [
-                'code' => $functionsDir . '/kotlin.tar.gz',
-                'command' => 'java -jar HelloWorld.jar',
-                'timeout' => 15,
-                'runtime' => 'java-11'
-            ],
-            'java-16' => [
-                'code' => $functionsDir . '/java-11.tar.gz',
+            'java-17.0' => [
+                'code' => $functionsDir . '/java-17.tar.gz',
                 'command' => 'java HelloWorld',
                 'timeout' => 15,
-                'runtime' => 'java-16'
-            ],
-            'kotlin-jar-16' => [
-                'code' => $functionsDir . '/kotlin.tar.gz',
-                'command' => 'java -jar HelloWorld.jar',
-                'timeout' => 15,
-                'runtime' => 'java-16'
+                'runtime' => 'java-17.0'
             ],
             'swift-5.5' => [
                 'code' => $functionsDir . '/swift.tar.gz',
@@ -161,6 +155,18 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'swift-5.5'
             ],
+            'kotlin-1.6' => [
+                'code' => $functionsDir . '/kotlin.tar.gz',
+                'command' => 'kotlin HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'kotlin-1.6'
+            ],
+            'cpp-17.0' => [
+                'code' => $functionsDir . '/cpp.tar.gz',
+                'command' => './HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'cpp-17.0'
+            ]
         ];
         $this->instance = new Runtimes();
         $this->tests = array_filter($this->tests, function($test) {

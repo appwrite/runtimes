@@ -52,20 +52,28 @@ class Runtimes
         $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:2.16', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
-        // $dotnet = new Runtime('dotnet', '.NET');
-        // $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/runtime:3.1-alpine', 'openruntimes/dotnet:3.1', [System::X86]);
-        // $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'openruntimes/dotnet:5.0', [System::X86, System::ARM]);
-        // $this->runtimes['dotnet'] = $dotnet;
+        $dotnet = new Runtime('dotnet', '.NET');
+        $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/sdk:3.1', 'openruntimes/dotnet:3.1', [System::X86, System::ARM]);
+        $dotnet->addVersion('6.0', 'mcr.microsoft.com/dotnet/sdk:6.0-alpine', 'openruntimes/dotnet:6.0', [System::X86, System::ARM]);
+        $this->runtimes['dotnet'] = $dotnet;
 
-        // $java = new Runtime('java', 'Java');
-        // $java->addVersion('11.0', 'openjdk/11-jre', 'openruntimes/java:11.0', [System::X86]);
-        // $java->addVersion('16.0', 'openjdk/16-jdk-alpine', 'openruntimes/java:16.0', [System::X86]);
-        // $java->addVersion('17.0', 'openjdk/17-jdk-alpine', 'openruntimes/java:17.0', [System::X86]);
-        // $this->runtimes['java'] = $java;
+        $java = new Runtime('java', 'Java');
+        $java->addVersion('8.0', 'openjdk/8-jdk-slim', 'openruntimes/java:8.0', [System::X86, System::ARM]);
+        $java->addVersion('11.0', 'openjdk/11-jdk-slim', 'openruntimes/java:11.0', [System::X86, System::ARM]);
+        $java->addVersion('17.0', 'openjdk/17-jdk-slim', 'openruntimes/java:17.0', [System::X86, System::ARM]);
+        $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift');
         $swift->addVersion('5.5', 'swiftarm/swift:5.5.2-focal-multi-arch', 'openruntimes/swift:5.5', [System::X86, System::ARM]);
         $this->runtimes['swift'] = $swift;
+
+        $kotlin = new Runtime('kotlin', 'Kotlin');
+        $kotlin->addVersion('1.6', 'openjdk/17-jdk-slim', 'openruntimes/kotlin:1.6', [System::X86, System::ARM]);
+        $this->runtimes['kotlin'] = $kotlin;
+
+        $cpp = new Runtime('cpp', 'C++');
+        $cpp->addVersion('17.0', 'alpine:3.15', 'openruntimes/cpp:17', [System::X86, System::ARM, System::PPC]);
+        $this->runtimes['cpp'] = $cpp;
     }
 
     /**
