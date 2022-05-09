@@ -125,11 +125,11 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'dotnet-3.1'
             ],
-            'dotnet-5.0' => [
-                'code' => $functionsDir . '/dotnet-5.0.tar.gz',
+            'dotnet-6.0' => [
+                'code' => $functionsDir . '/dotnet-6.0.tar.gz',
                 'command' => 'dotnet dotnet.dll',
                 'timeout' => 15,
-                'runtime' => 'dotnet-5.0'
+                'runtime' => 'dotnet-6.0'
             ],
             'java-8.0' => [
                 'code' => $functionsDir . '/java-8.tar.gz',
@@ -155,6 +155,18 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'swift-5.5'
             ],
+            'kotlin-1.6' => [
+                'code' => $functionsDir . '/kotlin.tar.gz',
+                'command' => 'kotlin HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'kotlin-1.6'
+            ],
+            'cpp-17.0' => [
+                'code' => $functionsDir . '/cpp.tar.gz',
+                'command' => './HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'cpp-17.0'
+            ]
         ];
         $this->instance = new Runtimes();
         $this->tests = array_filter($this->tests, function($test) {
