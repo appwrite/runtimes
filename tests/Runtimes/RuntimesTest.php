@@ -168,7 +168,7 @@ class RuntimesTest extends TestCase
                 'runtime' => 'cpp-17.0'
             ]
         ];
-        $this->instance = new Runtimes();
+        $this->instance = new Runtimes('v1');
         $this->tests = array_filter($this->tests, function($test) {
             return array_key_exists($test['runtime'], $this->instance->getAll());
         });
@@ -197,6 +197,7 @@ class RuntimesTest extends TestCase
             $this->assertArrayHasKey('image', $runtime, $runtime['name']);
             $this->assertArrayHasKey('logo', $runtime, $runtime['name']);
             $this->assertArrayHasKey('supports', $runtime, $runtime['name']);
+            $this->assertStringContainsString('v1-', $runtime['image']);
 
             $this->assertIsArray($runtime['supports']);
             $this->assertNotEmpty($runtime['supports']);
