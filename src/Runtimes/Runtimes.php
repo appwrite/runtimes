@@ -25,6 +25,7 @@ class Runtimes
         $node->addVersion('15.5', 'node:15.5-alpine', 'openruntimes/node:' . $this->version . '-15.5', [System::X86, System::ARM]);
         $node->addVersion('16.0', 'node:16-alpine', 'openruntimes/node:' . $this->version . '-16.0', [System::X86, System::ARM]);
         $node->addVersion('17.0', 'node:17-alpine', 'openruntimes/node:' . $this->version . '-17.0', [System::X86, System::ARM]);
+        $node->addVersion('18.0', 'node:18-alpine', 'openruntimes/node:' . $this->version . '-18.0', [System::X86, System::ARM]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP');
@@ -47,6 +48,7 @@ class Runtimes
         $deno->addVersion('1.12', 'denoland/deno:alpine-1.12.2', 'openruntimes/deno:' . $this->version . '-1.12', [System::X86]);
         $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'openruntimes/deno:' . $this->version . '-1.13', [System::X86]);
         $deno->addVersion('1.14', 'denoland/deno:alpine-1.14.3', 'openruntimes/deno:' . $this->version . '-1.14', [System::X86]);
+        $deno->addVersion('1.21', 'denoland/deno:alpine-1.21.3', 'openruntimes/deno:' . $this->version . '-1.21', [System::X86]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
@@ -55,6 +57,7 @@ class Runtimes
         $dart->addVersion('2.14', 'dart:2.14', 'openruntimes/dart:' . $this->version . '-2.14', [System::X86, System::ARM]);
         $dart->addVersion('2.15', 'dart:2.15', 'openruntimes/dart:' . $this->version . '-2.15', [System::X86, System::ARM]);
         $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:' . $this->version . '-2.16', [System::X86, System::ARM]);
+        $dart->addVersion('2.17', 'dart:2.17', 'openruntimes/dart:' . $this->version . '-2.17', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET');
@@ -66,6 +69,7 @@ class Runtimes
         $java->addVersion('8.0', 'openjdk/8-jdk-slim', 'openruntimes/java:' . $this->version . '-8.0', [System::X86, System::ARM]);
         $java->addVersion('11.0', 'openjdk/11-jdk-slim', 'openruntimes/java:' . $this->version . '-11.0', [System::X86, System::ARM]);
         $java->addVersion('17.0', 'openjdk/17-jdk-slim', 'openruntimes/java:' . $this->version . '-17.0', [System::X86, System::ARM]);
+        $java->addVersion('18.0', 'openjdk/18-jdk-slim', 'openruntimes/java:' . $this->version . '-18.0', [System::X86, System::ARM]);
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift');
