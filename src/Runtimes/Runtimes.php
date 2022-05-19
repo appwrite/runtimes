@@ -77,7 +77,7 @@ class Runtimes
         $this->runtimes['kotlin'] = $kotlin;
 
         $cpp = new Runtime('cpp', 'C++');
-        $cpp->addVersion('17.0', 'alpine:3.15', 'openruntimes/cpp:' . $this->version . '-17', [System::X86, System::ARM, System::PPC]);
+        $cpp->addVersion('17.0', 'alpine:3.15', 'openruntimes/cpp:' . $this->version . '-17', [System::X86, System::ARM]);
         $this->runtimes['cpp'] = $cpp;
     }
 
