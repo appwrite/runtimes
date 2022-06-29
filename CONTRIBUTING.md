@@ -44,8 +44,11 @@ $runtimes[] = $dotnet;
 
 The following checklist aims to ensure that a function runtime gets added successfully
 
-- [ ] Add the runtime to [open-runtimes/open-runtimes](https://github.com/open-runtimes/open-runtimes)
-- [ ] Publish the runtime Docker image
+- [ ] Create a PR to add the runtime to [open-runtimes/open-runtimes](https://github.com/open-runtimes/open-runtimes)
+  - [ ] Create the runtime
+  - [ ] Add runtime docs
+  - [ ] Add runtime tests
+  - [ ] Publish the runtime Docker image
 - [ ] Add the runtime to [appwrite/runtimes](https://github.com/appwrite/runtimes)
 - [ ] Create a function starter in [appwrite/functions-starter](https://github.com/appwrite/functions-starter)
 - [ ] Add runtime support to the CLI in [appwrite/sdk-generator](https://github.com/appwrite/sdk-generator/blob/master/templates/cli/lib/questions.js.twig)
