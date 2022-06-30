@@ -44,11 +44,52 @@ $runtimes[] = $dotnet;
 
 The following checklist aims to ensure that a function runtime gets added successfully
 
-- [ ] Create a PR to add the runtime to [open-runtimes/open-runtimes](https://github.com/open-runtimes/open-runtimes)
-  - [ ] Create the runtime
-  - [ ] Add runtime docs
-  - [ ] Add runtime tests
-  - [ ] Publish the runtime Docker image
+- [ ] Implement the runtime in [open-runtimes/open-runtimes](https://github.com/open-runtimes/open-runtimes) (you can find the tutorial [here](https://github.com/open-runtimes/open-runtimes/blob/main/docs/add-runtime.md))
+  - [ ] Prepare the files for your new runtime
+    - [ ] Dockerfile
+    - [ ] Readme
+  - [ ] Write the runtime
+    - [ ] Initialize a web server
+      - [ ] Set Port 3000
+      - [ ] Bind IP 0.0.0.0
+      - On each POST Request
+        - [ ] Check that the `x-internal-challenge header` matches the `INTERNAL_RUNTIME_KEY` environment variable
+        - [ ] Decode the executor's JSON POST request
+    - [ ] Create Request Class
+      - [ ] Fields
+        - [ ] env
+        - [ ] payload
+        - [ ] headers
+    - [ ] Create Response Class
+      - [ ] Functions
+        - [ ] send(string)
+        - [ ] json(object)
+    - [ ] Execute the function
+      - [ ] Add `try catch` block for error handling
+  - [ ] Write the Dockerfile
+    - [ ] Add the Docker image you want to base your runtime off
+    - [ ] Create the folders you'll use
+    - [ ] Copy your source code and set working directory
+    - [ ] Add execute permissions for any scripts
+      - [ ] `build.sh`
+      - [ ] `start.sh`
+    - [ ] Use `RUN` commands for necessary dependencies (if needed)
+    - [ ] Expose port 3000
+    - Add a `CMD` command for your launch script (i.e. `start.sh`)
+  - [ ] Build your Docker image and add it to the script files
+  - [ ] Add test
+    - [ ] Create a PHP file named by the language   
+    - [ ] Create a new folder in `./tests` by the name of your runtime
+      - [ ] Create a function (steps)
+        - [ ] Decode the payload as JSON
+        - [ ] Set a string variable called `id` to the value of the `id` key in the payload or to `1` if it doesn't exist
+        - [ ] Fetch `https://jsonplaceholder.typicode.com/todos/$id` with an HTTP Client installed from your language's package manager using the `id` variable
+        - [ ] return `res.json`
+      - [ ] Add runtime to Travis CI
+      - [ ] Run the test locally
+      - [ ] Raise a PR
 - [ ] Add the runtime to [appwrite/runtimes](https://github.com/appwrite/runtimes)
-- [ ] Create a function starter in [appwrite/functions-starter](https://github.com/appwrite/functions-starter)
 - [ ] Add runtime support to the CLI in [appwrite/sdk-generator](https://github.com/appwrite/sdk-generator/blob/master/templates/cli/lib/questions.js.twig)
+  - [ ] Ignored files
+  - [ ] Entrypoint
+- [ ] Create a function starter in [appwrite/functions-starter](https://github.com/appwrite/functions-starter) (ensure that the file structure is same as the entrypoint in the CLI)
