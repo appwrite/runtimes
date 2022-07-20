@@ -52,6 +52,7 @@ The following checklist aims to ensure that a function runtime gets added succes
     - [ ] Copy the rest of the Readme from another existing runtime
   - [ ] Write the runtime
     - [ ] Initialize a web server
+      - Use a library that supports `async/await`, also smaller/simpler libraries are preferred as this is a primitive HTTP server
       - [ ] Set Port 3000
       - [ ] Bind IP 0.0.0.0
       - On each POST Request
@@ -72,6 +73,8 @@ The following checklist aims to ensure that a function runtime gets added succes
         - [ ] json(object data, int statusCode)
     - [ ] Execute the function
       - [ ] Add `try catch` block for error handling
+  - [ ] Write the `build.sh` script
+  - [ ] Write the `start.sh` script
   - [ ] Write the Dockerfile
     - [ ] Add the Docker image you want to base your runtime off
     - [ ] Create the folders you'll use
@@ -81,7 +84,7 @@ The following checklist aims to ensure that a function runtime gets added succes
       - [ ] `start.sh`
     - [ ] Use `RUN` commands for necessary dependencies (if needed)
     - [ ] Expose port 3000
-    - Add a `CMD` command for `start.sh`
+    - [ ] Add a `CMD` command for `start.sh`
   - [ ] Build your Docker image and add it to the script files
     - [ ] Add your runtime to the `./build.sh` script at the root of the project
   - [ ] Add test
