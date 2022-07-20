@@ -85,8 +85,7 @@ The following checklist aims to ensure that a function runtime gets added succes
     - [ ] Use `RUN` commands for necessary dependencies (if needed)
     - [ ] Expose port 3000
     - [ ] Add a `CMD` command for `start.sh`
-  - [ ] Build your Docker image and add it to the script files
-    - [ ] Add your runtime to the `./build.sh` script at the root of the project
+  - [ ] Update `./build.sh` by adding Docker build command for the new runtime
   - [ ] Add test
     - [ ] Create a PHP file named by the language   
     - [ ] Create a new folder in `./tests` by the name of your runtime
