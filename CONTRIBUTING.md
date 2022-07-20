@@ -45,9 +45,11 @@ $runtimes[] = $dotnet;
 The following checklist aims to ensure that a function runtime gets added successfully
 
 - [ ] Implement the runtime in [open-runtimes/open-runtimes](https://github.com/open-runtimes/open-runtimes) (you can find the tutorial [here](https://github.com/open-runtimes/open-runtimes/blob/main/docs/add-runtime.md))
-  - [ ] Prepare the files for your new runtime
-    - [ ] Dockerfile
-    - [ ] Readme
+  - [ ] Prepare the Readme for your new runtime. Make sure to mention the following details
+    - [ ] Docker base image name + version
+    - [ ] HTTP server library name
+    - [ ] Any extra steps needed to get dependencies running (for e.g., `package.json`)
+    - [ ] Copy the rest of the Readme from another existing runtime
   - [ ] Write the runtime
     - [ ] Initialize a web server
       - [ ] Set Port 3000
@@ -55,6 +57,10 @@ The following checklist aims to ensure that a function runtime gets added succes
       - On each POST Request
         - [ ] Check that the `x-internal-challenge header` matches the `INTERNAL_RUNTIME_KEY` environment variable
         - [ ] Decode the executor's JSON POST request
+          - [ ] Make sure to have the right default values for Request body fields ([example](https://github.com/open-runtimes/open-runtimes/blob/main/runtimes/node-16.0/server.js#L14-L18))
+           - [ ]  env: empty object
+           - [ ]  headers: empty object
+           - [ ]  payload: empty string
     - [ ] Create Request Class
       - [ ] Fields
         - [ ] env
@@ -62,8 +68,8 @@ The following checklist aims to ensure that a function runtime gets added succes
         - [ ] headers
     - [ ] Create Response Class
       - [ ] Functions
-        - [ ] send(string)
-        - [ ] json(object)
+        - [ ] send(string data, int statusCode)
+        - [ ] json(object data, int statusCode)
     - [ ] Execute the function
       - [ ] Add `try catch` block for error handling
   - [ ] Write the Dockerfile
@@ -75,19 +81,21 @@ The following checklist aims to ensure that a function runtime gets added succes
       - [ ] `start.sh`
     - [ ] Use `RUN` commands for necessary dependencies (if needed)
     - [ ] Expose port 3000
-    - Add a `CMD` command for your launch script (i.e. `start.sh`)
+    - Add a `CMD` command for `start.sh`
   - [ ] Build your Docker image and add it to the script files
+    - [ ] Add your runtime to the `./build.sh` script at the root of the project
   - [ ] Add test
     - [ ] Create a PHP file named by the language   
     - [ ] Create a new folder in `./tests` by the name of your runtime
-      - [ ] Create a function (steps)
-        - [ ] Decode the payload as JSON
-        - [ ] Set a string variable called `id` to the value of the `id` key in the payload or to `1` if it doesn't exist
-        - [ ] Fetch `https://jsonplaceholder.typicode.com/todos/$id` with an HTTP Client installed from your language's package manager using the `id` variable
-        - [ ] return `res.json`
-      - [ ] Add runtime to Travis CI
-      - [ ] Run the test locally
-      - [ ] Raise a PR
+    - [ ] Inside the folder, create a function ([example](https://github.com/open-runtimes/open-runtimes/blob/main/tests/node-16.0/tests.js))
+      - [ ] Decode the payload as JSON
+      - [ ] Set a string variable called `id` to the value of the `id` key in the payload or to `1` if it doesn't exist
+      - [ ] Fetch `https://jsonplaceholder.typicode.com/todos/$id` with an HTTP Client installed from your language's package manager using the `id` variable
+      - [ ] return `res.json`
+    - [ ] Add runtime to Travis CI
+      - [ ] Edit the `.travis.yml` file and add your runtime to the `env` section 
+    - [ ] Run the test locally
+    - [ ] Raise a PR
 - [ ] Add the runtime to [appwrite/runtimes](https://github.com/appwrite/runtimes)
 - [ ] Add runtime support to the CLI in [appwrite/sdk-generator](https://github.com/appwrite/sdk-generator/blob/master/templates/cli/lib/questions.js.twig)
   - [ ] Ignored files
