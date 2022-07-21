@@ -73,6 +73,9 @@ The following checklist aims to ensure that a function runtime gets added succes
         - [ ] json(object data, int statusCode)
     - [ ] Execute the function
       - [ ] Add `try catch` block for error handling
+        - [ ] Check if the file is missing
+        - [ ] Check if the method is missing
+        - [ ] Any other language-specific errors that may occur 
   - [ ] Write the `build.sh` script
   - [ ] Write the `start.sh` script
   - [ ] Write the Dockerfile
