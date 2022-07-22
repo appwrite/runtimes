@@ -71,6 +71,7 @@ The following checklist aims to ensure that a function runtime gets added succes
       - [ ] Functions
         - [ ] send(string data, int statusCode)
         - [ ] json(object data, int statusCode)
+        - When returning a response, the `Content-Type` header for the `send()` function is `text/plain` and for the `json` function is `application/json`
     - [ ] Execute the function
       - [ ] Add `try catch` block for error handling
         - [ ] Check if the file is missing
