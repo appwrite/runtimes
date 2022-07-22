@@ -97,8 +97,8 @@ The following checklist aims to ensure that a function runtime gets added succes
       - [ ] Decode the payload as JSON
       - [ ] Set a string variable called `id` to the value of the `id` key in the payload or to `1` if it doesn't exist
       - [ ] Fetch `https://jsonplaceholder.typicode.com/todos/$id` with an HTTP Client installed from your language's package manager using the `id` variable
-      - The test must use an external dependency (either for the HTTP Client or the JSON serializer) in order to prove that the runtime can fetch dependencies
       - [ ] return `res.json`
+      - The test must use an external dependency (either for the HTTP Client or the JSON serializer) in order to prove that the runtime can fetch dependencies
     - [ ] Add runtime to Travis CI
       - [ ] Edit the `.travis.yml` file and add your runtime to the `env` section 
     - [ ] Run the test locally
