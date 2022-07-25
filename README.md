@@ -41,6 +41,12 @@ $dotnet->addVersion('5.0', 'mcr.microsoft.com/dotnet/runtime:5.0-alpine', 'appwr
 $runtimes[] = $dotnet;
 ```
 
+## Contributing
+
+All code contributions - including those of people having commit access - must go through a pull request and approved by a core developer before being merged. This is to ensure proper review of all the code.
+
+We truly ❤️ pull requests! If you wish to help, you can learn more about how you can contribute to this project in the [contribution guide](CONTRIBUTING.md).
+
 ## Authors
 
 **Torsten Dittmann**
