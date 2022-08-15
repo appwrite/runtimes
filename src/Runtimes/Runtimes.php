@@ -22,9 +22,7 @@ class Runtimes
 
         $node = new Runtime('node', 'Node.js');
         $node->addVersion('14.5', 'node:14.5-alpine', 'openruntimes/node:' . $this->version . '-14.5', [System::X86, System::ARM]);
-        $node->addVersion('15.5', 'node:15.5-alpine', 'openruntimes/node:' . $this->version . '-15.5', [System::X86, System::ARM]);
         $node->addVersion('16.0', 'node:16-alpine', 'openruntimes/node:' . $this->version . '-16.0', [System::X86, System::ARM]);
-        $node->addVersion('17.0', 'node:17-alpine', 'openruntimes/node:' . $this->version . '-17.0', [System::X86, System::ARM]);
         $node->addVersion('18.0', 'node:18-alpine', 'openruntimes/node:' . $this->version . '-18.0', [System::X86, System::ARM]);
         $this->runtimes['node'] = $node;
 
@@ -45,16 +43,11 @@ class Runtimes
         $this->runtimes['python'] = $python;
 
         $deno = new Runtime('deno', 'Deno');
-        $deno->addVersion('1.12', 'denoland/deno:alpine-1.12.2', 'openruntimes/deno:' . $this->version . '-1.12', [System::X86]);
-        $deno->addVersion('1.13', 'denoland/deno:alpine-1.13.2', 'openruntimes/deno:' . $this->version . '-1.13', [System::X86]);
-        $deno->addVersion('1.14', 'denoland/deno:alpine-1.14.3', 'openruntimes/deno:' . $this->version . '-1.14', [System::X86]);
         $deno->addVersion('1.21', 'denoland/deno:alpine-1.21.3', 'openruntimes/deno:' . $this->version . '-1.21', [System::X86]);
+        $deno->addVersion('1.24', 'denoland/deno:alpine-1.24.3', 'openruntimes/deno:' . $this->version . '-1.24', [System::X86]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart');
-        $dart->addVersion('2.12', 'dart:2.12', 'openruntimes/dart:' . $this->version . '-2.12', [System::X86]);
-        $dart->addVersion('2.13', 'dart:2.13', 'openruntimes/dart:' . $this->version . '-2.13', [System::X86]);
-        $dart->addVersion('2.14', 'dart:2.14', 'openruntimes/dart:' . $this->version . '-2.14', [System::X86, System::ARM]);
         $dart->addVersion('2.15', 'dart:2.15', 'openruntimes/dart:' . $this->version . '-2.15', [System::X86, System::ARM]);
         $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:' . $this->version . '-2.16', [System::X86, System::ARM]);
         $dart->addVersion('2.17', 'dart:2.17', 'openruntimes/dart:' . $this->version . '-2.17', [System::X86, System::ARM]);
