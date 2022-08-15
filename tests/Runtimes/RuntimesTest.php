@@ -23,23 +23,17 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-14.5'
             ],
-            'node-15.5' => [
-                'code' => $functionsDir . '/node.tar.gz',
-                'command' => 'node index.js',
-                'timeout' => 15,
-                'runtime' => 'node-15.5'
-            ],
             'node-16' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'command' => 'node index.js',
                 'timeout' => 15,
                 'runtime' => 'node-16'
             ],
-            'php-7.4' => [
-                'code' => $functionsDir . '/php.tar.gz',
-                'command' => 'php index.php',
+            'node-18' => [
+                'code' => $functionsDir . '/node.tar.gz',
+                'command' => 'node index.js',
                 'timeout' => 15,
-                'runtime' => 'php-7.4'
+                'runtime' => 'node-18'
             ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',
@@ -71,53 +65,35 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'python-3.9'
             ],
-            'deno-1.5' => [
+            'deno-1.21' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'command' => 'deno run --allow-env index.ts',
                 'timeout' => 15,
-                'runtime' => 'deno-1.5'
+                'runtime' => 'deno-1.21'
             ],
-            'deno-1.6' => [
+            'deno-1.24' => [
                 'code' => $functionsDir . '/deno.tar.gz',
                 'command' => 'deno run --allow-env index.ts',
                 'timeout' => 15,
-                'runtime' => 'deno-1.6'
+                'runtime' => 'deno-1.24'
             ],
-            'deno-1.8' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.8'
-            ],
-            'deno-1.10' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.10'
-            ],
-            'deno-1.11' => [
-                'code' => $functionsDir . '/deno.tar.gz',
-                'command' => 'deno run --allow-env index.ts',
-                'timeout' => 15,
-                'runtime' => 'deno-1.11'
-            ],
-            'dart-2.10' => [
+            'dart-2.15' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
                 'timeout' => 15,
-                'runtime' => 'dart-2.10'
+                'runtime' => 'dart-2.15'
             ],
-            'dart-2.12' => [
+            'dart-2.16' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
                 'timeout' => 15,
-                'runtime' => 'dart-2.12'
+                'runtime' => 'dart-2.16'
             ],
-            'dart-2.13' => [
+            'dart-2.16' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
                 'timeout' => 15,
-                'runtime' => 'dart-2.13'
+                'runtime' => 'dart-2.16'
             ],
             'dotnet-3.1' => [
                 'code' => $functionsDir . '/dotnet-3.1.tar.gz',
@@ -148,6 +124,12 @@ class RuntimesTest extends TestCase
                 'command' => 'java HelloWorld',
                 'timeout' => 15,
                 'runtime' => 'java-17.0'
+            ],
+            'java-18.0' => [
+                'code' => $functionsDir . '/java-17.tar.gz',
+                'command' => 'java HelloWorld',
+                'timeout' => 15,
+                'runtime' => 'java-18.0'
             ],
             'swift-5.5' => [
                 'code' => $functionsDir . '/swift.tar.gz',
