@@ -23,17 +23,17 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'node-14.5'
             ],
-            'node-16' => [
+            'node-16.0' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'command' => 'node index.js',
                 'timeout' => 15,
-                'runtime' => 'node-16'
+                'runtime' => 'node-16.0'
             ],
-            'node-18' => [
+            'node-18.0' => [
                 'code' => $functionsDir . '/node.tar.gz',
                 'command' => 'node index.js',
                 'timeout' => 15,
-                'runtime' => 'node-18'
+                'runtime' => 'node-18.0'
             ],
             'php-8.0' => [
                 'code' => $functionsDir . '/php.tar.gz',
@@ -89,11 +89,11 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'dart-2.16'
             ],
-            'dart-2.16' => [
+            'dart-2.17' => [
                 'code' => $functionsDir . '/dart.tar.gz',
                 'command' => 'dart main.dart',
                 'timeout' => 15,
-                'runtime' => 'dart-2.16'
+                'runtime' => 'dart-2.17'
             ],
             'dotnet-3.1' => [
                 'code' => $functionsDir . '/dotnet-3.1.tar.gz',
@@ -167,7 +167,7 @@ class RuntimesTest extends TestCase
         $this->assertNotEmpty($this->instance->getAll(supported: false));
         $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5']));
         $this->assertCount(1, $this->instance->getAll(filter: ['node-14.5', 'unknown']));
-        $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-15.5']));
+        $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-16.0']));
     }
 
     public function testGetRuntimes()
