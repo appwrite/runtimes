@@ -13,6 +13,9 @@ services:
 notifications:
   email:
     - team@appwrite.io
+    
+before_install:
+  - git clone https://github.com/P-H-C/phc-winner-argon2.git libargon2 && cd libargon2 && make test && sudo make install PREFIX=/usr && cd ..
 
 before_script: 
   - >
