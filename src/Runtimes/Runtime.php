@@ -15,6 +15,11 @@ class Runtime
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $startCommand;
+
+    /**
      * @var Version[]
      */
     protected $versions = [];
@@ -25,11 +30,11 @@ class Runtime
      * @param string $key
      * @param string $name
      */
-    public function __construct(string $key, string $name)
+    public function __construct(string $key, string $name, string $startCommand)
     {
         $this->key = $key;
         $this->name = $name;
-        $this->versions;
+        $this->startCommand = $startCommand;
     }
 
     /**
