@@ -74,6 +74,7 @@ class Runtime
                 [
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
+                    'startCommand' => $this->startCommand
                 ],
                 $version->get()
             );
