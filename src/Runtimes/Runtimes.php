@@ -48,9 +48,7 @@ class Runtimes
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart', 'src/function/server');
-        $dart->addVersion('2.15', 'dart:2.15', 'openruntimes/dart:' . $this->version . '-2.15', [System::X86, System::ARM]);
-        $dart->addVersion('2.16', 'dart:2.16', 'openruntimes/dart:' . $this->version . '-2.16', [System::X86, System::ARM]);
-        $dart->addVersion('2.17', 'dart:2.17', 'openruntimes/dart:' . $this->version . '-2.17', [System::X86, System::ARM]);
+        $dart->addVersion('2.18', 'dart:2.18', 'openruntimes/dart:' . $this->version . '-2.18', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET', 'dotnet /src/function/DotNetRuntime.dll');
