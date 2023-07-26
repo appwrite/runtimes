@@ -21,7 +21,7 @@ class Runtimes
         $this->version = $version;
 
         $node = new Runtime('node', 'Node.js', 'pm2 start src/server.js --no-daemon');
-        $node->addVersion('14.5', 'node:14.5-alpine3.12', 'openruntimes/node:' . $this->version . '-14.5', [System::X86, System::ARM]);
+        $node->addVersion('14.5', 'node:14.5-alpine3.11', 'openruntimes/node:' . $this->version . '-14.5', [System::X86, System::ARM]);
         $node->addVersion('16.0', 'node:16.0-alpine3.13', 'openruntimes/node:' . $this->version . '-16.0', [System::X86, System::ARM]);
         $node->addVersion('18.0', 'node:18.0-alpine3.15', 'openruntimes/node:' . $this->version . '-18.0', [System::X86, System::ARM]);
         $node->addVersion('19.0', 'node:19.0-alpine3.16', 'openruntimes/node:' . $this->version . '-19.0', [System::X86, System::ARM]);
