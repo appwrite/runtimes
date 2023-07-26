@@ -62,7 +62,7 @@ class Runtimes
         $dart->addVersion('3.0', 'dart:3.0', 'openruntimes/dart:' . $this->version . '-3.0', [System::X86, System::ARM]);
         $this->runtimes['dart'] = $dart;
 
-        $dotnet = new Runtime('dotnet', '.NET', 'dotnet /src/function/DotNetRuntime.dll');
+        $dotnet = new Runtime('dotnet', '.NET', 'dotnet src/function/DotNetRuntime.dll');
         $dotnet->addVersion('3.1', 'mcr.microsoft.com/dotnet/sdk:3.1', 'openruntimes/dotnet:' . $this->version . '-3.1', [System::X86, System::ARM]);
         $dotnet->addVersion('6.0', 'mcr.microsoft.com/dotnet/sdk:6.0-alpine3.18', 'openruntimes/dotnet:' . $this->version . '-6.0', [System::X86, System::ARM]);
         $dotnet->addVersion('7.0', 'mcr.microsoft.com/dotnet/sdk:7.0-alpine3.18', 'openruntimes/dotnet:' . $this->version . '-7.0', [System::X86, System::ARM]);
