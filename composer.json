@@ -19,7 +19,7 @@
     },
     "require": {
         "php": ">=8.0",
-        "utopia-php/system": "0.6.*"
+        "utopia-php/system": "dev-feat-add-new-arch as 0.6.99"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3",
