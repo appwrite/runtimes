@@ -72,6 +72,7 @@ class Runtime
             $key = "{$this->key}-{$version->version}";
             $list[$key] = array_merge(
                 [
+                    'key' => $this->key,
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
                     'startCommand' => $this->startCommand
