@@ -25,5 +25,5 @@
         "phpunit/phpunit": "^9.3",
         "vimeo/psalm": "4.0.1"
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "stable"
 }
