@@ -89,6 +89,10 @@ class Runtimes
         $cpp->addVersion('17', 'alpine:3.16', 'openruntimes/cpp:' . $this->version . '-17', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $cpp->addVersion('20', 'alpine:3.16', 'openruntimes/cpp:' . $this->version . '-20', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['cpp'] = $cpp;
+
+        $bun = new Runtime('bun', 'Bun', 'bun src/server.ts');
+        $bun->addVersion('1.0', 'oven/bun:1.0.0', 'openruntimes/bun:' . $this->version . '-1.0', [System::X86, System::ARM64]);
+        $this->runtimes['bun'] = $bun;
     }
 
     /**
