@@ -60,6 +60,7 @@ class Runtimes
         $dart->addVersion('2.18', 'dart:2.18', 'openruntimes/dart:' . $this->version . '-2.18', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('2.18', 'dart:2.19', 'openruntimes/dart:' . $this->version . '-2.19', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.0', 'dart:3.0', 'openruntimes/dart:' . $this->version . '-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $dart->addVersion('3.1', 'dart:3.1', 'openruntimes/dart:' . $this->version . '-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET', 'dotnet src/function/DotNetRuntime.dll');
