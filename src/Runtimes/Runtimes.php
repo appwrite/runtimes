@@ -45,6 +45,7 @@ class Runtimes
         $python->addVersion('3.9', 'python:3.9-alpine3.16', 'openruntimes/python:' . $this->version . '-3.9', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.10', 'python:3.10-alpine3.16', 'openruntimes/python:' . $this->version . '-3.10', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.11', 'python:3.11-alpine3.16', 'openruntimes/python:' . $this->version . '-3.11', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $python->addVersion('3.12', 'python:3.12-alpine3.16', 'openruntimes/python:' . $this->version . '-3.12', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['python'] = $python;
 
         $deno = new Runtime('deno', 'Deno', 'denon start');
