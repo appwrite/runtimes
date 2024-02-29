@@ -26,18 +26,21 @@ class Runtimes
         $node->addVersion('18.0', 'node:18.0-alpine3.15', 'openruntimes/node:' . $this->version . '-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $node->addVersion('19.0', 'node:19.0-alpine3.16', 'openruntimes/node:' . $this->version . '-19.0', [System::X86, System::ARM64]);
         $node->addVersion('20.0', 'node:20.0-alpine3.16', 'openruntimes/node:' . $this->version . '-20.0', [System::X86, System::ARM64]);
+        $node->addVersion('21.0', 'node:21.0-alpine3.18', 'openruntimes/node:' . $this->version . '-21.0', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'php src/server.php');
         $php->addVersion('8.0', 'php:8.0-cli-alpine3.16', 'openruntimes/php:' . $this->version . '-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.1', 'php:8.1-cli-alpine3.16', 'openruntimes/php:' . $this->version . '-8.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.2', 'php:8.2-cli-alpine3.16', 'openruntimes/php:' . $this->version . '-8.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $php->addVersion('8.3', 'php:8.3-cli-alpine3.18', 'openruntimes/php:' . $this->version . '-8.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['php'] = $php;
 
         $ruby = new Runtime('ruby', 'Ruby', 'bundle exec puma -b tcp://0.0.0.0:3000 -e production');
         $ruby->addVersion('3.0', 'ruby:3.0-alpine3.16', 'openruntimes/ruby:' . $this->version . '-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $ruby->addVersion('3.1', 'ruby:3.1-alpine3.16', 'openruntimes/ruby:' . $this->version . '-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $ruby->addVersion('3.2', 'ruby:3.2-alpine3.16', 'openruntimes/ruby:' . $this->version . '-3.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('3.3', 'ruby:3.3-alpine3.18', 'openruntimes/ruby:' . $this->version . '-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['ruby'] = $ruby;
 
         $python = new Runtime('python', 'Python', 'python3 src/server.py');
@@ -52,6 +55,7 @@ class Runtimes
         $deno->addVersion('1.21', 'denoland/deno:alpine-1.21.3', 'openruntimes/deno:' . $this->version . '-1.21', [System::X86]);
         $deno->addVersion('1.24', 'denoland/deno:alpine-1.24.3', 'openruntimes/deno:' . $this->version . '-1.24', [System::X86]);
         $deno->addVersion('1.35', 'denoland/deno:alpine-1.35.2', 'openruntimes/deno:' . $this->version . '-1.35', [System::X86]);
+        $deno->addVersion('1.40', 'denoland/deno:alpine-1.40.5', 'openruntimes/deno:' . $this->version . '-1.40', [System::X86, System::ARM64]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart', 'src/function/server');
@@ -62,6 +66,7 @@ class Runtimes
         $dart->addVersion('2.18', 'dart:2.19', 'openruntimes/dart:' . $this->version . '-2.19', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.0', 'dart:3.0', 'openruntimes/dart:' . $this->version . '-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.1', 'dart:3.1', 'openruntimes/dart:' . $this->version . '-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $dart->addVersion('3.3', 'dart:3.3.0', 'openruntimes/dart:' . $this->version . '-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET', 'dotnet src/function/DotNetRuntime.dll');
@@ -75,16 +80,19 @@ class Runtimes
         $java->addVersion('11.0', 'openjdk/11-jdk-slim', 'openruntimes/java:' . $this->version . '-11.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('17.0', 'openjdk/17-jdk-slim', 'openruntimes/java:' . $this->version . '-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('18.0', 'openjdk/18-jdk-slim', 'openruntimes/java:' . $this->version . '-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('21.0', 'openjdk/21-jdk-slim', 'openruntimes/java:' . $this->version . '-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'src/function/Runtime serve --env production --hostname 0.0.0.0 --port 3000');
         $swift->addVersion('5.5', 'swiftarm/swift:5.5.3-ubuntu-jammy', 'openruntimes/swift:' . $this->version . '-5.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $swift->addVersion('5.8', 'swiftarm/swift:5.8-ubuntu-jammy', 'openruntimes/swift:' . $this->version . '-5.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $swift->addVersion('5.9', 'swift:5.9-jammy', 'openruntimes/swift:' . $this->version . '-5.9', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
         $this->runtimes['swift'] = $swift;
 
         $kotlin = new Runtime('kotlin', 'Kotlin', 'java -jar src/function/kotlin-runtime-1.0.0.jar');
         $kotlin->addVersion('1.6', 'openjdk/18-jdk-slim', 'openruntimes/kotlin:' . $this->version . '-1.6', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $kotlin->addVersion('1.8', 'openjdk/19-jdk-slim', 'openruntimes/kotlin:' . $this->version . '-1.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $kotlin->addVersion('1.9', 'openjdk/19-jdk-slim', 'openruntimes/kotlin:' . $this->version . '-1.9', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['kotlin'] = $kotlin;
 
         $cpp = new Runtime('cpp', 'C++', 'src/function/cpp_runtime');
@@ -93,7 +101,7 @@ class Runtimes
         $this->runtimes['cpp'] = $cpp;
 
         $bun = new Runtime('bun', 'Bun', 'bun src/server.ts');
-        $bun->addVersion('1.0', 'oven/bun:1.0.0', 'openruntimes/bun:' . $this->version . '-1.0', [System::X86, System::ARM64]);
+        $bun->addVersion('1.0', 'oven/bun:1.0.29', 'openruntimes/bun:' . $this->version . '-1.0', [System::X86, System::ARM64]);
         $this->runtimes['bun'] = $bun;
     }
 
