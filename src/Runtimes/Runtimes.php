@@ -51,6 +51,9 @@ class Runtimes
         $python->addVersion('3.12', 'python:3.12-alpine3.16', 'openruntimes/python:' . $this->version . '-3.12', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['python'] = $python;
 
+        $pythonML = new Runtime('python-ml', 'Python (ML)', 'python3 src/server.py');
+        $pythonML->addVersion('3.11', 'continuumio/miniconda3:24.1.2-0', 'openruntimes/python-ml:' . $this->version . '-3.11', [System::X86, System::ARM64]);
+
         $deno = new Runtime('deno', 'Deno', 'denon start');
         $deno->addVersion('1.21', 'denoland/deno:alpine-1.21.3', 'openruntimes/deno:' . $this->version . '-1.21', [System::X86]);
         $deno->addVersion('1.24', 'denoland/deno:alpine-1.24.3', 'openruntimes/deno:' . $this->version . '-1.24', [System::X86]);
