@@ -7,11 +7,13 @@ use PHPUnit\Framework\TestCase;
 
 class RuntimesTest extends TestCase
 {
-    public $tests;
+    /** @var array<mixed> */
+    public array $tests;
 
     /** @var Runtimes */
     public $instance;
 
+    /** @var string|false */
     public $functionsDir;
 
     public function setUp(): void
@@ -161,7 +163,7 @@ class RuntimesTest extends TestCase
     {
     }
 
-    public function testSupportedRuntimes()
+    public function testSupportedRuntimes(): void
     {
         $this->assertNotEmpty($this->instance->get('node'));
         $this->assertNotEmpty($this->instance->getAll());
@@ -171,7 +173,7 @@ class RuntimesTest extends TestCase
         $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-16.0']));
     }
 
-    public function testGetRuntimes()
+    public function testGetRuntimes(): void
     {
         foreach ($this->instance->getAll() as $runtime) {
             $this->assertArrayHasKey('name', $runtime, $runtime['name']);

@@ -55,7 +55,7 @@ class Runtime
     /**
      * List runtime with all parsed Versions.
      *
-     * @return array[]
+     * @return array<mixed>[]
      */
     public function list(): array
     {

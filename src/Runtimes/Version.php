@@ -12,20 +12,21 @@ class Version
     /**
      * @var string
      */
-    public $base;
+    public string $base;
 
     /**
      * @var string
      */
-    public $image;
+    public string $image;
 
     /**
-     * @var array
+     * @var array<string>
      */
-    public $supports;
+    public array $supports;
 
     /**
      * Version class that holds metadata about a Runtime Version.
+     * @param array<string> $supports
      */
     public function __construct(string $version, string $base, string $image, array $supports)
     {
@@ -38,7 +39,7 @@ class Version
     /**
      * Get parsed Version.
      *
-     * @return (array|string)[]
+     * @return (array<mixed>|string)[]
      */
     public function get(): array
     {

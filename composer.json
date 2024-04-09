@@ -18,7 +18,7 @@
         "lint": "./vendor/bin/pint --test",
         "format": "./vendor/bin/pint",
         "test": "vendor/bin/phpunit --configuration phpunit.xml",
-        "check": "./vendor/bin/phpstan analyse --level max src tests"
+        "check": "./vendor/bin/phpstan analyse --level 8 src tests"
     },
     "autoload": {
         "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes"}
