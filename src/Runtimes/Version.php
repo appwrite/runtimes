@@ -9,14 +9,8 @@ class Version
      */
     public $version;
 
-    /**
-     * @var string
-     */
     public string $base;
 
-    /**
-     * @var string
-     */
     public string $image;
 
     /**
@@ -26,7 +20,8 @@ class Version
 
     /**
      * Version class that holds metadata about a Runtime Version.
-     * @param array<string> $supports
+     *
+     * @param  array<string>  $supports
      */
     public function __construct(string $version, string $base, string $image, array $supports)
     {

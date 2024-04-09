@@ -10,7 +10,6 @@ class Runtimes
     /** @var array<string, Runtime> */
     protected $runtimes = [];
 
-    /** @var string */
     protected string $version;
 
     /**
@@ -133,8 +132,7 @@ class Runtimes
      * Returns all supported runtimes.
      *
      * @param  bool  $supported  Pass `false` to also return unsupported CPU architecture.
-     * @param array<mixed> $filter
-     * 
+     * @param  array<mixed>  $filter
      * @return array<mixed>
      */
     public function getAll(bool $supported = true, array $filter = []): array
