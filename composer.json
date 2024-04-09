@@ -14,6 +14,12 @@
             "email": "torsten@appwrite.io"
         }
     ],
+    "scripts": {
+        "lint": "./vendor/bin/pint --test",
+        "format": "./vendor/bin/pint",
+        "tests": "vendor/bin/phpunit --configuration phpunit.xml",
+        "check": "./vendor/bin/phpstan analyse --level 8 src tests"
+    },
     "autoload": {
         "psr-4": {"Appwrite\\Runtimes\\":"src/Runtimes"}
     },
@@ -23,7 +29,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3",
-        "vimeo/psalm": "4.0.1"
+        "laravel/pint": "^1.15",
+        "phpstan/phpstan": "^1.10"
     },
     "minimum-stability": "stable"
 }

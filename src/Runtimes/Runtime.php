@@ -26,9 +26,6 @@ class Runtime
 
     /**
      * Runtime that can contain different Versions.
-     * 
-     * @param string $key
-     * @param string $name
      */
     public function __construct(string $key, string $name, string $startCommand)
     {
@@ -39,8 +36,6 @@ class Runtime
 
     /**
      * Get key.
-     * 
-     * @return string
      */
     public function getKey(): string
     {
@@ -49,11 +44,8 @@ class Runtime
 
     /**
      * Adds new version to runtime.
-     * 
-     * @param string $version
-     * @param string $base
-     * @param string $image
-     * @param string[] $supports
+     *
+     * @param  string[]  $supports
      */
     public function addVersion(string $version, string $base, string $image, array $supports): void
     {
@@ -62,7 +54,7 @@ class Runtime
 
     /**
      * List runtime with all parsed Versions.
-     * 
+     *
      * @return array[]
      */
     public function list(): array
@@ -75,7 +67,7 @@ class Runtime
                     'key' => $this->key,
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
-                    'startCommand' => $this->startCommand
+                    'startCommand' => $this->startCommand,
                 ],
                 $version->get()
             );

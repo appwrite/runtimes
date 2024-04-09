@@ -26,11 +26,6 @@ class Version
 
     /**
      * Version class that holds metadata about a Runtime Version.
-     * 
-     * @param string $version
-     * @param string $base
-     * @param string $image
-     * @param array $supports
      */
     public function __construct(string $version, string $base, string $image, array $supports)
     {
@@ -42,7 +37,7 @@ class Version
 
     /**
      * Get parsed Version.
-     * 
+     *
      * @return (array|string)[]
      */
     public function get(): array
@@ -52,7 +47,7 @@ class Version
                 'version' => $this->version,
                 'base' => $this->base,
                 'image' => $this->image,
-                'supports' => $this->supports
+                'supports' => $this->supports,
             ];
     }
 }
