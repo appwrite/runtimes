@@ -106,6 +106,10 @@ class Runtimes
         $bun = new Runtime('bun', 'Bun', 'bun src/server.ts');
         $bun->addVersion('1.0', 'oven/bun:1.0.29', 'openruntimes/bun:'.$this->version.'-1.0', [System::X86, System::ARM64]);
         $this->runtimes['bun'] = $bun;
+
+        $go = new Runtime('go', 'Go', 'src/function/server');
+        $go->addVersion('1.22', 'golang:1.22-alpine', 'openruntimes/go:'.$this->version.'-1.22', [System::X86, System::ARM64]);
+        $this->runtimes['go'] = $go;
     }
 
     /**
