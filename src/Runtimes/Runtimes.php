@@ -19,7 +19,7 @@ class Runtimes
     {
         $this->version = $version;
 
-        $node = new Runtime('node', 'Node.js', 'pm2 start src/server.js --no-daemon');
+        $node = new Runtime('node', 'Node.js', 'pm2 start src/server.js --no-daemon --max-memory-restart 8G --node-args="--max_old_space_size=8192"');
         $node->addVersion('14.5', 'node:14.5-alpine3.11', 'openruntimes/node:'.$this->version.'-14.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $node->addVersion('16.0', 'node:16.0-alpine3.13', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $node->addVersion('18.0', 'node:18.0-alpine3.15', 'openruntimes/node:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
@@ -28,7 +28,7 @@ class Runtimes
         $node->addVersion('21.0', 'node:21.0-alpine3.18', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
-        $php = new Runtime('php', 'PHP', 'php src/server.php');
+        $php = new Runtime('php', 'PHP', 'php -d memory_limit=8G src/server.php ');
         $php->addVersion('8.0', 'php:8.0-cli-alpine3.16', 'openruntimes/php:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.1', 'php:8.1-cli-alpine3.16', 'openruntimes/php:'.$this->version.'-8.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.2', 'php:8.2-cli-alpine3.16', 'openruntimes/php:'.$this->version.'-8.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
