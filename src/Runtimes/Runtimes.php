@@ -108,7 +108,6 @@ class Runtimes
         $this->runtimes['bun'] = $bun;
 
         $go = new Runtime('go', 'Go', 'sh helpers/server.sh');
-        $go->addVersion('1.22', 'golang:1.22-alpine', 'openruntimes/go:'.$this->version.'-1.22', [System::X86, System::ARM64]);
         $go->addVersion('1.23', 'golang:1.23-alpine', 'openruntimes/go:'.$this->version.'-1.23', [System::X86, System::ARM64]);
         $this->runtimes['go'] = $go;
     }
