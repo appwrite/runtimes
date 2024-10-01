@@ -20,12 +20,13 @@ class Runtimes
         $this->version = $version;
 
         $node = new Runtime('node', 'Node.js', 'sh helpers/server.sh');
-        $node->addVersion('14.5', 'node:14.5-alpine3.11', 'openruntimes/node:'.$this->version.'-14.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $node->addVersion('16.0', 'node:16.0-alpine3.13', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $node->addVersion('18.0', 'node:18.0-alpine3.15', 'openruntimes/node:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $node->addVersion('19.0', 'node:19.0-alpine3.16', 'openruntimes/node:'.$this->version.'-19.0', [System::X86, System::ARM64]);
-        $node->addVersion('20.0', 'node:20.0-alpine3.16', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
-        $node->addVersion('21.0', 'node:21.0-alpine3.18', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
+        $node->addVersion('14.5', 'node:14.5.0-alpine3.12', 'openruntimes/node:'.$this->version.'-14.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $node->addVersion('16.0', 'node:16.20.2-alpine3.18', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $node->addVersion('18.0', 'node:18.20.4-alpine3.20', 'openruntimes/node:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $node->addVersion('19.0', 'node:19.9.0-alpine3.18', 'openruntimes/node:'.$this->version.'-19.0', [System::X86, System::ARM64]);
+        $node->addVersion('20.0', 'node:20.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
+        $node->addVersion('21.0', 'node:21.7.3-alpine3.20', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
+        $node->addVersion('22.0', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22.0', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'sh helpers/server.sh');
@@ -36,10 +37,10 @@ class Runtimes
         $this->runtimes['php'] = $php;
 
         $ruby = new Runtime('ruby', 'Ruby', 'sh helpers/server.sh');
-        $ruby->addVersion('3.0', 'ruby:3.0-alpine3.16', 'openruntimes/ruby:'.$this->version.'-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $ruby->addVersion('3.1', 'ruby:3.1-alpine3.16', 'openruntimes/ruby:'.$this->version.'-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $ruby->addVersion('3.2', 'ruby:3.2-alpine3.16', 'openruntimes/ruby:'.$this->version.'-3.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $ruby->addVersion('3.3', 'ruby:3.3-alpine3.18', 'openruntimes/ruby:'.$this->version.'-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('3.0', 'ruby:3.0.7-alpine3.16', 'openruntimes/ruby:'.$this->version.'-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('3.1', 'ruby:3.1.6-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('3.2', 'ruby:3.2.5-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('3.3', 'ruby:3.3.5-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['ruby'] = $ruby;
 
         $python = new Runtime('python', 'Python', 'sh helpers/server.sh');
@@ -82,17 +83,19 @@ class Runtimes
         $this->runtimes['dotnet'] = $dotnet;
 
         $java = new Runtime('java', 'Java', 'sh helpers/server.sh');
-        $java->addVersion('8.0', 'openjdk/8-jdk-slim', 'openruntimes/java:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('11.0', 'openjdk/11-jdk-slim', 'openruntimes/java:'.$this->version.'-11.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('17.0', 'openjdk/17-jdk-slim', 'openruntimes/java:'.$this->version.'-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('18.0', 'openjdk/18-jdk-slim', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('21.0', 'openjdk/21-jdk-slim', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('8.0', 'eclipse-temurin:8-jdk-jammy', 'openruntimes/java:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('11.0', 'eclipse-temurin:11-jdk-jammy', 'openruntimes/java:'.$this->version.'-11.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('17.0', 'eclipse-temurin:17-jdk-jammy', 'openruntimes/java:'.$this->version.'-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('21.0', 'eclipse-temurin:21-jdk-jammy', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('22.0', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'sh helpers/server.sh');
         $swift->addVersion('5.5', 'swiftarm/swift:5.5.3-ubuntu-jammy', 'openruntimes/swift:'.$this->version.'-5.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $swift->addVersion('5.8', 'swiftarm/swift:5.8-ubuntu-jammy', 'openruntimes/swift:'.$this->version.'-5.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $swift->addVersion('5.9', 'swift:5.9-jammy', 'openruntimes/swift:'.$this->version.'-5.9', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
+        $swift->addVersion('5.8', 'swiftarm/swift:5.8.1-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $swift->addVersion('5.9', 'swiftarm/swift:5.9.2-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.9', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
+        $swift->addVersion('5.10', 'swiftarm/swift:5.10-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.10', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
         $this->runtimes['swift'] = $swift;
 
         $kotlin = new Runtime('kotlin', 'Kotlin', 'sh helpers/server.sh');
