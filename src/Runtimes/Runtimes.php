@@ -26,7 +26,7 @@ class Runtimes
         $node->addVersion('19.0', 'node:19.9.0-alpine3.18', 'openruntimes/node:'.$this->version.'-19.0', [System::X86, System::ARM64]);
         $node->addVersion('20.0', 'node:20.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
         $node->addVersion('21.0', 'node:21.7.3-alpine3.20', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
-        $node->addVersion('22.0', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22.0', [System::X86, System::ARM64]);
+        $node->addVersion('22', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'sh helpers/server.sh');
@@ -88,7 +88,7 @@ class Runtimes
         $java->addVersion('17.0', 'eclipse-temurin:17-jdk-jammy', 'openruntimes/java:'.$this->version.'-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('21.0', 'eclipse-temurin:21-jdk-jammy', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('22.0', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'sh helpers/server.sh');
