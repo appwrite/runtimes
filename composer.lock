@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "88b86abbda7a7da38d02a8ac32d63083",
+    "content-hash": "bc349a81b82b1f738aef574c1d5442ea",
     "packages": [
         {
             "name": "utopia-php/system",
-            "version": "0.8.0",
+            "version": "0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/utopia-php/system.git",
-                "reference": "a2cbfb3c69b9ecb8b6f06c5774f3cf279ea7665e"
+                "reference": "8e4a7edaf2dfeb4c9524e9f766d27754f2c4b64d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/utopia-php/system/zipball/a2cbfb3c69b9ecb8b6f06c5774f3cf279ea7665e",
-                "reference": "a2cbfb3c69b9ecb8b6f06c5774f3cf279ea7665e",
+                "url": "https://api.github.com/repos/utopia-php/system/zipball/8e4a7edaf2dfeb4c9524e9f766d27754f2c4b64d",
+                "reference": "8e4a7edaf2dfeb4c9524e9f766d27754f2c4b64d",
                 "shasum": ""
             },
             "require": {
@@ -58,9 +58,9 @@
             ],
             "support": {
                 "issues": "https://github.com/utopia-php/system/issues",
-                "source": "https://github.com/utopia-php/system/tree/0.8.0"
+                "source": "https://github.com/utopia-php/system/tree/0.9.0"
             },
-            "time": "2024-04-01T10:22:28+00:00"
+            "time": "2024-10-09T14:44:01+00:00"
         }
     ],
     "packages-dev": [
