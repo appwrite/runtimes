@@ -103,7 +103,6 @@ class Runtimes
         $kotlin->addVersion('1.8', 'eclipse-temurin:19-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-1.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $kotlin->addVersion('1.9', 'eclipse-temurin:19-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-1.9', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $kotlin->addVersion('2.0', 'eclipse-temurin:22-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-2.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $kotlin->addVersion('2.0', 'eclipse-temurin:22-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-2.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['kotlin'] = $kotlin;
 
         $cpp = new Runtime('cpp', 'C++', 'sh helpers/server.sh');
