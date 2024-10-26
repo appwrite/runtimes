@@ -120,7 +120,7 @@ class Runtimes
         $this->runtimes['go'] = $go;
 
         $static = new Runtime('static', 'Static', 'sh helpers/server.sh');
-        $static->addVersion('1.0', 'joseluisq/static-web-server:2.33-alpine', 'openruntimes/static:'.$this->version.'-1.0', [System::X86, System::ARM64]);
+        $static->addVersion('1', 'joseluisq/static-web-server:2.33-alpine', 'openruntimes/static:'.$this->version.'-1', [System::X86, System::ARM64]);
         $this->runtimes['static'] = $static;
     }
 
