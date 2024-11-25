@@ -122,6 +122,10 @@ class Runtimes
         $static = new Runtime('static', 'Static', 'sh helpers/server.sh');
         $static->addVersion('1', 'joseluisq/static-web-server:2.33-alpine', 'openruntimes/static:'.$this->version.'-1', [System::X86, System::ARM64]);
         $this->runtimes['static'] = $static;
+
+        $flutter = new Runtime('flutter', 'Flutter', 'sh helpers/server.sh');
+        $flutter->addVersion('3.24', 'dart:3.5.2', 'openruntimes/flutter:'.$this->version.'-3.24', [System::X86, System::ARM64]);
+        $this->runtimes['flutter'] = $flutter;
     }
 
     /**
