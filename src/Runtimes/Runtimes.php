@@ -126,6 +126,10 @@ class Runtimes
         $flutter = new Runtime('flutter', 'Flutter', 'sh helpers/server.sh');
         $flutter->addVersion('3.24', 'dart:3.5.2', 'openruntimes/flutter:'.$this->version.'-3.24', [System::X86, System::ARM64]);
         $this->runtimes['flutter'] = $flutter;
+
+        $ssr = new Runtime('ssr', 'SSR', 'sh helpers/server.sh');
+        $ssr->addVersion('22', 'node:22.9.0-alpine3.20', 'openruntimes/ssr:' . $this->version . '-22', [System::X86, System::ARM64]);
+        $this->runtimes['ssr'] = $ssr;
     }
 
     /**
