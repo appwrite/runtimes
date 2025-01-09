@@ -98,8 +98,8 @@ class Runtimes
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET', 'sh helpers/server.sh');
-        $dotnet->addVersion('6.0', 'mcr.microsoft.com/dotnet/sdk:6.0.425-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-6.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true);
-        $dotnet->addVersion('7.0', 'mcr.microsoft.com/dotnet/sdk:7.0.410-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-7.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true);
+        $dotnet->addVersion('6.0', 'mcr.microsoft.com/dotnet/sdk:6.0.425-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-6.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since November 12, 2024
+        $dotnet->addVersion('7.0', 'mcr.microsoft.com/dotnet/sdk:7.0.410-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-7.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since May 14, 2024
         $dotnet->addVersion('8.0', 'mcr.microsoft.com/dotnet/sdk:8.0.402-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['dotnet'] = $dotnet;
 
@@ -107,9 +107,9 @@ class Runtimes
         $java->addVersion('8.0', 'eclipse-temurin:8-jdk-jammy', 'openruntimes/java:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('11.0', 'eclipse-temurin:11-jdk-jammy', 'openruntimes/java:'.$this->version.'-11.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('17.0', 'eclipse-temurin:17-jdk-jammy', 'openruntimes/java:'.$this->version.'-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true);
+        $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since September 20, 2022
         $java->addVersion('21.0', 'eclipse-temurin:21-jdk-jammy', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true);
+        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Technically deprecated, but latest. Keeping active
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'sh helpers/server.sh');
