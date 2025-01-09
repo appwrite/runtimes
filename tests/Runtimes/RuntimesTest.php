@@ -173,6 +173,22 @@ class RuntimesTest extends TestCase
         $this->assertCount(2, $this->instance->getAll(filter: ['node-14.5', 'node-16.0']));
     }
 
+    public function testDeprecatedRuntimes(): void
+    {
+        $versions = $this->instance->getAll();
+        $nodeDeprecated = $versions['node-14.5'];
+        $this->assertArrayHasKey('deprecated', $nodeDeprecated);
+        $this->assertTrue($nodeDeprecated['deprecated']);
+
+        $nodeNonDeprecated = $versions['node-22'];
+        $this->assertArrayHasKey('deprecated', $nodeNonDeprecated);
+        $this->assertFalse($nodeNonDeprecated['deprecated']);
+
+        $runtime = $this->instance->get('node');
+        $this->assertArrayHasKey('deprecated', $runtime->list()["node-14.5"]);
+        $this->assertArrayHasKey('deprecated', $runtime->list()["node-22"]);
+    }
+
     public function testGetRuntimes(): void
     {
         foreach ($this->instance->getAll() as $runtime) {
