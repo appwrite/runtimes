@@ -51,21 +51,21 @@ class Runtimes
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'sh helpers/server.sh');
-        $php->addVersion('8.0', 'php:8.0.30-cli-alpine3.16', 'openruntimes/php:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); # Deprecated since November 26, 2023
+        $php->addVersion('8.0', 'php:8.0.30-cli-alpine3.16', 'openruntimes/php:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since November 26, 2023
         $php->addVersion('8.1', 'php:8.1.30-cli-alpine3.20', 'openruntimes/php:'.$this->version.'-8.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.2', 'php:8.2.24-cli-alpine3.20', 'openruntimes/php:'.$this->version.'-8.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.3', 'php:8.3.12-cli-alpine3.20', 'openruntimes/php:'.$this->version.'-8.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['php'] = $php;
 
         $ruby = new Runtime('ruby', 'Ruby', 'sh helpers/server.sh');
-        $ruby->addVersion('3.0', 'ruby:3.0.7-alpine3.16', 'openruntimes/ruby:'.$this->version.'-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); # Deprecated since April 23, 2024
+        $ruby->addVersion('3.0', 'ruby:3.0.7-alpine3.16', 'openruntimes/ruby:'.$this->version.'-3.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since April 23, 2024
         $ruby->addVersion('3.1', 'ruby:3.1.6-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $ruby->addVersion('3.2', 'ruby:3.2.5-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $ruby->addVersion('3.3', 'ruby:3.3.5-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['ruby'] = $ruby;
 
         $python = new Runtime('python', 'Python', 'sh helpers/server.sh');
-        $python->addVersion('3.8', 'python:3.8.20-alpine3.20', 'openruntimes/python:'.$this->version.'-3.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); // Deprecated since October 7, 2024
+        $python->addVersion('3.8', 'python:3.8.20-alpine3.20', 'openruntimes/python:'.$this->version.'-3.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since October 7, 2024
         $python->addVersion('3.9', 'python:3.9.20-alpine3.20', 'openruntimes/python:'.$this->version.'-3.9', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.10', 'python:3.10.15-alpine3.20', 'openruntimes/python:'.$this->version.'-3.10', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.11', 'python:3.11.10-alpine3.20', 'openruntimes/python:'.$this->version.'-3.11', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
@@ -109,7 +109,7 @@ class Runtimes
         $java->addVersion('17.0', 'eclipse-temurin:17-jdk-jammy', 'openruntimes/java:'.$this->version.'-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since September 20, 2022
         $java->addVersion('21.0', 'eclipse-temurin:21-jdk-jammy', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Technically deprecated, but latest. Keeping active
+        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); // Technically deprecated, but latest. Keeping active
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'sh helpers/server.sh');
