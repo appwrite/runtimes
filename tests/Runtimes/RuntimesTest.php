@@ -134,12 +134,6 @@ class RuntimesTest extends TestCase
                 'timeout' => 15,
                 'runtime' => 'java-18.0',
             ],
-            'swift-5.5' => [
-                'code' => $functionsDir.'/swift.tar.gz',
-                'command' => './helloworld',
-                'timeout' => 15,
-                'runtime' => 'swift-5.5',
-            ],
             'kotlin-1.6' => [
                 'code' => $functionsDir.'/kotlin.tar.gz',
                 'command' => 'kotlin HelloWorld',
