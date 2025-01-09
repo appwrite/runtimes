@@ -177,19 +177,36 @@ class Runtimes
      * Returns all supported runtimes.
      *
      * @param  bool  $supported  Pass `false` to also return unsupported CPU architecture.
+     * @param  bool  $deprecated  Pass `false` to filter out deprecated versions from runtimes
      * @param  array<mixed>  $filter
      * @return array<mixed>
      */
-    public function getAll(bool $supported = true, array $filter = []): array
+    public function getAll(bool $supported = true, array $filter = [], $deprecated = true): array
     {
         $supportedRuntimes = [];
 
         foreach ($this->runtimes as $runtime) {
-            $supportedRuntimes = array_merge(array_reverse(array_filter($runtime->list(), function (array $version, string $key) use ($supported, $filter) {
+            $supportedRuntimes = array_merge(array_reverse(array_filter($runtime->list(), function (array $version, string $key) use ($supported, $filter, $deprecated) {
                 $isSupported = in_array(System::getArchEnum(), $version['supports']);
                 $isFiltered = in_array($key, $filter);
+                $isDeprecated = $version['deprecated'];
 
-                return $supported ? ($isSupported && ($filter ? $isFiltered : true)) : true;
+                // Apply supported filter
+                if ($supported && !$isSupported) {
+                    return false;
+                }
+
+                // Apply version filter
+                if (\count($filter) > 0 && !$isFiltered) {
+                    return false;
+                }
+
+                // Apply deprecation filter
+                if (!$deprecated && $isDeprecated) {
+                    return false;
+                }
+
+                return true;
             }, ARRAY_FILTER_USE_BOTH)), $supportedRuntimes);
         }
 
