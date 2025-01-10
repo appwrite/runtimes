@@ -42,7 +42,7 @@ class Runtimes
 
         $node = new Runtime('node', 'Node.js', 'sh helpers/server.sh');
         $node->addVersion('14.5', 'node:14.5.0-alpine3.12', 'openruntimes/node:'.$this->version.'-14.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since April 30, 2023
-        $node->addVersion('16.0', 'node:16.20.2-alpine3.18', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecatd since September 11, 2023
+        $node->addVersion('16.0', 'node:16.20.2-alpine3.18', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since September 11, 2023
         $node->addVersion('18.0', 'node:18.20.4-alpine3.20', 'openruntimes/node:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $node->addVersion('19.0', 'node:19.9.0-alpine3.18', 'openruntimes/node:'.$this->version.'-19.0', [System::X86, System::ARM64]);
         $node->addVersion('20.0', 'node:20.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
