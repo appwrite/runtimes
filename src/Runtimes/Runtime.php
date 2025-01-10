@@ -47,9 +47,9 @@ class Runtime
      *
      * @param  string[]  $supports
      */
-    public function addVersion(string $version, string $base, string $image, array $supports): void
+    public function addVersion(string $version, string $base, string $image, array $supports, bool $deprecated = false): void
     {
-        $this->versions[] = new Version($version, $base, $image, $supports);
+        $this->versions[] = new Version($version, $base, $image, $supports, $deprecated);
     }
 
     /**
