@@ -53,6 +53,7 @@ class Runtimes
 
         $pythonML = new Runtime('python-ml', 'Python (ML)', 'sh helpers/server.sh');
         $pythonML->addVersion('3.11', 'python:3.11.10-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.11', [System::X86, System::ARM64]);
+        $pythonML->addVersion('3.12', 'python:3.12.6-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.12', [System::X86, System::ARM64]);
         $this->runtimes['python-ml'] = $pythonML;
 
         $deno = new Runtime('deno', 'Deno', 'sh helpers/server.sh');
