@@ -92,7 +92,6 @@ class Runtimes
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'sh helpers/server.sh');
-        $swift->addVersion('5.5', 'swiftarm/swift:5.5.3-ubuntu-jammy', 'openruntimes/swift:'.$this->version.'-5.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $swift->addVersion('5.8', 'swiftarm/swift:5.8.1-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $swift->addVersion('5.9', 'swiftarm/swift:5.9.2-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.9', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
         $swift->addVersion('5.10', 'swiftarm/swift:5.10-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.10', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
