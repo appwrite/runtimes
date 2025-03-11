@@ -146,8 +146,9 @@ class Runtimes
         $this->runtimes['static'] = $static;
 
         $flutter = new Runtime('flutter', 'Flutter', 'sh helpers/server.sh');
-        $flutter->addVersion('3.24', 'dart:3.5.2', 'openruntimes/flutter:'.$this->version.'-3.24', [System::X86, System::ARM64]);
-        $flutter->addVersion('3.27', 'dart:3.6.1', 'openruntimes/flutter:'.$this->version.'-3.27', [System::X86, System::ARM64]);
+        $flutter->addVersion('3.24', 'ghcr.io/cirruslabs/flutter:3.24.5', 'openruntimes/flutter:'.$this->version.'-3.24', [System::X86, System::ARM64]);
+        $flutter->addVersion('3.27', 'ghcr.io/cirruslabs/flutter:3.27.3', 'openruntimes/flutter:'.$this->version.'-3.27', [System::X86, System::ARM64]);
+        $flutter->addVersion('3.29', 'ghcr.io/cirruslabs/flutter:3.29.1', 'openruntimes/flutter:'.$this->version.'-3.29', [System::X86, System::ARM64]);
         $this->runtimes['flutter'] = $flutter;
     }
 
