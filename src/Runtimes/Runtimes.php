@@ -96,6 +96,7 @@ class Runtimes
         $dart->addVersion('3.1', 'dart:3.1.5', 'openruntimes/dart:'.$this->version.'-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.3', 'dart:3.3.4', 'openruntimes/dart:'.$this->version.'-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.5', 'dart:3.5.2', 'openruntimes/dart:'.$this->version.'-3.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $dart->addVersion('3.8', 'dart:3.8', 'openruntimes/dart:'.$this->version.'-3.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET', 'bash helpers/server.sh');
@@ -149,6 +150,7 @@ class Runtimes
         $flutter->addVersion('3.24', 'ghcr.io/cirruslabs/flutter:3.24.5', 'openruntimes/flutter:'.$this->version.'-3.24', [System::X86, System::ARM64]);
         $flutter->addVersion('3.27', 'ghcr.io/cirruslabs/flutter:3.27.3', 'openruntimes/flutter:'.$this->version.'-3.27', [System::X86, System::ARM64]);
         $flutter->addVersion('3.29', 'ghcr.io/cirruslabs/flutter:3.29.1', 'openruntimes/flutter:'.$this->version.'-3.29', [System::X86, System::ARM64]);
+        $flutter->addVersion('3.32', 'ghcr.io/cirruslabs/flutter:3.32.0', 'openruntimes/flutter:'.$this->version.'-3.32', [System::X86, System::ARM64]);
         $this->runtimes['flutter'] = $flutter;
     }
 
