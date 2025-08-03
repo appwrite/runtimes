@@ -41,13 +41,29 @@ class Runtimes
         $this->version = $version;
 
         $node = new Runtime('node', 'Node.js', 'bash helpers/server.sh');
+        $node->addVersion('14', 'node:14-alpine', 'openruntimes/node:'.$this->version.'-14', [System::X86], true); # Deprecated since April 30, 2023
         $node->addVersion('14.5', 'node:14.5.0-alpine3.12', 'openruntimes/node:'.$this->version.'-14.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since April 30, 2023
-        $node->addVersion('16.0', 'node:16.20.2-alpine3.18', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since September 11, 2023
-        $node->addVersion('18.0', 'node:18.20.4-alpine3.20', 'openruntimes/node:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $node->addVersion('19.0', 'node:19.9.0-alpine3.18', 'openruntimes/node:'.$this->version.'-19.0', [System::X86, System::ARM64]);
-        $node->addVersion('20.0', 'node:20.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
-        $node->addVersion('21.0', 'node:21.7.3-alpine3.20', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
-        $node->addVersion('22', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22', [System::X86, System::ARM64]);
+        $node->addVersion('16', 'node:16-alpine', 'openruntimes/node:'.$this->version.'-16', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since September 11, 2023
+        $node->addVersion('16.0', 'node:16.0.0-alpine3.13', 'openruntimes/node:'.$this->version.'-16.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since September 11, 2023
+        $node->addVersion('16.20', 'node:16.20.2-alpine3.18', 'openruntimes/node:'.$this->version.'-16.20', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); # Deprecated since September 11, 2023
+        $node->addVersion('18', 'node:18-alpine', 'openruntimes/node:'.$this->version.'-18', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $node->addVersion('18.0', 'node:18.0.0-alpine3.15', 'openruntimes/node:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $node->addVersion('18.20', 'node:18.20.8-alpine3.20', 'openruntimes/node:'.$this->version.'-18.20', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $node->addVersion('19', 'node:19-alpine', 'openruntimes/node:'.$this->version.'-19', [System::X86, System::ARM64]);
+        $node->addVersion('19.0', 'node:19.0.0-alpine3.16', 'openruntimes/node:'.$this->version.'-19.0', [System::X86, System::ARM64]);
+        $node->addVersion('19.9', 'node:19.9.0-alpine3.17', 'openruntimes/node:'.$this->version.'-19.9', [System::X86, System::ARM64]);
+        $node->addVersion('20', 'node:20-alpine', 'openruntimes/node:'.$this->version.'-20', [System::X86, System::ARM64]);
+        $node->addVersion('20.0', 'node:20.0.0-alpine3.17', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
+        $node->addVersion('20.17', 'node:20.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-20.17', [System::X86, System::ARM64]);
+        $node->addVersion('21', 'node:21-alpine', 'openruntimes/node:'.$this->version.'-21', [System::X86, System::ARM64]);
+        $node->addVersion('21.0', 'node:21.0.0-alpine3.18', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
+        $node->addVersion('21.7', 'node:21.7.3-alpine3.20', 'openruntimes/node:'.$this->version.'-21.7', [System::X86, System::ARM64]);
+        $node->addVersion('22', 'node:22-alpine', 'openruntimes/node:'.$this->version.'-22', [System::X86, System::ARM64]);
+        $node->addVersion('22.9', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22.9', [System::X86, System::ARM64]);
+        $node->addVersion('22.17', 'node:22.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22.17', [System::X86, System::ARM64]);
+        $node->addVersion('24', 'node:24-alpine', 'openruntimes/node:'.$this->version.'-24', [System::X86, System::ARM64]);
+        $node->addVersion('24.0', 'node:24.0.0-alpine3.19', 'openruntimes/node:'.$this->version.'-24.0', [System::X86, System::ARM64]);
+        $node->addVersion('24.4', 'node:24.4.0-alpine3.20', 'openruntimes/node:'.$this->version.'-24.4', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'bash helpers/server.sh');
