@@ -97,6 +97,7 @@ class Runtimes
         $dart->addVersion('3.3', 'dart:3.3.4', 'openruntimes/dart:'.$this->version.'-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.5', 'dart:3.5.2', 'openruntimes/dart:'.$this->version.'-3.5', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $dart->addVersion('3.8', 'dart:3.8', 'openruntimes/dart:'.$this->version.'-3.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $dart->addVersion('3.9', 'dart:3.9.3', 'openruntimes/dart:'.$this->version.'-3.9', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['dart'] = $dart;
 
         $dotnet = new Runtime('dotnet', '.NET', 'bash helpers/server.sh');
