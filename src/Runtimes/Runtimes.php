@@ -142,6 +142,8 @@ class Runtimes
 
         $go = new Runtime('go', 'Go', 'bash helpers/server.sh');
         $go->addVersion('1.23', 'golang:1.23.1-alpine3.20', 'openruntimes/go:'.$this->version.'-1.23', [System::X86, System::ARM64]);
+        $go->addVersion('1.24', 'golang:1.24.11-alpine3.23', 'openruntimes/go:'.$this->version.'-1.24', [System::X86, System::ARM64]);
+        $go->addVersion('1.25', 'golang:1.25.5-alpine3.23', 'openruntimes/go:'.$this->version.'-1.25', [System::X86, System::ARM64]);
         $this->runtimes['go'] = $go;
 
         $static = new Runtime('static', 'Static', 'bash helpers/server.sh');
