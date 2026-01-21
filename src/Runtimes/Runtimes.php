@@ -138,6 +138,7 @@ class Runtimes
         $bun = new Runtime('bun', 'Bun', 'bash helpers/server.sh');
         $bun->addVersion('1.0', 'oven/bun:1.0.36-alpine', 'openruntimes/bun:'.$this->version.'-1.0', [System::X86, System::ARM64]);
         $bun->addVersion('1.1', 'oven/bun:1.1.29-alpine', 'openruntimes/bun:'.$this->version.'-1.1', [System::X86, System::ARM64]);
+        $bun->addVersion('1.2', 'oven/bun:1.2.15-alpine', 'openruntimes/bun:'.$this->version.'-1.2', [System::X86, System::ARM64]);
         $this->runtimes['bun'] = $bun;
 
         $go = new Runtime('go', 'Go', 'bash helpers/server.sh');
