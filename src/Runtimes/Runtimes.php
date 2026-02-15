@@ -70,11 +70,15 @@ class Runtimes
         $python->addVersion('3.10', 'python:3.10.15-alpine3.20', 'openruntimes/python:'.$this->version.'-3.10', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.11', 'python:3.11.10-alpine3.20', 'openruntimes/python:'.$this->version.'-3.11', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.12', 'python:3.12.6-alpine3.20', 'openruntimes/python:'.$this->version.'-3.12', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $python->addVersion('3.13', 'python:3.13.0-alpine3.20', 'openruntimes/python:'.$this->version.'-3.13', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $python->addVersion('3.14', 'python:3.14-alpine3.22', 'openruntimes/python:'.$this->version.'-3.14', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['python'] = $python;
 
         $pythonML = new Runtime('python-ml', 'Python (ML)', 'bash helpers/server.sh');
         $pythonML->addVersion('3.11', 'python:3.11.10-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.11', [System::X86, System::ARM64]);
         $pythonML->addVersion('3.12', 'python:3.12.6-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.12', [System::X86, System::ARM64]);
+        $pythonML->addVersion('3.13', 'python:3.13.0-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.13', [System::X86, System::ARM64]);
+        $pythonML->addVersion('3.14', 'python:3.14-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.14', [System::X86, System::ARM64]);
         $this->runtimes['python-ml'] = $pythonML;
 
         $deno = new Runtime('deno', 'Deno', 'bash helpers/server.sh');
