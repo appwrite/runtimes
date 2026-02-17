@@ -49,7 +49,7 @@ class Runtimes
         $node->addVersion('21.0', 'node:21.7.3-alpine3.20', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
         $node->addVersion('22', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22', [System::X86, System::ARM64]);
         $node->addVersion('23', 'node:23.11.1-alpine3.22', 'openruntimes/node:'.$this->version.'-23', [System::X86, System::ARM64]);
-        $node->addVersion('24', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-24', [System::X86, System::ARM64]);
+        $node->addVersion('24', 'node:24.13.0-alpine3.23', 'openruntimes/node:'.$this->version.'-24', [System::X86, System::ARM64]);
         $node->addVersion('25', 'node:25.5.0-alpine3.23', 'openruntimes/node:'.$this->version.'-25', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
@@ -125,8 +125,8 @@ class Runtimes
         $java->addVersion('17.0', 'eclipse-temurin:17-jdk-jammy', 'openruntimes/java:'.$this->version.'-17.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since September 20, 2022
         $java->addVersion('21.0', 'eclipse-temurin:21-jdk-jammy', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
-        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); // Technically deprecated, but latest. Keeping active
-        $java->addVersion('25', 'eclipse-temurin:25-jdk-jammy', 'openruntimes/java:'.$this->version.'-25', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); // Technically deprecated, but latest. Keeping active
+        $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $java->addVersion('25', 'eclipse-temurin:25-jdk-jammy', 'openruntimes/java:'.$this->version.'-25', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'bash helpers/server.sh');
