@@ -48,6 +48,9 @@ class Runtimes
         $node->addVersion('20.0', 'node:20.17.0-alpine3.20', 'openruntimes/node:'.$this->version.'-20.0', [System::X86, System::ARM64]);
         $node->addVersion('21.0', 'node:21.7.3-alpine3.20', 'openruntimes/node:'.$this->version.'-21.0', [System::X86, System::ARM64]);
         $node->addVersion('22', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-22', [System::X86, System::ARM64]);
+        $node->addVersion('23', 'node:23.11.1-alpine3.22', 'openruntimes/node:'.$this->version.'-23', [System::X86, System::ARM64]);
+        $node->addVersion('24', 'node:22.9.0-alpine3.20', 'openruntimes/node:'.$this->version.'-24', [System::X86, System::ARM64]);
+        $node->addVersion('25', 'node:25.5.0-alpine3.23', 'openruntimes/node:'.$this->version.'-25', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'bash helpers/server.sh');
@@ -55,6 +58,7 @@ class Runtimes
         $php->addVersion('8.1', 'php:8.1.30-cli-alpine3.20', 'openruntimes/php:'.$this->version.'-8.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.2', 'php:8.2.24-cli-alpine3.20', 'openruntimes/php:'.$this->version.'-8.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $php->addVersion('8.3', 'php:8.3.12-cli-alpine3.20', 'openruntimes/php:'.$this->version.'-8.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $php->addVersion('8.4', 'php:8.4.17-cli-alpine3.23', 'openruntimes/php:'.$this->version.'-8.4', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['php'] = $php;
 
         $ruby = new Runtime('ruby', 'Ruby', 'bash helpers/server.sh');
@@ -62,6 +66,8 @@ class Runtimes
         $ruby->addVersion('3.1', 'ruby:3.1.6-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.1', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $ruby->addVersion('3.2', 'ruby:3.2.5-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.2', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $ruby->addVersion('3.3', 'ruby:3.3.5-alpine3.20', 'openruntimes/ruby:'.$this->version.'-3.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('3.4', 'ruby:3.4.8-alpine3.22', 'openruntimes/ruby:'.$this->version.'-3.4', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $ruby->addVersion('4.0', 'ruby:4.0.1-alpine3.22', 'openruntimes/ruby:'.$this->version.'-4.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['ruby'] = $ruby;
 
         $python = new Runtime('python', 'Python', 'bash helpers/server.sh');
@@ -70,11 +76,14 @@ class Runtimes
         $python->addVersion('3.10', 'python:3.10.15-alpine3.20', 'openruntimes/python:'.$this->version.'-3.10', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.11', 'python:3.11.10-alpine3.20', 'openruntimes/python:'.$this->version.'-3.11', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.12', 'python:3.12.6-alpine3.20', 'openruntimes/python:'.$this->version.'-3.12', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $python->addVersion('3.13', 'python:3.13.11-alpine3.23', 'openruntimes/python:'.$this->version.'-3.13', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $python->addVersion('3.14', 'python:3.14.2-alpine3.23', 'openruntimes/python:'.$this->version.'-3.14', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['python'] = $python;
 
         $pythonML = new Runtime('python-ml', 'Python (ML)', 'bash helpers/server.sh');
         $pythonML->addVersion('3.11', 'python:3.11.10-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.11', [System::X86, System::ARM64]);
         $pythonML->addVersion('3.12', 'python:3.12.6-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.12', [System::X86, System::ARM64]);
+        $pythonML->addVersion('3.13', 'python:3.13.11-bookworm', 'openruntimes/python-ml:'.$this->version.'-3.13', [System::X86, System::ARM64]);
         $this->runtimes['python-ml'] = $pythonML;
 
         $deno = new Runtime('deno', 'Deno', 'bash helpers/server.sh');
@@ -83,7 +92,9 @@ class Runtimes
         $deno->addVersion('1.35', 'denoland/deno:alpine-1.35.3', 'openruntimes/deno:'.$this->version.'-1.35', [System::X86], true);
         $deno->addVersion('1.40', 'denoland/deno:alpine-1.40.5', 'openruntimes/deno:'.$this->version.'-1.40', [System::X86, System::ARM64]);
         $deno->addVersion('1.46', 'denoland/deno:alpine-1.46.3', 'openruntimes/deno:'.$this->version.'-1.46', [System::X86, System::ARM64]);
-        $deno->addVersion('2.0', 'denoland/deno:alpine-2.0.0-rc.5', 'openruntimes/deno:'.$this->version.'-2.0', [System::X86, System::ARM64]);
+        $deno->addVersion('2.0', 'denoland/deno:alpine-2.0.6', 'openruntimes/deno:'.$this->version.'-2.0', [System::X86, System::ARM64]);
+        $deno->addVersion('2.5', 'denoland/deno:alpine-2.5.7', 'openruntimes/deno:'.$this->version.'-2.5', [System::X86, System::ARM64]);
+        $deno->addVersion('2.6', 'denoland/deno:alpine-2.6.7', 'openruntimes/deno:'.$this->version.'-2.6', [System::X86, System::ARM64]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart', 'bash helpers/server.sh');
@@ -105,6 +116,7 @@ class Runtimes
         $dotnet->addVersion('6.0', 'mcr.microsoft.com/dotnet/sdk:6.0.425-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-6.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since November 12, 2024
         $dotnet->addVersion('7.0', 'mcr.microsoft.com/dotnet/sdk:7.0.410-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-7.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since May 14, 2024
         $dotnet->addVersion('8.0', 'mcr.microsoft.com/dotnet/sdk:8.0.402-alpine3.19', 'openruntimes/dotnet:'.$this->version.'-8.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $dotnet->addVersion('10', 'mcr.microsoft.com/dotnet/sdk:10.0.102-alpine3.23', 'openruntimes/dotnet:'.$this->version.'-10', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['dotnet'] = $dotnet;
 
         $java = new Runtime('java', 'Java', 'bash helpers/server.sh');
@@ -114,6 +126,7 @@ class Runtimes
         $java->addVersion('18.0', 'eclipse-temurin:18-jdk-jammy', 'openruntimes/java:'.$this->version.'-18.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8], true); // Deprecated since September 20, 2022
         $java->addVersion('21.0', 'eclipse-temurin:21-jdk-jammy', 'openruntimes/java:'.$this->version.'-21.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $java->addVersion('22', 'eclipse-temurin:22-jdk-jammy', 'openruntimes/java:'.$this->version.'-22', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); // Technically deprecated, but latest. Keeping active
+        $java->addVersion('25', 'eclipse-temurin:25-jdk-jammy', 'openruntimes/java:'.$this->version.'-25', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]); // Technically deprecated, but latest. Keeping active
         $this->runtimes['java'] = $java;
 
         $swift = new Runtime('swift', 'Swift', 'bash helpers/server.sh');
@@ -121,6 +134,7 @@ class Runtimes
         $swift->addVersion('5.8', 'swiftarm/swift:5.8.1-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $swift->addVersion('5.9', 'swiftarm/swift:5.9.2-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.9', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
         $swift->addVersion('5.10', 'swiftarm/swift:5.10-ubuntu-22.04', 'openruntimes/swift:'.$this->version.'-5.10', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
+        $swift->addVersion('6.2', 'swift:6.2.3-jammy', 'openruntimes/swift:'.$this->version.'-6.2', [System::X86, System::ARM64,  System::ARMV7, System::ARMV8]);
         $this->runtimes['swift'] = $swift;
 
         $kotlin = new Runtime('kotlin', 'Kotlin', 'bash helpers/server.sh');
@@ -128,6 +142,7 @@ class Runtimes
         $kotlin->addVersion('1.8', 'eclipse-temurin:19-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-1.8', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $kotlin->addVersion('1.9', 'eclipse-temurin:19-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-1.9', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $kotlin->addVersion('2.0', 'eclipse-temurin:22-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-2.0', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $kotlin->addVersion('2.3', 'eclipse-temurin:25-jdk-alpine', 'openruntimes/kotlin:'.$this->version.'-2.3', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $this->runtimes['kotlin'] = $kotlin;
 
         $cpp = new Runtime('cpp', 'C++', 'bash helpers/server.sh');
@@ -138,10 +153,15 @@ class Runtimes
         $bun = new Runtime('bun', 'Bun', 'bash helpers/server.sh');
         $bun->addVersion('1.0', 'oven/bun:1.0.36-alpine', 'openruntimes/bun:'.$this->version.'-1.0', [System::X86, System::ARM64]);
         $bun->addVersion('1.1', 'oven/bun:1.1.29-alpine', 'openruntimes/bun:'.$this->version.'-1.1', [System::X86, System::ARM64]);
+        $bun->addVersion('1.2', 'oven/bun:1.2.23-alpine', 'openruntimes/bun:'.$this->version.'-1.2', [System::X86, System::ARM64]);
+        $bun->addVersion('1.3', 'oven/bun:1.3.8-alpine', 'openruntimes/bun:'.$this->version.'-1.3', [System::X86, System::ARM64]);
         $this->runtimes['bun'] = $bun;
 
         $go = new Runtime('go', 'Go', 'bash helpers/server.sh');
         $go->addVersion('1.23', 'golang:1.23.1-alpine3.20', 'openruntimes/go:'.$this->version.'-1.23', [System::X86, System::ARM64]);
+        $go->addVersion('1.24', 'golang:1.24.12-alpine3.23', 'openruntimes/go:'.$this->version.'-1.24', [System::X86, System::ARM64]);
+        $go->addVersion('1.25', 'golang:1.25.6-alpine3.23', 'openruntimes/go:'.$this->version.'-1.25', [System::X86, System::ARM64]);
+        $go->addVersion('1.26', 'golang:1.26.0-alpine3.23', 'openruntimes/go:'.$this->version.'-1.26', [System::X86, System::ARM64]);
         $this->runtimes['go'] = $go;
 
         $static = new Runtime('static', 'Static', 'bash helpers/server.sh');
