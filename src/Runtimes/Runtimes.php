@@ -20,6 +20,7 @@ use Utopia\System\System;
  * Dart: https://dart.dev/resources/whats-new
  * Swift: https://github.com/swiftlang/swift-evolution
  * Kotlin: https://kotlinlang.org/docs/releases.html#update-to-a-new-kotlin-version
+ * Rust: https://releases.rs/
  *
  * Dart: No official document, support last 6 versions (~1.5 years) (plus latest 2.x until 4.x releases)
  * Deno: Technically, all 1.x is deprecated. Mark them deprecated overtime, not all at once.
@@ -164,6 +165,10 @@ class Runtimes
         $go->addVersion('1.25', 'golang:1.25.6-alpine3.23', 'openruntimes/go:'.$this->version.'-1.25', [System::X86, System::ARM64]);
         $go->addVersion('1.26', 'golang:1.26.0-alpine3.23', 'openruntimes/go:'.$this->version.'-1.26', [System::X86, System::ARM64]);
         $this->runtimes['go'] = $go;
+
+        $rust = new Runtime('rust', 'Rust', 'bash helpers/server.sh');
+        $rust->addVersion('1.83', 'rust:1.83.0-alpine3.21', 'openruntimes/rust:'.$this->version.'-1.83', [System::X86, System::ARM64]);
+        $this->runtimes['rust'] = $rust;
 
         $static = new Runtime('static', 'Static', 'bash helpers/server.sh');
         $static->addVersion('1', 'joseluisq/static-web-server:2.33-alpine', 'openruntimes/static:'.$this->version.'-1', [System::X86, System::ARM64]);
