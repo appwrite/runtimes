@@ -25,33 +25,40 @@ class Runtime
     protected $versions = [];
 
     /**
-     * @var string
+     * @var string[]
      */
-    protected $type;
+    protected $services;
 
-    public const TYPE_FUNCTION = 'function';
-    public const TYPE_SITE = 'site';
+    public const SERVICE_FUNCTIONS = 'functions';
+    public const SERVICE_SITES = 'sites';
 
     /**
      * Runtime that can contain different Versions.
+     *
+     * @param  string[]  $services
      */
-    public function __construct(string $key, string $name, string $startCommand, string $type = self::TYPE_FUNCTION)
+    public function __construct(string $key, string $name, string $startCommand, array $services = [self::SERVICE_FUNCTIONS])
     {
-        if (!\in_array($type, [self::TYPE_FUNCTION, self::TYPE_SITE], true)) {
-            throw new \InvalidArgumentException("Invalid runtime type: {$type}");
+        $validServices = [self::SERVICE_FUNCTIONS, self::SERVICE_SITES];
+        foreach ($services as $service) {
+            if (!\in_array($service, $validServices, true)) {
+                throw new \InvalidArgumentException("Invalid runtime service: {$service}");
+            }
         }
         $this->key = $key;
         $this->name = $name;
         $this->startCommand = $startCommand;
-        $this->type = $type;
+        $this->services = $services;
     }
 
     /**
-     * Get type.
+     * Get services.
+     *
+     * @return string[]
      */
-    public function getType(): string
+    public function getServices(): array
     {
-        return $this->type;
+        return $this->services;
     }
 
     /**
@@ -88,7 +95,7 @@ class Runtime
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
                     'startCommand' => $this->startCommand,
-                    'type' => $this->type,
+                    'services' => $this->services,
                 ],
                 $version->get()
             );
