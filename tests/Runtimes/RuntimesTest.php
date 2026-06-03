@@ -2,6 +2,7 @@
 
 namespace Appwrite\Tests;
 
+use Appwrite\Runtimes\Runtime;
 use Appwrite\Runtimes\Runtimes;
 use PHPUnit\Framework\TestCase;
 
@@ -195,10 +196,84 @@ class RuntimesTest extends TestCase
             $this->assertArrayHasKey('image', $runtime, $runtime['name']);
             $this->assertArrayHasKey('logo', $runtime, $runtime['name']);
             $this->assertArrayHasKey('supports', $runtime, $runtime['name']);
+            $this->assertArrayHasKey('services', $runtime, $runtime['name']);
             $this->assertStringContainsString('v1-', $runtime['image']);
 
             $this->assertIsArray($runtime['supports']);
             $this->assertNotEmpty($runtime['supports']);
+            $this->assertIsArray($runtime['services']);
+            $this->assertNotEmpty($runtime['services']);
         }
+    }
+
+    public function testFlutterAndStaticAreSiteOnly(): void
+    {
+        $flutter = $this->instance->get('flutter');
+        $this->assertEquals([Runtime::SERVICE_SITES], $flutter->getServices());
+
+        $static = $this->instance->get('static');
+        $this->assertEquals([Runtime::SERVICE_SITES], $static->getServices());
+    }
+
+    public function testDefaultRuntimesAvailableForBothServices(): void
+    {
+        $node = $this->instance->get('node');
+        $this->assertContains(Runtime::SERVICE_FUNCTIONS, $node->getServices());
+        $this->assertContains(Runtime::SERVICE_SITES, $node->getServices());
+    }
+
+    public function testServicesFieldInListOutput(): void
+    {
+        $node = $this->instance->get('node');
+        $versions = $node->list();
+
+        $this->assertArrayHasKey('node-18.0', $versions);
+        $this->assertArrayHasKey('services', $versions['node-18.0']);
+        $this->assertContains(Runtime::SERVICE_FUNCTIONS, $versions['node-18.0']['services']);
+        $this->assertContains(Runtime::SERVICE_SITES, $versions['node-18.0']['services']);
+    }
+
+    public function testSetServices(): void
+    {
+        $runtime = $this->instance->get('node');
+
+        $runtime->setServices([Runtime::SERVICE_FUNCTIONS]);
+        $this->assertEquals([Runtime::SERVICE_FUNCTIONS], $runtime->getServices());
+
+        $runtime->setServices([Runtime::SERVICE_SITES]);
+        $this->assertEquals([Runtime::SERVICE_SITES], $runtime->getServices());
+
+        $runtime->setServices([Runtime::SERVICE_FUNCTIONS, Runtime::SERVICE_SITES]);
+        $this->assertEquals([Runtime::SERVICE_FUNCTIONS, Runtime::SERVICE_SITES], $runtime->getServices());
+    }
+
+    public function testConstructorThrowsOnInvalidService(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid runtime service: invalid');
+        new Runtime('test', 'Test', 'bash helpers/server.sh', ['invalid']);
+    }
+
+    public function testConstructorThrowsOnEmptyServices(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Runtime must be associated with at least one service.');
+        new Runtime('test', 'Test', 'bash helpers/server.sh', []);
+    }
+
+    public function testSetServicesThrowsOnEmptyArray(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Runtime must be associated with at least one service.');
+        $runtime = $this->instance->get('node');
+        $runtime->setServices([]);
+    }
+
+    public function testSetServicesThrowsOnInvalidService(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Invalid runtime service: invalid');
+        $runtime = $this->instance->get('node');
+        $runtime->setServices(['invalid']);
     }
 }
