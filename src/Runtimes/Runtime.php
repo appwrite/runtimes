@@ -25,13 +25,22 @@ class Runtime
     protected $versions = [];
 
     /**
+     * @var string
+     */
+    protected $type;
+
+    public const TYPE_FUNCTION = 'function';
+    public const TYPE_SITE = 'site';
+
+    /**
      * Runtime that can contain different Versions.
      */
-    public function __construct(string $key, string $name, string $startCommand)
+    public function __construct(string $key, string $name, string $startCommand, string $type = self::TYPE_FUNCTION)
     {
         $this->key = $key;
         $this->name = $name;
         $this->startCommand = $startCommand;
+        $this->type = $type;
     }
 
     /**
@@ -68,6 +77,7 @@ class Runtime
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
                     'startCommand' => $this->startCommand,
+                    'type' => $this->type,
                 ],
                 $version->get()
             );

@@ -171,11 +171,11 @@ class Runtimes
         $rust->addVersion('1.83', 'rust:1.83.0-alpine3.21', 'openruntimes/rust:'.$this->version.'-1.83', [System::X86, System::ARM64]);
         $this->runtimes['rust'] = $rust;
 
-        $static = new Runtime('static', 'Static', 'bash helpers/server.sh');
+        $static = new Runtime('static', 'Static', 'bash helpers/server.sh', Runtime::TYPE_SITE);
         $static->addVersion('1', 'joseluisq/static-web-server:2.33-alpine', 'openruntimes/static:'.$this->version.'-1', [System::X86, System::ARM64]);
         $this->runtimes['static'] = $static;
 
-        $flutter = new Runtime('flutter', 'Flutter', 'bash helpers/server.sh');
+        $flutter = new Runtime('flutter', 'Flutter', 'bash helpers/server.sh', Runtime::TYPE_SITE);
         $flutter->addVersion('3.24', 'ghcr.io/cirruslabs/flutter:3.24.5', 'openruntimes/flutter:'.$this->version.'-3.24', [System::X86, System::ARM64]);
         $flutter->addVersion('3.27', 'ghcr.io/cirruslabs/flutter:3.27.3', 'openruntimes/flutter:'.$this->version.'-3.27', [System::X86, System::ARM64]);
         $flutter->addVersion('3.29', 'ghcr.io/cirruslabs/flutter:3.29.1', 'openruntimes/flutter:'.$this->version.'-3.29', [System::X86, System::ARM64]);
