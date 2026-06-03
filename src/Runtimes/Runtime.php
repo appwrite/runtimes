@@ -39,6 +39,9 @@ class Runtime
      */
     public function __construct(string $key, string $name, string $startCommand, array $services = [self::SERVICE_FUNCTIONS])
     {
+        if (empty($services)) {
+            throw new \InvalidArgumentException('Runtime must be associated with at least one service.');
+        }
         $validServices = [self::SERVICE_FUNCTIONS, self::SERVICE_SITES];
         foreach ($services as $service) {
             if (!\in_array($service, $validServices, true)) {
