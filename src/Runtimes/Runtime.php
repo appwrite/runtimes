@@ -24,6 +24,7 @@ class Runtime
      */
     protected $versions = [];
 
+    /** @var string[] */
     protected array $services;
 
     public const SERVICE_FUNCTIONS = 'functions';
