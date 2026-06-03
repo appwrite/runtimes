@@ -24,14 +24,52 @@ class Runtime
      */
     protected $versions = [];
 
+    /** @var string[] */
+    protected array $services;
+
+    public const SERVICE_FUNCTIONS = 'functions';
+    public const SERVICE_SITES = 'sites';
+
     /**
      * Runtime that can contain different Versions.
+     *
+     * @param  string[]  $services
      */
-    public function __construct(string $key, string $name, string $startCommand)
+    public function __construct(string $key, string $name, string $startCommand, array $services = [self::SERVICE_FUNCTIONS, self::SERVICE_SITES])
     {
         $this->key = $key;
         $this->name = $name;
         $this->startCommand = $startCommand;
+        $this->setServices($services);
+    }
+
+    /**
+     * Get services.
+     *
+     * @return string[]
+     */
+    public function getServices(): array
+    {
+        return $this->services;
+    }
+
+    /**
+     * Set services.
+     *
+     * @param  string[]  $services
+     */
+    public function setServices(array $services): void
+    {
+        if (empty($services)) {
+            throw new \InvalidArgumentException('Runtime must be associated with at least one service.');
+        }
+        $validServices = [self::SERVICE_FUNCTIONS, self::SERVICE_SITES];
+        foreach ($services as $service) {
+            if (!\in_array($service, $validServices, true)) {
+                throw new \InvalidArgumentException("Invalid runtime service: {$service}");
+            }
+        }
+        $this->services = $services;
     }
 
     /**
@@ -68,6 +106,7 @@ class Runtime
                     'name' => $this->name,
                     'logo' => "{$this->key}.png",
                     'startCommand' => $this->startCommand,
+                    'services' => $this->services,
                 ],
                 $version->get()
             );
