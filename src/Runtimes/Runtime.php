@@ -37,10 +37,21 @@ class Runtime
      */
     public function __construct(string $key, string $name, string $startCommand, string $type = self::TYPE_FUNCTION)
     {
+        if (!\in_array($type, [self::TYPE_FUNCTION, self::TYPE_SITE], true)) {
+            throw new \InvalidArgumentException("Invalid runtime type: {$type}");
+        }
         $this->key = $key;
         $this->name = $name;
         $this->startCommand = $startCommand;
         $this->type = $type;
+    }
+
+    /**
+     * Get type.
+     */
+    public function getType(): string
+    {
+        return $this->type;
     }
 
     /**
