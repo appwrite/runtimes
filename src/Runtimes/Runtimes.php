@@ -52,6 +52,7 @@ class Runtimes
         $node->addVersion('23', 'node:23.11.1-alpine3.22', 'openruntimes/node:'.$this->version.'-23', [System::X86, System::ARM64]);
         $node->addVersion('24', 'node:24.13.0-alpine3.23', 'openruntimes/node:'.$this->version.'-24', [System::X86, System::ARM64]);
         $node->addVersion('25', 'node:25.5.0-alpine3.23', 'openruntimes/node:'.$this->version.'-25', [System::X86, System::ARM64]);
+        $node->addVersion('26', 'node:26.5.0-alpine3.24', 'openruntimes/node:'.$this->version.'-26', [System::X86, System::ARM64]);
         $this->runtimes['node'] = $node;
 
         $php = new Runtime('php', 'PHP', 'bash helpers/server.sh');
