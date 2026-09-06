@@ -187,7 +187,7 @@ class Runtimes
         $flutter->addVersion('3.38', 'ghcr.io/cirruslabs/flutter:3.38.0', 'openruntimes/flutter:'.$this->version.'-3.38', [System::X86, System::ARM64]);
         $flutter->addVersion('3.41', 'ghcr.io/cirruslabs/flutter:3.41.0', 'openruntimes/flutter:'.$this->version.'-3.41', [System::X86, System::ARM64]);
         $flutter->addVersion('3.44', 'ghcr.io/adrianjagielak/flutter:3.44.0', 'openruntimes/flutter:'.$this->version.'-3.44', [System::X86, System::ARM64]);
-        $flutter->addVersion('3.47', 'ghcr.io/adrianjagielak/flutter:3.47.1', 'openruntimes/flutter:'.$this->version.'-3.47', [System::X86, System::ARM64]);
+        $flutter->addVersion('3.47', 'debian:12.15-slim', 'openruntimes/flutter:'.$this->version.'-3.47', [System::X86, System::ARM64]);
         $this->runtimes['flutter'] = $flutter;
     }
 
