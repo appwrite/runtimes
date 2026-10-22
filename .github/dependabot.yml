@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # SHA-pinned actions; Dependabot updates the SHA and its version comment together.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    groups:
+      actions:
+        patterns:
+          - "*"
+
+  - package-ecosystem: composer
+    directory: /
+    schedule:
+      interval: weekly
