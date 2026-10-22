@@ -80,6 +80,7 @@ class Runtimes
         $python->addVersion('3.12', 'python:3.12.6-alpine3.20', 'openruntimes/python:'.$this->version.'-3.12', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.13', 'python:3.13.11-alpine3.23', 'openruntimes/python:'.$this->version.'-3.13', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
         $python->addVersion('3.14', 'python:3.14.2-alpine3.23', 'openruntimes/python:'.$this->version.'-3.14', [System::X86, System::ARM64, System::ARMV7, System::ARMV8]);
+        $python->addVersion('3.15', 'python:3.15.1-alpine3.24', 'openruntimes/python:'.$this->version.'-3.15', [System::X86, System::ARM64]);
         $this->runtimes['python'] = $python;
 
         $pythonML = new Runtime('python-ml', 'Python (ML)', 'bash helpers/server.sh');
@@ -97,6 +98,7 @@ class Runtimes
         $deno->addVersion('2.0', 'denoland/deno:alpine-2.0.6', 'openruntimes/deno:'.$this->version.'-2.0', [System::X86, System::ARM64]);
         $deno->addVersion('2.5', 'denoland/deno:alpine-2.5.7', 'openruntimes/deno:'.$this->version.'-2.5', [System::X86, System::ARM64]);
         $deno->addVersion('2.6', 'denoland/deno:alpine-2.6.7', 'openruntimes/deno:'.$this->version.'-2.6', [System::X86, System::ARM64]);
+        $deno->addVersion('2.9', 'denoland/deno:alpine-2.9.8', 'openruntimes/deno:'.$this->version.'-2.9', [System::X86, System::ARM64]);
         $this->runtimes['deno'] = $deno;
 
         $dart = new Runtime('dart', 'Dart', 'bash helpers/server.sh');
@@ -168,10 +170,12 @@ class Runtimes
         $go->addVersion('1.24', 'golang:1.24.12-alpine3.23', 'openruntimes/go:'.$this->version.'-1.24', [System::X86, System::ARM64]);
         $go->addVersion('1.25', 'golang:1.25.6-alpine3.23', 'openruntimes/go:'.$this->version.'-1.25', [System::X86, System::ARM64]);
         $go->addVersion('1.26', 'golang:1.26.0-alpine3.23', 'openruntimes/go:'.$this->version.'-1.26', [System::X86, System::ARM64]);
+        $go->addVersion('1.27', 'golang:1.27.3-alpine3.24', 'openruntimes/go:'.$this->version.'-1.27', [System::X86, System::ARM64]);
         $this->runtimes['go'] = $go;
 
         $rust = new Runtime('rust', 'Rust', 'bash helpers/server.sh');
         $rust->addVersion('1.83', 'rust:1.83.0-alpine3.21', 'openruntimes/rust:'.$this->version.'-1.83', [System::X86, System::ARM64]);
+        $rust->addVersion('1.99', 'rust:1.99.1-alpine3.24', 'openruntimes/rust:'.$this->version.'-1.99', [System::X86, System::ARM64]);
         $this->runtimes['rust'] = $rust;
 
         $static = new Runtime('static', 'Static', 'bash helpers/server.sh', [Runtime::SERVICE_SITES]);
